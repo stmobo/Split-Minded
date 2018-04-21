@@ -1,144 +1,79 @@
 import math
 import renpy.exports as renpy
 import pygame
-
-# the game runs at 1280x720 by default
-# use roughly half of the total screen size for the control game view
-field_dims = [1200, 1200]
-screen_native_dims = [640, 640]
-
-all_entities = pygame.sprite.Group()
-all_voices = pygame.sprite.Group()
-all_projectiles = pygame.sprite.Group()
+import entities
+import game_data
 
 allow_clickfwd = False
-
 game_displayable = None  # a reference to the main MentalControlGame instance
 
-class Entity(pygame.sprite.Sprite):
-    def __init__(self, pos):
-        pygame.sprite.Sprite.__init__(self)
+player = entities.Player((0, 0))
+pyro = entities.Pyromaniac((50, 50))
+survivor = entities.Survivor((100, 100))
+artist = entities.Artist((150, 150))
 
-        self.pos = list(pos)
-        self.vel = [0, 0]
-        self.rot = 0
+def screen_center():
+    if game_data.screen_center is None:
+        return player.pos
+    else:
+        return game_data.screen_center
 
-        all_entities.add(self)
+def set_screen_center(center=None):
+    game_data.screen_center = center
 
-        self.m_pos = pygame.mouse.get_pos()
+class MentalControlGame(renpy.Displayable):
+    def __init__(self, **kwargs):
+        super(MentalControlGame, self).__init__(**kwargs)
+        game_displayable = self
 
-        self.image = self.base_image
-        self.rect = self.image.get_rect()
+        self.last_st = 0
+        self.primary_surf = pygame.Surface(game_data.gameplay_screen_size)
+        self.screen_sz = None
 
-        self.surf_alpha = None
-        self.update_hooks = []
+    def event(self, ev, x, y, st):
+        if ev.type == pygame.MOUSEMOTION and self.screen_sz is not None:
+            # convert mouse pos to field coordinates:
+            ctr = screen_center()
+            m_pos = [
+                (
+                    (ctr[0] - (game_data.gameplay_screen_size[0] / 2))
+                    + (x * game_data.gameplay_screen_size[0] / self.screen_sz[0])
+                ),
+                (
+                    (ctr[1] - (game_data.gameplay_screen_size[1] / 2))
+                    + (y * game_data.gameplay_screen_size[1] / self.screen_sz[1])
+                )
+            ]
 
-    def add_effect(self, effect):
-        self.update_hooks.append(effect)
+            player.mouse_update(m_pos)
+            renpy.redraw(self, 0)
 
-    def set_surface_alpha(self, alpha):
-        if alpha is None:
-            self.surf_alpha = None
-        else:
-            alpha = int(alpha)
-            if alpha > 255:
-                self.surf_alpha = 255
-            elif alpha < 0:
-                self.surf_alpha = 0
-            else:
-                self.surf_alpha = alpha
+    def render(self, width, height, st, at):
+        render = renpy.Render(width, height)
 
-    def update(self, dt, acc):
-        self.vel[0] += acc[0] * dt
-        self.vel[1] += acc[1] * dt
+        self.screen_sz = (width, height)
 
-        self.pos[0] += self.vel[0] * dt
-        self.pos[1] += self.vel[1] * dt
+        # update game state
+        dt = st - self.last_st
+        self.last_st = st
 
-        i = 0
-        while i < len(self.update_hooks):
-            v = self.update_hooks[i](self, dt, acc)  # call hook
-            if not v: # if v is False or None then remove the hook
-                self.update_hooks.pop(i)
-            else:
-                i += 1
+        if dt < (1.0 / 25.0):
+            entities.all_entities.update(dt)
 
-        self.image = pygame.transform.rotate(self.base_image, -math.degrees(self.rot))
-        if self.surf_alpha is not None:
-            alpha_img = pygame.Surface(self.image.get_rect().size, pygame.SRCALPHA)
-            alpha_img.fill((255, 255, 255, self.surf_alpha))
-            self.image.blit(alpha_img, (0, 0), special_flags=pygame.BLEND_RGBA_MULT)
+        surf = render.canvas().get_surface()
+        surf.fill((0, 0, 0))
 
-        self.rect = self.image.get_rect()
-        self.rect.centerx = self.pos[0]
-        self.rect.centery = self.pos[1]
+        self.primary_surf.fill((0, 0, 0, 0))
 
+        ctr = screen_center()
+        for entity in entities.all_entities.sprites():
+            entity.set_render_viewpoint(ctr)
 
-class Voice(Entity):
-    def __init__(self, pos, image_folder):
-        self.char_images = {
-            'default': pygame.image.load(renpy.file(image_folder+'/default.png')),
-            'with_weapon': pygame.image.load(renpy.file(image_folder+'/with_weapon.png')),
-        }
+        entities.all_entities.draw(self.primary_surf)
 
-        self.base_image = self.char_images['default']
+        pygame.transform.scale(
+            self.primary_surf, self.screen_sz, surf
+        )
 
-        Entity.__init__(self, pos)
-        all_voices.add(self)
-
-class Pyromaniac(Voice):
-    def __init__(self, pos):
-        Voice.__init__(self, pos, 'voice2')
-
-class Survivor(Voice):
-    def __init__(self, pos):
-        Voice.__init__(self, pos, 'voice3')
-
-class Artist(Voice):
-    def __init__(self, pos):
-        Voice.__init__(self, pos, 'voice4')
-
-class Player(Voice):
-    def __init__(self, pos):
-        Voice.__init__(self, pos, 'voice1')
-        self.movement_allowed = False
-
-    def mouse_update(self, m_pos):
-        self.m_pos = m_pos
-
-    def update(self, dt):
-        pressed = pygame.key.get_pressed()
-
-        if self.movement_allowed:
-            left = pressed[pygame.K_LEFT] or pressed[pygame.K_a]
-            right = pressed[pygame.K_RIGHT] or pressed[pygame.K_d]
-            up = pressed[pygame.K_UP] or pressed[pygame.K_w]
-            down = pressed[pygame.K_DOWN] or pressed[pygame.K_s]
-        else:
-            left = right = up = down = False
-
-        if pressed[pygame.K_LSHIFT] or pressed[pygame.K_RSHIFT]:
-            movement_magnitude = 120
-        else:
-            movement_magnitude = 300
-
-        if left == right:
-            self.vel[0] = 0
-        elif left:
-            self.vel[0] = -movement_magnitude
-        elif right:
-            self.vel[0] = movement_magnitude
-
-        if up == down:
-            self.vel[1] = 0
-        elif up:
-            self.vel[1] = -movement_magnitude
-        elif down:
-            self.vel[1] = movement_magnitude
-
-        self.rot = math.atan2(self.m_pos[1] - self.pos[1], self.m_pos[0] - self.pos[0]) + (math.pi / 2)
-
-        Voice.update(self, dt, (0, 0))
-
-
-player = Player((400, 400))
+        renpy.redraw(self, 1/60)
+        return render

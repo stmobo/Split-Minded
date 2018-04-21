@@ -30,49 +30,6 @@ init python:
             else:
                 return None
 
-    class MentalControlGame(renpy.Displayable, NoRollback):
-        def __init__(self, **kwargs):
-            super(MentalControlGame, self).__init__(**kwargs)
-            control_game.game_displayable = self
-
-            self.last_st = 0
-            self.primary_surf = pygame.Surface(control_game.screen_native_dims)
-            self.screen_sz = None
-
-        def event(self, ev, x, y, st):
-            if ev.type == pygame.MOUSEMOTION and self.screen_sz is not None:
-                control_game.player.mouse_update((
-                    x * control_game.screen_native_dims[0] / self.screen_sz[0],
-                    y * control_game.screen_native_dims[1] / self.screen_sz[1]
-                ))
-                renpy.redraw(self, 0)
-
-        def render(self, width, height, st, at):
-            render = renpy.Render(width, height)
-
-            self.screen_sz = (width, height)
-
-            # update game state
-            dt = st - self.last_st
-            self.last_st = st
-
-            if dt < (1.0 / 25.0):
-                print(dt)
-                control_game.all_entities.update(dt)
-
-            surf = render.canvas().get_surface()
-            surf.fill((0, 0, 0))
-
-            self.primary_surf.fill((0, 0, 0, 0))
-            control_game.all_entities.draw(self.primary_surf)
-
-            pygame.transform.scale(
-                self.primary_surf, self.screen_sz, surf
-            )
-
-            renpy.redraw(self, 1/60)
-            return render
-
     left = Transform(ypos=30, xpos=-50)
 
 
@@ -81,7 +38,7 @@ screen ctrl_game:
     key "D" action NullAction()
     key "dismiss" action ClickForwardAction()
 
-    add MentalControlGame():
+    add control_game.MentalControlGame():
         xpos 750
         yalign 0
         size (530, 530)
@@ -95,8 +52,24 @@ label start:
 
     scene bg room
 
-    $ control_game.allow_clickfwd = True
-    $ control_game.player.set_surface_alpha(0)
+    python:
+        control_game.allow_clickfwd = True
+
+        control_game.player.set_surface_alpha(0)
+        control_game.pyro.set_surface_alpha(0)
+        control_game.survivor.set_surface_alpha(0)
+        control_game.artist.set_surface_alpha(0)
+
+        control_game.set_screen_center([1200, 1200])
+
+        control_game.player.pos = [1120, 1400]
+        control_game.pyro.pos = [1360, 1300]
+        control_game.survivor.pos = [1040, 1100]
+        control_game.artist.pos = [1200, 1000]
+
+        control_game.pyro.turn_to(control_game.player.pos)
+        control_game.survivor.turn_to(control_game.player.pos)
+        control_game.artist.turn_to(control_game.player.pos)
 
     "We're not sure why, but one day, as we were walking to school..."
 
@@ -108,6 +81,8 @@ label start:
 
     "The first voice to speak up sounds refined and classy."
 
+    $ control_game.pyro.add_effect(effects.FadeEffect(control_game.pyro, 5.0, 0, 255))
+
     "Voice #2" "Well, I do suppose that a round of introductions is in order." (who_color="#ffa126")
 
     "Voice #2" "My name is... well, I'm not really sure what my name is, but I do know that I am a man of lofty ambition." (who_color="#ffa126")
@@ -116,9 +91,13 @@ label start:
 
     "He's quickly interrupted by a rough, growling voice."
 
+    $ control_game.survivor.add_effect(effects.FadeEffect(control_game.survivor, 5.0, 0, 255))
+
     "Voice #3" "He means he's a fucking pyromaniac, and that his life's goal is to burn everything to the ground." (who_color="#3d660e")
 
     pyro "That- that is simply not true! I have many other interests other than burning! For example, I find the varying smells of gasoline to be quite--"
+
+    $ control_game.pyro.turn_to(control_game.survivor.pos)
 
     "Voice #3" "Just shut up for now, okay?" (who_color="#3d660e")
 
@@ -140,6 +119,8 @@ label start:
 
     surv "Yeah? Well, what do {i}you{/i} know about perimeter security then, Mister Pompous Asshole?"
 
+    $ control_game.survivor.turn_to(control_game.pyro.pos)
+
     pyro "I'd say I know more about the kinds of threats we'll be facing at this {i}high school{/i} than you ever will.
     For example, I know the best ways to discreetly dispose of a charred corpse, and how to sneak lighter fluid onto a school campus."
 
@@ -147,23 +128,37 @@ label start:
 
     surv "Hey, who's there?! You'd better fucking show yourself, or I'll-- I'll fucking put a bullet between your eyes!"
 
-    pyro "Please do remember that we are {i}disembodied voices{/i}. How do you possibly think you're going to accomplish that?"
+    pyro "Please do remember that we are {i}mental constructs{/i}. How do you possibly think you're going to accomplish that?"
 
     pyro "Though I, myself, am rather curious about the newcomer. Why don't you show yourself?"
 
+    $ control_game.allow_clickfwd = False
+
     pause 1
+
+    $ control_game.artist.add_effect(effects.FadeEffect(control_game.artist, 5.0, 0, 255))
+    $ control_game.allow_clickfwd = True
 
     "Voice #4" "...fine. Hi." (who_color="#6800b7")
 
+    $ control_game.survivor.turn_to(control_game.artist.pos)
+    $ control_game.pyro.turn_to(control_game.artist.pos)
+
+    $ control_game.allow_clickfwd = False
     pause 2.5
+    $ control_game.allow_clickfwd = True
 
     "There's nothing but silence for a few moments, while we wait for the newcomer to say more."
 
+    $ control_game.allow_clickfwd = False
     pause 2.5
+    $ control_game.allow_clickfwd = True
 
     surv "...Well? Is that it? Speak {i}up{/i}, for Christ's sake!"
 
+    $ control_game.allow_clickfwd = False
     pause 1
+    $ control_game.allow_clickfwd = True
 
     artist "I'm an artist. All I want to do is make artwork."
 
