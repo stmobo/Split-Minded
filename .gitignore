@@ -99,3 +99,13 @@ ENV/
 
 # mypy
 .mypy_cache/
+
+
+# Ren'Py stuff:
+
+*.rpyc
+*.rpyb
+*.save
+
+game/cache/*
+game/saves/*
