@@ -131,7 +131,7 @@ style namebox_label is say_label
 
 
 style window:
-    xalign 0
+    xalign 0.5
     xfill True
     yalign gui.textbox_yalign
     ysize gui.textbox_height
