@@ -107,5 +107,9 @@ ENV/
 *.rpyb
 *.save
 
+traceback.txt
+errors.txt
+log.txt
+
 game/cache/*
 game/saves/*

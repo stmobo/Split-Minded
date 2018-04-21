@@ -131,7 +131,7 @@ style namebox_label is say_label
 
 
 style window:
-    xalign 0.5
+    xalign 0
     xfill True
     yalign gui.textbox_yalign
     ysize gui.textbox_height
@@ -1509,8 +1509,3 @@ style slider_pref_vbox:
 style slider_pref_slider:
     variant "small"
     xsize 600
-
-
-
-
-

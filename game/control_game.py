@@ -1,10 +1,15 @@
 import math
-import renpy
+import renpy.exports as renpy
 import pygame
 
-field_dims = [800, 800]
+# the game runs at 1280x720 by default
+# use roughly half of the total screen size for the control game view
+field_dims = [2000, 2000]
+screen_native_dims = [640, 640]
 
 all_entities = pygame.sprite.Group()
+all_voices = pygame.sprite.Group()
+all_projectiles = pygame.sprite.Group()
 
 class Entity(pygame.sprite.Sprite):
     def __init__(self, pos):
@@ -16,6 +21,11 @@ class Entity(pygame.sprite.Sprite):
 
         all_entities.add(self)
 
+        self.m_pos = pygame.mouse.get_pos()
+
+        self.image = self.base_image
+        self.rect = self.image.get_rect()
+
     def update(self, dt, acc):
         self.vel[0] += acc[0] * dt
         self.vel[1] += acc[1] * dt
@@ -23,19 +33,35 @@ class Entity(pygame.sprite.Sprite):
         self.pos[0] += self.vel[0] * dt
         self.pos[1] += self.vel[1] * dt
 
-class Player(Entity):
-    def __init__(self, pos):
-        Entity.__init__(self, pos)
-
-        self.base_image = pygame.Surface((20, 10), flags=pygame.SRCALPHA)
-        self.base_image.fill((0, 0, 0, 0))
-        pygame.draw.polygon(
-            self.base_image, (255, 255, 255, 255),
-            [(0, 0), (5, 5), (0, 10), (20, 5)]
-        )
-
-        self.image = self.base_image
+        self.image = pygame.transform.rotate(self.base_image, -math.degrees(self.rot))
         self.rect = self.image.get_rect()
+
+        self.rect.centerx = self.pos[0]
+        self.rect.centery = self.pos[1]
+
+class Voice(Entity):
+    def __init__(self, pos, image):
+        self.base_image = pygame.image.load(image)
+        #self.base_image = img.convert_alpha()
+
+        Entity.__init__(self, pos)
+        all_voices.add(self)
+
+
+
+class Player(Voice):
+    def __init__(self, pos):
+        # self.base_image = pygame.Surface((20, 10), flags=pygame.SRCALPHA)
+        # self.base_image.fill((0, 0, 0, 0))
+        # pygame.draw.polygon(
+        #     self.base_image, (255, 255, 255, 255),
+        #     [(0, 0), (5, 5), (0, 10), (20, 5)]
+        # )
+
+        Voice.__init__(self, pos, renpy.file('voice1-holding.png'))
+
+    def mouse_update(self, m_pos):
+        self.m_pos = m_pos
 
     def update(self, dt):
         pressed = pygame.key.get_pressed()
@@ -64,10 +90,9 @@ class Player(Entity):
         elif down:
             self.vel[1] = movement_magnitude
 
-        Entity.update(self, dt, (0, 0))
+        self.rot = math.atan2(self.m_pos[1] - self.pos[1], self.m_pos[0] - self.pos[0]) + (math.pi / 2)
 
-        m_pos = pygame.mouse.get_pos()
+        Voice.update(self, dt, (0, 0))
 
-        rot = math.atan2(self.pos[1] - m_pos[1], self.pos[0] - m_pos[0])
 
-        self.image = pygame.transform.rotate(self.base_image, -math.degrees(rot))
+player = Player((400, 400))

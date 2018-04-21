@@ -4,8 +4,10 @@
 # name of the character.
 
 define mc = Character("<main character>")
-define rom1 = Character("Hitomi", color="#28a25b")
-define rom2 = Character("Nanami", color="#ff6060")
+define hitomi = Character("Hitomi", color="#28a25b")
+define nanami = Character("Nanami", color="#ff6060")
+
+image hitomi happy = "hitomi/happy.png"
 
 define voc1 = Character("The Calm One", color="#ffffff") # The Calm One
 define voc2 = Character("The Pyromaniac", color="#ffa126") # The Pyromaniac
@@ -14,41 +16,61 @@ define voc4 = Character("The Artist", color="#6800b7") # The Artist
 
 
 init python:
-    import control_game
+    config.rollback_enabled = False  # rollback doesn't make sense with this game
+    config.keymap['developer'] = ['shift_F']
+    config.keymap['screenshot'] = ['shift_S']
 
-    class MentalControlGame(renpy.Displayable):
+    import control_game
+    import pygame
+
+    class MentalControlGame(renpy.Displayable, NoRollback):
         def __init__(self, **kwargs):
             super(MentalControlGame, self).__init__(**kwargs)
 
             self.last_st = 0
+            self.primary_surf = pygame.Surface(control_game.screen_native_dims)
+            self.screen_sz = None
 
-            self.player = control_game.Player((0, 0))
+        def event(self, ev, x, y, st):
+            if ev.type == pygame.MOUSEMOTION and self.screen_sz is not None:
+                control_game.player.mouse_update((
+                    x * control_game.screen_native_dims[0] / self.screen_sz[0],
+                    y * control_game.screen_native_dims[1] / self.screen_sz[1]
+                ))
+                renpy.redraw(self, 0)
 
         def render(self, width, height, st, at):
             render = renpy.Render(width, height)
 
-            self.screen_width = (width, height)
+            self.screen_sz = (width, height)
 
             # update game state
             dt = st - self.last_st
             self.last_st = st
 
-            control_game.all_entities.update(dt)
+            if dt < (1.0 / 25.0):
+                print(dt)
+                control_game.all_entities.update(dt)
 
             surf = render.canvas().get_surface()
-
             surf.fill((0, 0, 0))
-            all_entities.draw(surf)
+
+            self.primary_surf.fill((0, 0, 0, 0))
+            control_game.all_entities.draw(self.primary_surf)
+
+            pygame.transform.scale(
+                self.primary_surf, self.screen_sz, surf
+            )
 
             renpy.redraw(self, 1/60)
-
             return render
 
 
 screen ctrl_game:
     add MentalControlGame():
-        xalign 0.5
-        yalign 0.5
+        xpos 750
+        yalign 0
+        size (530, 530)
 
 label start:
     show screen ctrl_game
@@ -58,6 +80,12 @@ label start:
     # images directory to show it.
 
     scene bg room
+
+
+    show hitomi happy
+
+    hitomi "Testing!"
+
 
     "We're not sure why, but one day, as we walked to school..."
 
