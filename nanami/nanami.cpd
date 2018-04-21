@@ -1,0 +1,20 @@
+[Character]
+name=default
+[Parts]
+hair_front=Hair - Wild Hair 2
+hair_back=Hair2 - Bobby Cut
+head=Head - Normal 2
+face=Exp. - Straight Face 2
+eye=Eyes - Eye 194
+body=Body - Blazer
+accessory=
+[Color]
+hair_rgb=2
+hair_gray=0
+eye_rgb=2
+eye_gray=2
+skin_rgb=0
+skin_gray=3
+body_rgb=0
+body_gray=3
+bg_rgb=255,255,255
