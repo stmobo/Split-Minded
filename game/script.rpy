@@ -7,6 +7,9 @@ define mc = Character("Kei")
 define hitomi = Character("Hitomi", color="#28a25b")
 define nanami = Character("Nanami", color="#ff6060")
 
+image controlgame_textbox_bg = "controlgame_textbox_bg.png"
+image school = "dummy-school.png"
+
 image hitomi happy = "hitomi/upscaled/happy.png"
 
 define calm = Character("The Calm One", color="#ffffff") # The Calm One
@@ -15,6 +18,7 @@ define surv = Character("The Survivor", color="#3d660e") # The Survivor
 define artist = Character("The Artist", color="#6800b7") # The Artist
 
 init python:
+    config.layers = ['game_bg', 'master', 'transient', 'screens', 'overlay']
     config.rollback_enabled = False  # rollback doesn't make sense with this game
     config.keymap['developer'] = ['shift_F']
     config.keymap['screenshot'] = ['shift_S']
@@ -31,7 +35,8 @@ init python:
                 return None
 
     left = Transform(ypos=30, xpos=-50)
-
+    scene_bg = Transform(xpos=0, ypos=0, size=(750, 720))
+    shooter_bg = Transform(xpos=750, ypos=540, size=(530, 180))
 
 screen ctrl_game:
     key "S" action NullAction()
@@ -41,16 +46,13 @@ screen ctrl_game:
     add control_game.MentalControlGame():
         xpos 750
         yalign 0
-        size (530, 530)
+        size (530, 540)
 
 label start:
     show screen ctrl_game
 
-    # Show a background. This uses a placeholder by default, but you can
-    # add a file (named either "bg room.png" or "bg room.jpg") to the
-    # images directory to show it.
-
-    scene bg room
+    scene school at scene_bg
+    show controlgame_textbox_bg at shooter_bg onlayer game_bg
 
     python:
         control_game.allow_clickfwd = True
@@ -218,6 +220,6 @@ label start:
 
     $ control_game.artist.add_effect(effects.FadeEffect(control_game.artist, 15.0, 255, 0))
 
-    "And with that, they vanished into the recesses of [mc.name]'s mind, leaving me alone to guide [mc.name] through the day at school."
+    "And with that, they vanished into the recesses of [mc.name]'s mind, leaving me alone to guide him through the day at school."
 
     return
