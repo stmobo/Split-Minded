@@ -43,14 +43,17 @@ define surv = Character("The Survivor", color="#3d660e") # The Survivor
 define artist = Character("The Artist", color="#6800b7") # The Artist
 
 init python:
+    #config.developer = False
     config.layers = ['game_bg', 'master', 'transient', 'screens', 'overlay']
     config.rollback_enabled = False  # rollback doesn't make sense with this game
     config.keymap['developer'] = ['shift_F']
     config.keymap['screenshot'] = ['shift_S']
 
+    import pygame
     import control_game
     import effects
-    import pygame
+    import game_data
+    import tiles
 
     class ClickForwardAction(Action):
         def __call__(self):
@@ -60,7 +63,7 @@ init python:
                 return None
 
 screen ctrl_game:
-    zorder 1
+    zorder 0
 
     key "S" action NullAction()
     key "D" action NullAction()
@@ -78,7 +81,9 @@ label start:
     show controlgame_textbox_bg at shooter_bg onlayer game_bg
 
     python:
+        tiles.init()
         control_game.allow_clickfwd = True
+        control_game.combat_in_progress = False
 
         control_game.player.set_surface_alpha(0)
         control_game.pyro.set_surface_alpha(0)

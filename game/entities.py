@@ -96,7 +96,7 @@ class Weapon(Entity):
 
         self.base_image = pygame.image.load(renpy.file(image))
 
-        self.active = False
+        self.active = True
         self.can_damage = False
         self.is_melee = False
         self.rot_offset = 0
@@ -143,8 +143,10 @@ class Weapon(Entity):
         self.vel = [0, 0]
         self.rotate_to_wielder()
 
-        if not self.active:
+        if not self.active or not game_data.combat_in_progress or (self.wielder.surf_alpha is not None and self.wielder.surf_alpha == 0):
             self.set_surface_alpha(0)
+        else:
+            self.set_surface_alpha(None)
 
         Entity.update(self, dt, acc)
 
@@ -159,16 +161,19 @@ class Sword(Weapon):
         self.is_melee = True
 
         self.swinging = False
+        self.controllable = True
 
     def fire(self):
-        if not self.swinging:
+        if not self.swinging and self.controllable:
             self.swinging = True
             self.can_damage = True
             self.rot_offset = -(self.arc_angle / 2)
 
     def deal_damage(self, victim):
-        victim.set_health(victim.health - 15)
+        victim.set_health(victim.health - 15, self.wielder)
         self.can_damage = False
+
+        victim.add_effect(effects.PushbackEffect(victim, self, .75, 150))
 
     def update(self, dt, acc=(0, 0)):
         if self.swinging:
@@ -199,7 +204,7 @@ class Voice(Entity):
         Entity.__init__(self, pos)
         all_voices.add(self)
 
-    def set_health(self, health):
+    def set_health(self, health, attacker=None):
         damaged = health < self.health and health >= 0
 
         if health < 0:
@@ -220,34 +225,54 @@ class Voice(Entity):
         self.rot = math.atan2(point[1] - self.pos[1], point[0] - self.pos[0]) + (math.pi / 2)
 
 
-class Pyromaniac(Voice):
+    def update(self, dt, acc=(0, 0)):
+        if game_data.combat_in_progress:
+            self.base_image = self.char_images['with_weapon']
+        else:
+            self.base_image = self.char_images['default']
+
+        Entity.update(self, dt, acc)
+
+class AIVoice(Voice):
+    def __init__(self, pos, image_folder, id):
+        Voice.__init__(self, pos, image_folder, id)
+
+        self.target = None
+
+    def update(self, dt, acc=(0, 0)):
+        if self.target is not None:
+            self.turn_to(self.target.pos)
+
+        Voice.update(self, dt, acc)
+
+
+class Pyromaniac(AIVoice):
     def __init__(self, pos):
-        Voice.__init__(self, pos, 'voice2', 'pyro')
+        AIVoice.__init__(self, pos, 'voice2', 'pyro')
 
-    def update(self, dt):
-        Voice.update(self, dt, (0, 0))
+        self.weapon = Sword(self)
 
 
-class Survivor(Voice):
+class Survivor(AIVoice):
     def __init__(self, pos):
-        Voice.__init__(self, pos, 'voice3', 'surv')
+        AIVoice.__init__(self, pos, 'voice3', 'surv')
 
-    def update(self, dt):
-        Voice.update(self, dt, (0, 0))
+        self.weapon = Sword(self)
 
 
-class Artist(Voice):
+class Artist(AIVoice):
     def __init__(self, pos):
-        Voice.__init__(self, pos, 'voice4', 'artist')
+        AIVoice.__init__(self, pos, 'voice4', 'artist')
 
-    def update(self, dt):
-        Voice.update(self, dt, (0, 0))
+        self.weapon = Sword(self)
 
 
 class Player(Voice):
     def __init__(self, pos):
         Voice.__init__(self, pos, 'voice1', 'calm')
         self.movement_allowed = False
+
+        self.weapon = Sword(self)
 
         self.m_pos = (0, 0)
 

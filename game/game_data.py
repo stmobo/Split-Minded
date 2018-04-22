@@ -9,3 +9,5 @@ screen_total_size = [1280, 720]
 gameplay_screen_size = [640, 640]
 
 screen_center = None
+
+combat_in_progress = False

@@ -167,7 +167,43 @@ label day0_end:
 
     "It's all we can do to drag ourselves to our bedroom, hit the lights, and fall asleep in our uniform."
 
-    scene black at scene_bg
+    show black
+    hide screen ctrl_game
     with dissolve
 
-    ""
+    pause
+
+    python:
+        control_game.set_screen_center(None)
+        control_game.player.movement_allowed = True
+        game_data.combat_in_progress = True
+        control_game.player.weapon.controllable = False
+
+    "Suddenly, I'm jolted back into awareness by a sound.{p}Footsteps."
+
+    scene black at scene_bg
+    show screen ctrl_game
+    with dissolve
+
+    calm "What? Who's there?"
+
+    "I notice that, for some reason, I have a sword in my hand."
+
+    python:
+        control_game.survivor.target = control_game.player
+        control_game.pyro.target = control_game.player
+        control_game.artist.target = control_game.player
+
+        control_game.survivor.add_effect(effects.FadeEffect(control_game.survivor, .75, 0, 255))
+        control_game.pyro.add_effect(effects.FadeEffect(control_game.pyro, .75, 0, 255))
+        control_game.artist.add_effect(effects.FadeEffect(control_game.artist, .75, 0, 255))
+
+    artist "Hi."
+
+    pyro "Oh, you got one of those as well? That makes things slightly more complicated."
+
+    calm "What's happening? What is this?"
+
+    surv "It's a coup, dumbass. We want to run things our own way, and you're getting in the way of that."
+
+    
