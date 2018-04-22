@@ -12,8 +12,27 @@ tile_sprites = []
 tilemap_wall = b'#'
 tilemap_empty = b' '
 
-floor_tile_sprite = pygame.image.load(renpy.file('tiles/basic_tile.png'))
-vent_tile_sprite = pygame.image.load(renpy.file('tiles/vent_tile.png'))
+floor_tile_sprites = {
+    'normal': pygame.image.load(renpy.file('tiles/floor_tiles/basic.png')),
+    'vent': [
+        pygame.image.load(renpy.file('tiles/floor_tiles/vent_1.png')),
+        pygame.image.load(renpy.file('tiles/floor_tiles/vent_2.png')),
+    ],
+    'panel': [
+        pygame.image.load(renpy.file('tiles/floor_tiles/panel_1.png')),
+        pygame.image.load(renpy.file('tiles/floor_tiles/panel_2.png')),
+        pygame.image.load(renpy.file('tiles/floor_tiles/panel_3.png')),
+        pygame.image.load(renpy.file('tiles/floor_tiles/panel_4.png')),
+        pygame.image.load(renpy.file('tiles/floor_tiles/panel_5.png')),
+        pygame.image.load(renpy.file('tiles/floor_tiles/panel_6.png')),
+    ],
+    'wiring': [
+        pygame.image.load(renpy.file('tiles/floor_tiles/wiring_1.png')),
+        pygame.image.load(renpy.file('tiles/floor_tiles/wiring_2.png')),
+        pygame.image.load(renpy.file('tiles/floor_tiles/wiring_3.png')),
+        pygame.image.load(renpy.file('tiles/floor_tiles/wiring_4.png')),
+    ]
+}
 
 wall_tile_sprites = {
     'line': [
@@ -78,7 +97,16 @@ class Tile(pygame.sprite.Sprite):
 
 class FloorTile(Tile):
     def __init__(self, pos):
-        Tile.__init__(self, pos, floor_tile_sprite)
+        rand = renpy.random.random()
+        if rand < .90:
+            Tile.__init__(self, pos, floor_tile_sprites['normal'])
+        elif rand < .97:
+            Tile.__init__(self, pos, renpy.random.choice(floor_tile_sprites['panel']))
+        elif rand < .993:
+            Tile.__init__(self, pos, renpy.random.choice((floor_tile_sprites['vent'])))
+        else:
+            Tile.__init__(self, pos, renpy.random.choice(floor_tile_sprites['wiring']))
+
 
 class WallTile(Tile):
     def __init__(self, pos):
