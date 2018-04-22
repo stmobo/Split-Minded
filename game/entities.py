@@ -66,6 +66,8 @@ class Entity(pygame.sprite.Sprite):
         self.vel[0] += acc[0] * dt
         self.vel[1] += acc[1] * dt
 
+        self.last_pos = [self.pos[0], self.pos[1]]
+
         self.pos[0] += self.vel[0] * dt
         self.pos[1] += self.vel[1] * dt
 
@@ -85,7 +87,9 @@ class Entity(pygame.sprite.Sprite):
 
 
 class Voice(Entity):
-    def __init__(self, pos, image_folder):
+    def __init__(self, pos, image_folder, char_id):
+        self.id = char_id
+
         self.char_images = {
             'default': pygame.image.load(renpy.file(image_folder+'/default.png')),
             'with_weapon': pygame.image.load(renpy.file(image_folder+'/with_weapon.png')),
@@ -102,7 +106,7 @@ class Voice(Entity):
 
 class Pyromaniac(Voice):
     def __init__(self, pos):
-        Voice.__init__(self, pos, 'voice2')
+        Voice.__init__(self, pos, 'voice2', 'pyro')
 
     def update(self, dt):
         Voice.update(self, dt, (0, 0))
@@ -110,7 +114,7 @@ class Pyromaniac(Voice):
 
 class Survivor(Voice):
     def __init__(self, pos):
-        Voice.__init__(self, pos, 'voice3')
+        Voice.__init__(self, pos, 'voice3', 'surv')
 
     def update(self, dt):
         Voice.update(self, dt, (0, 0))
@@ -118,7 +122,7 @@ class Survivor(Voice):
 
 class Artist(Voice):
     def __init__(self, pos):
-        Voice.__init__(self, pos, 'voice4')
+        Voice.__init__(self, pos, 'voice4', 'artist')
 
     def update(self, dt):
         Voice.update(self, dt, (0, 0))
@@ -126,8 +130,8 @@ class Artist(Voice):
 
 class Player(Voice):
     def __init__(self, pos):
-        Voice.__init__(self, pos, 'voice1')
-        self.movement_allowed = False
+        Voice.__init__(self, pos, 'voice1', 'calm')
+        self.movement_allowed = True
 
     def mouse_update(self, m_pos):
         self.m_pos = m_pos

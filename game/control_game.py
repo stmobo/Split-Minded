@@ -2,6 +2,7 @@ import math
 import renpy.exports as renpy
 import pygame
 import entities
+import tiles
 import game_data
 
 allow_clickfwd = False
@@ -60,12 +61,38 @@ class MentalControlGame(renpy.Displayable):
         if dt < (1.0 / 25.0):
             entities.all_entities.update(dt)
 
+        for entity in entities.all_entities.sprites():
+            entity.set_render_viewpoint()
+
+        for voice, walls in pygame.sprite.groupcollide(entities.all_voices, tiles.all_walls, False, False).items():
+            for wall in walls:
+                if voice.rect.centerx > wall.rect.centerx:
+                    x_overlap = wall.rect.right - voice.rect.left
+                else:
+                    x_overlap = wall.rect.left - voice.rect.right
+
+                if voice.rect.centery > wall.rect.centery:
+                    y_overlap = wall.rect.bottom - voice.rect.top
+                else:
+                    y_overlap = wall.rect.top - voice.rect.bottom
+
+                if abs(x_overlap) < abs(y_overlap):
+                    voice.pos[0] += x_overlap
+                    voice.vel[0] = 0
+                else:
+                    voice.pos[1] += y_overlap
+                    voice.vel[1] = 0
+
         surf = render.canvas().get_surface()
         surf.fill((0, 0, 0))
 
-        self.primary_surf.fill((0, 0, 0, 0))
-
         ctr = screen_center()
+
+        tiles_surf, offset = tiles.update_tiles(ctr)
+
+        self.primary_surf.fill((0, 0, 0, 0))
+        self.primary_surf.blit(tiles_surf, offset)
+
         for entity in entities.all_entities.sprites():
             entity.set_render_viewpoint(ctr)
 
