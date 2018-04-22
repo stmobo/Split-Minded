@@ -3,6 +3,7 @@ import renpy.exports as renpy
 import pygame
 import entities
 import tiles
+import utils
 import game_data
 
 allow_clickfwd = False
@@ -66,15 +67,7 @@ class MentalControlGame(renpy.Displayable):
 
         for voice, walls in pygame.sprite.groupcollide(entities.all_voices, tiles.all_walls, False, False).items():
             for wall in walls:
-                if voice.rect.centerx > wall.rect.centerx:
-                    x_overlap = wall.rect.right - voice.rect.left
-                else:
-                    x_overlap = wall.rect.left - voice.rect.right
-
-                if voice.rect.centery > wall.rect.centery:
-                    y_overlap = wall.rect.bottom - voice.rect.top
-                else:
-                    y_overlap = wall.rect.top - voice.rect.bottom
+                x_overlap, y_overlap = utils.rect_overlap(voice.rect, wall.rect)
 
                 if abs(x_overlap) < abs(y_overlap):
                     voice.pos[0] += x_overlap
