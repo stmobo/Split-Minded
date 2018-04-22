@@ -1,4 +1,9 @@
 label day0_hitomi:
+    python:
+        set_voice_visible('pyro', False)
+        set_voice_visible('artist', False)
+        set_voice_visible('survivor', False)
+
     "And with the other three voices gone, I am left in peace with [mc.name] as we walk to school."
 
     "The walk is uneventful, but I can feel [mc.name]'s attention being pulled towards the stores and shops we passed by on the way to school."
@@ -174,10 +179,10 @@ label day0_end:
     pause
 
     python:
-        control_game.set_screen_center(None)
-        control_game.player.movement_allowed = True
-        game_data.combat_in_progress = True
-        control_game.player.weapon.controllable = False
+        set_screen_center(None)
+        set_player_movement_allowed(True)
+        set_combat_status(True)
+        set_player_weapon_controllable(False)
 
     "Suddenly, I'm jolted back into awareness by a sound.{p}Footsteps."
 
@@ -190,15 +195,20 @@ label day0_end:
     "I notice that, for some reason, I have a sword in my hand."
 
     python:
-        control_game.survivor.target = control_game.player
-        control_game.pyro.target = control_game.player
-        control_game.artist.target = control_game.player
+        set_voice_target('survivor', 'player')
+        set_voice_target('pyro', 'player')
+        set_voice_target('artist', 'player')
 
         control_game.survivor.add_effect(effects.FadeEffect(control_game.survivor, .75, 0, 255))
         control_game.pyro.add_effect(effects.FadeEffect(control_game.pyro, .75, 0, 255))
         control_game.artist.add_effect(effects.FadeEffect(control_game.artist, .75, 0, 255))
 
     artist "Hi."
+
+    python:
+        set_voice_visible('pyro', True)
+        set_voice_visible('artist', True)
+        set_voice_visible('survivor', True)
 
     pyro "Oh, you got a weapon as well? That makes things slightly more complicated."
 
@@ -214,19 +224,42 @@ label day0_end:
 
     surv "Exactly."
 
-    $ control_game.start_combat()
+    $ start_combat()
 
     "..."
 
-    $ winner = control_game.end_combat()
+    $ complete_fadeout()
+    $ winner = end_combat()
 
     if winner.id == "calm":
-        "And that's how I kept control even after the others tried to kill me."
-    elif winner.id == "surv":
-        "And that's how the Survivor seized the controls from me."
-    elif winner.id == "pyro":
-        "And that's how the Pyromaniac seized the controls from me."
-    elif winner.id == "artist":
-        "And that's how the Artist seized the controls from me."
+        $ calm_diversion_points += 1
+        $ set_control('calm')
 
-    calm "Well, shit."
+        pause
+        $ complete_fadein()
+
+        jump calm_day0_winner
+    elif winner.id == "surv":
+        $ survivor_diversion_points += 1
+        $ set_control('survivor')
+
+        pause
+        $ complete_fadein()
+
+        jump survivor_day0_winner
+    elif winner.id == "pyro":
+        $ pyro_diversion_points += 1
+        $ set_control('pyro')
+
+        pause
+        $ complete_fadein()
+
+        jump pyro_day0_winner
+    elif winner.id == "artist":
+        $ artist_diversion_points += 1
+        $ set_control('artist')
+
+        pause
+        $ complete_fadein()
+
+        jump artist_day0_winner

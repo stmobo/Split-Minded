@@ -5,10 +5,22 @@ import game_data
 import effects
 import utils
 
-all_entities = pygame.sprite.Group()
-all_voices = pygame.sprite.Group()
-all_projectiles = pygame.sprite.Group()
-all_weapons = pygame.sprite.Group()
+all_entities = None
+all_voices = None
+all_projectiles = None
+all_weapons = None
+
+def init():
+    global all_entities, all_voices, all_projectiles, all_weapons
+
+    for group in [all_entities, all_voices, all_projectiles, all_weapons]:
+        if group is not None:
+            group.empty()
+
+    all_entities = pygame.sprite.Group()
+    all_voices = pygame.sprite.Group()
+    all_projectiles = pygame.sprite.Group()
+    all_weapons = pygame.sprite.Group()
 
 class Entity(pygame.sprite.Sprite):
     def __init__(self, pos):
@@ -319,6 +331,9 @@ class Player(Voice):
 
     def mouse_update(self, m_pos):
         self.m_pos = m_pos
+
+    def set_health(self, health, attacker=None):
+        pass
 
     def update(self, dt):
         pressed = pygame.key.get_pressed()

@@ -42,12 +42,282 @@ init python:
 
     import pygame
     import control_game
+    import entities
     import effects
     import game_data
     import tiles
 
+    calm_diversion_points = 0
+    pyro_diversion_points = 0
+    artist_diversion_points = 0
+    survivor_diversion_points = 0
+
+    control_panel_pos = [game_data.tile_size*15, game_data.tile_size*15.5]
+
+    voice_in_control = 'calm'
+
+    calm_visible = True
+    pyro_visible = False
+    artist_visible = False
+    survivor_visible = False
+
+    calm_pos = [0, 0]
+    pyro_pos = [0, 0]
+    artist_pos = [0, 0]
+    survivor_pos = [0, 0]
+
+    pyro_target = None
+    survivor_target = None
+    artist_target = None
+
+    saved_screen_center = None
+
+    combat_in_progress = False
+    player_movement_allowed = False
+    player_weapon_controllable = False
+    click_forward_enabled = False
+    ai_active = False
+
+    def set_voice_pos(voice_id, pos):
+        if voice_id == 'calm' or voice_id == 'player':
+            calm_pos = pos
+            control_game.player.pos = pos
+        elif voice_id == 'pyro':
+            pyro_pos = pos
+            control_game.pyro.pos = pos
+        elif voice_id == 'survivor' or voice_id == 'surv':
+            survivor_pos = pos
+            control_game.survivor.pos = pos
+        elif voice_id == 'artist':
+            artist_pos = pos
+            control_game.artist.pos = pos
+
+    def voice_id_to_instance(voice_id):
+        if voice_id == 'calm' or voice_id == 'player':
+            return control_game.player
+        elif voice_id == 'pyro':
+            return control_game.pyro
+        elif voice_id == 'survivor' or voice_id == 'surv':
+            return control_game.survivor
+        elif voice_id == 'artist':
+            return control_game.artist
+
+    def set_voice_target(voice_id, tgt):
+        if voice_id == 'pyro':
+            pyro_target = tgt
+            control_game.pyro.target = voice_id_to_instance(tgt)
+        elif voice_id == 'survivor' or voice_id == 'surv':
+            survivor_target = tgt
+            control_game.survivor.target = voice_id_to_instance(tgt)
+        elif voice_id == 'artist':
+            artist_target = tgt
+            control_game.artist.target = voice_id_to_instance(tgt)
+
+    def set_voice_visible(voice_id, visible):
+        if voice_id == 'calm' or voice_id == 'player':
+            calm_visible = visible
+            if visible:
+                control_game.player.set_surface_alpha(None)
+            else:
+                control_game.player.set_surface_alpha(0)
+        elif voice_id == 'pyro':
+            pyro_visible = visible
+            if visible:
+                control_game.pyro.set_surface_alpha(None)
+            else:
+                control_game.pyro.set_surface_alpha(0)
+        elif voice_id == 'survivor' or voice_id == 'surv':
+            survivor_visible = visible
+            if visible:
+                control_game.survivor.set_surface_alpha(None)
+            else:
+                control_game.survivor.set_surface_alpha(0)
+        elif voice_id == 'artist':
+            artist_visible = visible
+            if visible:
+                control_game.artist.set_surface_alpha(None)
+            else:
+                control_game.artist.set_surface_alpha(0)
+
+    def set_control(v):
+        global calm_visible, pyro_visible, artist_visible, survivor_visible, voice_in_control
+
+        voice_in_control = v
+
+        calm_visible = False
+        pyro_visible = False
+        artist_visible = False
+        survivor_visible = False
+
+        control_game.player.set_surface_alpha(0)
+        control_game.pyro.set_surface_alpha(0)
+        control_game.survivor.set_surface_alpha(0)
+        control_game.artist.set_surface_alpha(0)
+
+        set_voice_pos(v, control_panel_pos)
+
+        if v == 'calm':
+            calm_visible = True
+            control_game.player.vel = [0, 0]
+            control_game.player.set_surface_alpha(None)
+        elif v == 'pyro':
+            pyro_visible = True
+            control_game.pyro.vel = [0, 0]
+            control_game.pyro.set_surface_alpha(None)
+        elif v == 'survivor' or v == 'surv':
+            survivor_visible = True
+            control_game.survivor.vel = [0, 0]
+            control_game.survivor.set_surface_alpha(None)
+        elif v == 'artist':
+            artist_visible = True
+            control_game.artist.vel = [0, 0]
+            control_game.artist.set_surface_alpha(None)
+
+
+    def set_screen_center(center=None):
+        global saved_screen_center
+
+        control_game.set_screen_center(center)
+        saved_screen_center = center
+
+    def set_clickfoward_status(allowed):
+        global click_forward_enabled
+
+        click_forward_enabled = allowed
+        control_game.allow_clickfwd = allowed
+
+    def set_player_weapon_controllable(status):
+        global player_weapon_controllable
+
+        player_weapon_controllable = status
+        control_game.player.weapon.controllable = status
+
+    def set_player_movement_allowed(status):
+        global player_movement_allowed
+
+        player_movement_allowed = status
+        control_game.player.movement_allowed = status
+
+    def set_combat_status(status):
+        global combat_in_progress
+
+        combat_in_progress = status
+        game_data.combat_in_progress = status
+
+    def set_ai_active(status):
+        global ai_active
+
+        ai_active = status
+        game_data.ai_active = status
+
+    def start_combat():
+        global combat_in_progress, player_movement_allowed, player_weapon_controllable, click_forward_enabled, ai_active
+
+        renpy.choice_for_skipping()
+        config.skipping = False
+
+        renpy.block_rollback()
+
+        combat_in_progress = True
+        player_movement_allowed = True
+        player_weapon_controllable = True
+        ai_active = True
+        click_forward_enabled = False
+
+        game_data.combat_in_progress = True
+        game_data.ai_active = True
+        control_game.player.movement_allowed = True
+        control_game.player.weapon.controllable = True
+        control_game.allow_clickfwd = False
+
+        for voice in entities.all_voices.sprites():
+            if not voice.alive():
+                voice.pos = list(voice.default_spawn_point)
+
+            voice.set_health(voice.max_health)
+
+    def end_combat():
+        global combat_in_progress, player_movement_allowed, player_weapon_controllable, click_forward_enabled, ai_active
+
+        game_data.combat_in_progress = False
+        game_data.ai_active = False
+        control_game.player.weapon.controllable = False
+        control_game.player.movement_allowed = False
+        control_game.allow_clickfwd = True
+
+        combat_in_progress = False
+        player_movement_allowed = False
+        player_weapon_controllable = False
+        ai_active = False
+        click_forward_enabled = True
+
+        return control_game.get_winning_voice()
+
+    def on_load_callback():
+        global combat_in_progress, player_movement_allowed, player_weapon_controllable, click_forward_enabled, saved_screen_center, voice_in_control, ai_active
+        global calm_pos, pyro_pos, artist_pos, survivor_pos, pyro_target, artist_target, survivor_target
+        global calm_visible, pyro_visible, artist_visible, survivor_visible
+
+        control_game.init()
+
+        game_data.screen_center = saved_screen_center
+        control_game.on_load(voice_in_control)
+        set_control(voice_in_control)
+
+        game_data.combat_in_progress = combat_in_progress
+        game_data.ai_active = ai_active
+        control_game.player.movement_allowed = player_movement_allowed
+        control_game.player.weapon.controllable = player_weapon_controllable
+        control_game.allow_clickfwd = click_forward_enabled
+
+        control_game.player.pos = calm_pos
+        control_game.pyro.pos = pyro_pos
+        control_game.survivor.pos = survivor_pos
+        control_game.artist.pos = artist_pos
+
+        set_voice_target('pyro', pyro_target)
+        set_voice_target('survivor', survivor_target)
+        set_voice_target('artist', artist_target)
+
+        set_voice_visible('player', calm_visible)
+        set_voice_visible('pyro', pyro_visible)
+        set_voice_visible('survivor', survivor_visible)
+        set_voice_visible('artist', artist_visible)
+
+    config.after_load_callbacks.append(on_load_callback)
+
+
+    def complete_fadeout():
+        renpy.scene()
+        renpy.show('black')
+        renpy.hide_screen('ctrl_game')
+        renpy.with_statement(dissolve)
+
+    def complete_fadein():
+        renpy.scene()
+        renpy.show('black', at_list=[scene_bg])
+        renpy.show_screen('ctrl_game')
+        renpy.with_statement(dissolve)
+
     class ClickForwardAction(Action):
         def __call__(self):
+            global calm_pos, pyro_pos, artist_pos, survivor_pos, pyro_target, artist_target, survivor_target
+
+            # HACK: make sure each Voice's position and target is saved on each interaction
+            calm_pos = control_game.player.pos
+            pyro_pos = control_game.pyro.pos
+            survivor_pos = control_game.survivor.pos
+            artist_pos = control_game.artist.pos
+
+            if control_game.pyro.target is not None:
+                pyro_target = control_game.pyro.target.id
+
+            if control_game.artist.target is not None:
+                artist_target = control_game.artist.target.id
+
+            if control_game.survivor.target is not None:
+                survivor_target = control_game.survivor.target.id
+
             if control_game.allow_clickfwd:
                 return True
             else:
@@ -72,21 +342,23 @@ label start:
     show controlgame_textbox_bg at shooter_bg onlayer game_bg
 
     python:
+        control_game.init()
         tiles.init()
-        control_game.allow_clickfwd = True
-        control_game.combat_in_progress = False
+
+        set_control('calm')
+        end_combat()
 
         control_game.player.set_surface_alpha(0)
         control_game.pyro.set_surface_alpha(0)
         control_game.survivor.set_surface_alpha(0)
         control_game.artist.set_surface_alpha(0)
 
-        control_game.set_screen_center([750, 750])
+        set_screen_center([750, 750])
 
-        control_game.player.pos = [game_data.tile_size*15, game_data.tile_size*15.5]
-        control_game.pyro.pos = [game_data.tile_size*18, game_data.tile_size*12]
-        control_game.survivor.pos = [game_data.tile_size*11, game_data.tile_size*13]
-        control_game.artist.pos = [game_data.tile_size*15, game_data.tile_size*10]
+        set_voice_pos('calm', control_panel_pos)
+        set_voice_pos('pyro', [game_data.tile_size*18, game_data.tile_size*12])
+        set_voice_pos('survivor', [game_data.tile_size*11, game_data.tile_size*13])
+        set_voice_pos('artist', [game_data.tile_size*15, game_data.tile_size*10])
 
         control_game.pyro.turn_to(control_game.player.pos)
         control_game.survivor.turn_to(control_game.player.pos)
@@ -161,33 +433,33 @@ label start:
 
     pyro "Though I, myself, am rather curious about the newcomer. Why don't you show yourself?"
 
-    $ control_game.allow_clickfwd = False
+    $ set_clickfoward_status(False)
 
     pause 1
 
     $ control_game.artist.add_effect(effects.FadeEffect(control_game.artist, .75, 0, 255))
-    $ control_game.allow_clickfwd = True
+    $ set_clickfoward_status(True)
 
     "Voice #4" "...fine. Hi." (who_color="#6800b7")
 
     $ control_game.survivor.turn_to(control_game.artist.pos)
     $ control_game.pyro.turn_to(control_game.artist.pos)
 
-    $ control_game.allow_clickfwd = False
+    $ set_clickfoward_status(False)
     pause 2.5
-    $ control_game.allow_clickfwd = True
+    $ set_clickfoward_status(True)
 
     "There's nothing but silence for a few moments, while we wait for the newcomer to say more."
 
-    $ control_game.allow_clickfwd = False
+    $ set_clickfoward_status(False)
     pause 2.5
-    $ control_game.allow_clickfwd = True
+    $ set_clickfoward_status(True)
 
     surv "...Well? Is that it? Speak {i}up{/i}, for Christ's sake!"
 
-    $ control_game.allow_clickfwd = False
+    $ set_clickfoward_status(False)
     pause 1
-    $ control_game.allow_clickfwd = True
+    $ set_clickfoward_status(True)
 
     artist "I'm an artist. All I want to do is make artwork."
 
@@ -233,9 +505,9 @@ label start:
 
     artist "..."
 
-    $ control_game.allow_clickfwd = False
+    $ set_clickfoward_status(False)
     pause 1
-    $ control_game.allow_clickfwd = True
+    $ set_clickfoward_status(True)
 
     $ control_game.artist.add_effect(effects.FadeEffect(control_game.artist, .75, 255, 0))
 

@@ -10,11 +10,26 @@ import game_data
 allow_clickfwd = False
 game_displayable = None  # a reference to the main MentalControlGame instance
 
-player = entities.Player((0, 0))
-pyro = entities.Pyromaniac((50, 50))
-survivor = entities.Survivor((100, 100))
-artist = entities.Artist((150, 150))
-#barbed_wire_pipe = entities.Weapon(player, 'weapons/barbed_wire_pipe.png')
+player = None
+pyro = None
+survivor = None
+artist = None
+
+def on_load(voice_in_control):
+    for voice in entities.all_voices.sprites():
+        voice.pos = list(voice.default_spawn_point)
+        voice.set_health(voice.max_health)
+
+def init():
+    global player, pyro, survivor, artist
+
+    entities.init()
+    tiles.init()
+
+    player = entities.Player((0, 0))
+    pyro = entities.Pyromaniac((50, 50))
+    survivor = entities.Survivor((100, 100))
+    artist = entities.Artist((150, 150))
 
 def screen_center():
     if game_data.screen_center is None:
@@ -39,36 +54,6 @@ def get_winning_voice():
     for voice in entities.all_voices.sprites():
         if voice.alive():
             return voice
-
-def start_combat():
-    global allow_clickfwd
-
-    renpy.choice_for_skipping()
-    config.skipping = False
-    
-    renpy.block_rollback()
-
-    game_data.combat_in_progress = True
-    game_data.ai_active = True
-    player.movement_allowed = True
-    player.weapon.controllable = True
-    allow_clickfwd = False
-
-    for voice in entities.all_voices.sprites():
-        if not voice.alive():
-            voice.pos = list(voice.default_spawn_point)
-
-        voice.set_health(voice.max_health)
-
-def end_combat():
-    global allow_clickfwd
-
-    game_data.combat_in_progress = False
-    game_data.ai_active = False
-    player.weapon.controllable = False
-    allow_clickfwd = True
-
-    return get_winning_voice()
 
 
 class MentalControlGame(renpy.Displayable):

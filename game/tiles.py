@@ -3,8 +3,8 @@ import pygame
 import math
 import game_data
 
-all_tiles = pygame.sprite.Group()
-all_walls = pygame.sprite.Group()
+all_tiles = None
+all_walls = None
 
 tilemap = []
 tile_sprites = []
@@ -13,8 +13,6 @@ tilemap_ctrlpanel = 2
 tilemap_wall = 1
 tilemap_empty = 0
 tilemap_skip = -1
-
-tilemap_loaded = False
 
 control_panel_sprite = pygame.image.load(renpy.file('tiles/control_panel.png'))
 
@@ -246,10 +244,16 @@ def load_map_image(file):
     return map
 
 def init():
-    global tilemap, tilemap_loaded
+    global tilemap, all_tiles, all_walls
 
-    if not tilemap_loaded:
-        tilemap = load_map_image(renpy.file('map.png'))
-        read_tilemap()
+    if all_tiles is not None:
+        all_tiles.empty()
 
-    tilemap_loaded = True
+    if all_walls is not None:
+        all_walls.empty()
+
+    all_tiles = pygame.sprite.Group()
+    all_walls = pygame.sprite.Group()
+
+    tilemap = load_map_image(renpy.file('map.png'))
+    read_tilemap()
