@@ -10,6 +10,9 @@ class FadeEffect:
         sprite.set_surface_alpha(start_alpha)
 
     def __call__(self, sprite, dt, acc):
+        if sprite.surf_alpha is None:
+            return False
+
         if (
             (self.start_alpha < self.end_alpha and sprite.surf_alpha < self.end_alpha)    # fade in
             or (self.start_alpha > self.end_alpha and sprite.surf_alpha > self.end_alpha) # fade out
@@ -22,3 +25,28 @@ class FadeEffect:
         else:
             sprite.set_surface_alpha(self.end_alpha)
             return False
+
+class BlinkEffect:
+    def __init__(self, sprite, time, blink_alpha):
+        self.blink_alpha = blink_alpha
+        self.time = time
+        self.elapsed_time = 0
+
+        sprite.set_surface_alpha(255)
+
+    def __call__(self, sprite, dt, acc):
+        if sprite.surf_alpha is None:
+            return False
+            
+        self.elapsed_time += dt
+
+        if self.elapsed_time % 0.200 < 0.100:
+            sprite.set_surface_alpha(self.blink_alpha)
+        else:
+            sprite.set_surface_alpha(255)
+
+        if self.elapsed_time > self.time:
+            sprite.set_surface_alpha(255)
+            return False
+
+        return True

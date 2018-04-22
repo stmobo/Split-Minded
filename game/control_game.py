@@ -13,6 +13,8 @@ player = entities.Player((0, 0))
 pyro = entities.Pyromaniac((50, 50))
 survivor = entities.Survivor((100, 100))
 artist = entities.Artist((150, 150))
+#barbed_wire_pipe = entities.Weapon(player, 'weapons/barbed_wire_pipe.png')
+sword = entities.Sword(player)
 
 def screen_center():
     if game_data.screen_center is None:
@@ -52,6 +54,9 @@ class MentalControlGame(renpy.Displayable):
             player.mouse_update(m_pos)
             #renpy.redraw(self, 0)
 
+        if ev.type == pygame.MOUSEBUTTONDOWN and ev.button == 1:
+            sword.fire()
+
     def render(self, width, height, st, at):
         render = renpy.Render(width, height)
 
@@ -77,6 +82,11 @@ class MentalControlGame(renpy.Displayable):
                 else:
                     voice.pos[1] += y_overlap / 2
                     voice.vel[1] = 0
+
+        for voice, weapons in pygame.sprite.groupcollide(entities.all_voices, entities.all_weapons, False, False).items():
+            for weapon in weapons:
+                if voice != weapon.wielder and weapon.active and weapon.can_damage and weapon.is_melee:
+                    weapon.deal_damage(voice)
 
         surf = render.canvas().get_surface()
         surf.fill((0, 0, 0))

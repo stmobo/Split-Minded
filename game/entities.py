@@ -2,11 +2,12 @@ import math
 import renpy.exports as renpy
 import pygame
 import game_data
+import effects
 
 all_entities = pygame.sprite.Group()
 all_voices = pygame.sprite.Group()
 all_projectiles = pygame.sprite.Group()
-
+all_weapons = pygame.sprite.Group()
 
 class Entity(pygame.sprite.Sprite):
     def __init__(self, pos):
@@ -63,7 +64,7 @@ class Entity(pygame.sprite.Sprite):
     def turn_to(self, point):
         self.rot = math.atan2(point[1] - self.pos[1], point[0] - self.pos[0])
 
-    def update(self, dt, acc):
+    def update(self, dt, acc=(0, 0)):
         self.vel[0] += acc[0] * dt
         self.vel[1] += acc[1] * dt
 
@@ -76,7 +77,7 @@ class Entity(pygame.sprite.Sprite):
         while i < len(self.update_hooks):
             v = self.update_hooks[i](self, dt, acc)  # call hook
             if not v: # if v is False or None then remove the hook
-                self.update_hooks.pop(i)
+                del self.update_hooks[i]
             else:
                 i += 1
 
@@ -85,6 +86,100 @@ class Entity(pygame.sprite.Sprite):
             alpha_img = pygame.Surface(self.image.get_rect().size, pygame.SRCALPHA)
             alpha_img.fill((255, 255, 255, self.surf_alpha))
             self.image.blit(alpha_img, (0, 0), special_flags=pygame.BLEND_RGBA_MULT)
+
+
+class Weapon(Entity):
+    def __init__(self, wielder, image, mount_point=(35, 10), anchor_pt=(5, 40)):
+        self.mount_point = mount_point
+        self.anchor_pt = anchor_pt
+        self.wielder = wielder
+
+        self.base_image = pygame.image.load(renpy.file(image))
+
+        self.active = False
+        self.can_damage = False
+        self.is_melee = False
+        self.rot_offset = 0
+
+        self.rotate_to_wielder()
+
+        Entity.__init__(self, self.pos)
+
+        all_weapons.add(self)
+
+    def rotate_to_wielder(self):
+        actual_anchor_pt = [
+            (self.anchor_pt[0] * math.cos(self.rot_offset)) - (self.anchor_pt[1] * math.sin(self.rot_offset)),
+            (self.anchor_pt[0] * math.sin(self.rot_offset)) + (self.anchor_pt[1] * math.cos(self.rot_offset)),
+        ]
+
+        offset = [
+            float(self.mount_point[0] - actual_anchor_pt[0]),
+            float(self.mount_point[1] - actual_anchor_pt[1])
+        ]
+
+        self.rot = self.wielder.rot + self.rot_offset
+        rotated_offset = [
+            (offset[0] * math.cos(self.wielder.rot)) - (offset[1] * math.sin(self.wielder.rot)),
+            (offset[0] * math.sin(self.wielder.rot)) + (offset[1] * math.cos(self.wielder.rot)),
+        ]
+
+        self.pos = [
+            self.wielder.pos[0] + rotated_offset[0],
+            self.wielder.pos[1] + rotated_offset[1]
+        ]
+
+    def set_render_viewpoint(self, center=None):
+        self.rotate_to_wielder()
+        Entity.set_render_viewpoint(self, center)
+
+    def fire(self):
+        pass
+
+    def deal_damage(self, victim):
+        pass
+
+    def update(self, dt, acc=(0, 0)):
+        self.vel = [0, 0]
+        self.rotate_to_wielder()
+
+        if not self.active:
+            self.set_surface_alpha(0)
+
+        Entity.update(self, dt, acc)
+
+
+class Sword(Weapon):
+    def __init__(self, wielder):
+        Weapon.__init__(self, wielder, 'weapons/sword.png', anchor_pt=(5, 60))
+
+        self.swing_time = .125
+        self.arc_angle = math.radians(90)
+        self.swing_increment = self.arc_angle / self.swing_time
+        self.is_melee = True
+
+        self.swinging = False
+
+    def fire(self):
+        if not self.swinging:
+            self.swinging = True
+            self.can_damage = True
+            self.rot_offset = -(self.arc_angle / 2)
+
+    def deal_damage(self, victim):
+        victim.set_health(victim.health - 15)
+        self.can_damage = False
+
+    def update(self, dt, acc=(0, 0)):
+        if self.swinging:
+            self.rot_offset += dt * self.swing_increment
+
+            if self.rot_offset >= self.arc_angle / 2:
+                self.rot_offset = 0
+                self.swinging = False
+                self.can_damage = False
+
+        Weapon.update(self, dt, acc)
 
 
 class Voice(Entity):
@@ -98,8 +193,28 @@ class Voice(Entity):
 
         self.base_image = self.char_images['default']
 
+        self.health = 100
+        self.max_health = 100
+
         Entity.__init__(self, pos)
         all_voices.add(self)
+
+    def set_health(self, health):
+        damaged = health < self.health and health >= 0
+
+        if health < 0:
+            self.health = 0
+            self.surf_alpha = 0
+        elif health > self.max_health:
+            self.health = self.max_health
+        else:
+            self.health = health
+            self.surf_alpha = None
+
+        if damaged:
+            self.add_effect(effects.BlinkEffect(self, 0.75, 128))
+
+        #print("{} health now at {}".format(self.id, self.health))
 
     def turn_to(self, point):
         self.rot = math.atan2(point[1] - self.pos[1], point[0] - self.pos[0]) + (math.pi / 2)
