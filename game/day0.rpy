@@ -7,14 +7,14 @@ label day0_hitomi:
 
     mc "... a hardware shop? I didn't realize one of those was around here..."
 
-    scene school at scene_bg
+    scene school day at scene_bg
     with dissolve
 
     "We're at the school in no time."
 
     "That confrontation earlier must have stopped us for longer than I thought, because we barely make it to class on time."
 
-    scene classroom at scene_bg
+    scene classroom day at scene_bg
     with dissolve
 
     "For some reason, neither [mc.name] nor I can focus at all during class. Everything just goes in one ear and out the other."
@@ -82,14 +82,14 @@ label day0_hitomi:
     jump day0_nanami
 
 label day0_nanami:
-    scene hallway at scene_bg
+    scene hallway day at scene_bg
     with dissolve
 
     "The rest of our classes come and go, and before we know it we're done for the day."
 
     "[mc.name] is still as distracted as before, though, and instead of going home, we end up wandering down the halls, not paying attention to where we're going..."
 
-    scene hallway at scene_bg
+    scene hallway day at scene_bg
     with vpunch
 
     "...and it's not long before we accidentally knock someone over."
@@ -154,13 +154,13 @@ label day0_nanami:
     jump day0_end
 
 label day0_end:
-    scene walk_to_school at scene_bg
+    scene walk_to_school day at scene_bg
     with dissolve
 
-    scene home at scene_bg
+    scene home day at scene_bg
     with dissolve
 
-    scene bedroom at scene_bg
+    scene bedroom day at scene_bg
     with dissolve
 
     "By the time we get back home, we're almost completely exhausted mentally."
@@ -230,5 +230,3 @@ label day0_end:
         "And that's how the Artist seized the controls from me."
 
     calm "Well, shit."
-
-    

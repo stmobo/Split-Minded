@@ -8,15 +8,6 @@ define scene_bg = Transform(xpos=0, ypos=0, size=(750, 720))
 define shooter_bg = Transform(xpos=750, ypos=540, size=(530, 180))
 
 image controlgame_textbox_bg = "controlgame_textbox_bg.png"
-image walk_to_school = "dummy-school.png"
-image school = Placeholder('bg')
-image classroom = Placeholder('bg')
-image hallway = Placeholder('bg')
-image theatre = Placeholder('bg')
-image library = Placeholder('bg')
-image home = Placeholder('bg')
-image bedroom = Placeholder('bg')
-image black = Solid('#000')
 
 image hitomi happy = "hitomi/upscaled/happy.png"
 image hitomi happy2 = "hitomi/upscaled/happy2.png"
@@ -77,7 +68,7 @@ screen ctrl_game:
 label start:
     show screen ctrl_game
 
-    scene walk_to_school at scene_bg
+    scene walk_to_school day at scene_bg
     show controlgame_textbox_bg at shooter_bg onlayer game_bg
 
     python:
