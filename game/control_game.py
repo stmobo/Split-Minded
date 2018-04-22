@@ -32,8 +32,10 @@ class MentalControlGame(renpy.Displayable):
         self.primary_surf = pygame.Surface(game_data.gameplay_screen_size)
         self.screen_sz = None
 
+        tiles.init()
+
     def event(self, ev, x, y, st):
-        if ev.type == pygame.MOUSEMOTION and self.screen_sz is not None:
+        if (ev.type == pygame.MOUSEMOTION or abs(player.vel[0]) + abs(player.vel[1]) > 0) and self.screen_sz is not None:
             # convert mouse pos to field coordinates:
             ctr = screen_center()
             m_pos = [
@@ -48,7 +50,7 @@ class MentalControlGame(renpy.Displayable):
             ]
 
             player.mouse_update(m_pos)
-            renpy.redraw(self, 0)
+            #renpy.redraw(self, 0)
 
     def render(self, width, height, st, at):
         render = renpy.Render(width, height)
@@ -59,7 +61,7 @@ class MentalControlGame(renpy.Displayable):
         dt = st - self.last_st
         self.last_st = st
 
-        if dt < (1.0 / 25.0):
+        if dt < (1.0 / 10.0):
             entities.all_entities.update(dt)
 
         for entity in entities.all_entities.sprites():
@@ -70,10 +72,10 @@ class MentalControlGame(renpy.Displayable):
                 x_overlap, y_overlap = utils.rect_overlap(voice.rect, wall.rect)
 
                 if abs(x_overlap) < abs(y_overlap):
-                    voice.pos[0] += x_overlap
+                    voice.pos[0] += x_overlap / 2
                     voice.vel[0] = 0
                 else:
-                    voice.pos[1] += y_overlap
+                    voice.pos[1] += y_overlap / 2
                     voice.vel[1] = 0
 
         surf = render.canvas().get_surface()

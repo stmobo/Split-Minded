@@ -9,8 +9,10 @@ all_walls = pygame.sprite.Group()
 tilemap = []
 tile_sprites = []
 
-tilemap_wall = b'#'
-tilemap_empty = b' '
+tilemap_wall = 1
+tilemap_empty = 0
+
+tilemap_loaded = False
 
 floor_tile_sprites = {
     'normal': pygame.image.load(renpy.file('tiles/floor_tiles/basic.png')),
@@ -51,7 +53,14 @@ wall_tile_sprites = {
         pygame.image.load(renpy.file('tiles/bend_wall_tiles/180.png')),
         pygame.image.load(renpy.file('tiles/bend_wall_tiles/270.png')),
     ],
+    'cap': [
+        pygame.image.load(renpy.file('tiles/cap_wall_tiles/0.png')),
+        pygame.image.load(renpy.file('tiles/cap_wall_tiles/90.png')),
+        pygame.image.load(renpy.file('tiles/cap_wall_tiles/180.png')),
+        pygame.image.load(renpy.file('tiles/cap_wall_tiles/270.png')),
+    ],
     'cross': pygame.image.load(renpy.file('tiles/wall_tile_cross.png')),
+    'single': pygame.image.load(renpy.file('tiles/wall_tile_single.png')),
 }
 
 tile_surface = pygame.Surface(game_data.field_size)
@@ -137,7 +146,18 @@ class WallTile(Tile):
         else:
             neighbor_down = False
 
-        if n_neighbors == 2:
+        if n_neighbors == 0:
+            base_image = wall_tile_sprites['single']
+        elif n_neighbors == 1:
+            if neighbor_up:
+                base_image = wall_tile_sprites['cap'][0]
+            elif neighbor_right:
+                base_image = wall_tile_sprites['cap'][1]
+            elif neighbor_down:
+                base_image = wall_tile_sprites['cap'][2]
+            else:
+                base_image = wall_tile_sprites['cap'][3]
+        elif n_neighbors == 2:
             if neighbor_up and neighbor_down:
                 base_image = wall_tile_sprites['line'][0]
             elif neighbor_left and neighbor_right:
@@ -186,14 +206,32 @@ def read_tilemap():
 
     all_tiles.draw(tile_surface)
 
-# tilemap testing:
-for x in range(game_data.field_sz_tiles[0]):
-    if x == 0 or x == game_data.field_sz_tiles[0]-1:
-        row = ['#'] * game_data.field_sz_tiles[1]
-    else:
-        row = ['#'] + ([' '] * (game_data.field_sz_tiles[0]-2)) + ['#']
+def load_map_image(file):
+    surf = pygame.image.load(file).convert(32)
 
-    tilemap.append(row)
+    free_value = surf.get_at((0, 0))
+    wall_value = surf.get_at((1, 0))
 
+    map = []
 
-read_tilemap()
+    for x in range(game_data.field_sz_tiles[0]):
+        row = []
+        for y in range(game_data.field_sz_tiles[1]):
+            c = surf.get_at((x, y+1))
+            if c == wall_value:
+                row.append(tilemap_wall)
+            else:
+                row.append(tilemap_empty)
+
+        map.append(row)
+
+    return map
+
+def init():
+    global tilemap, tilemap_loaded
+
+    if not tilemap_loaded:
+        tilemap = load_map_image(renpy.file('map.png'))
+        read_tilemap()
+
+    tilemap_loaded = True

@@ -85,7 +85,7 @@ label start:
         control_game.survivor.set_surface_alpha(0)
         control_game.artist.set_surface_alpha(0)
 
-        #control_game.set_screen_center([750, 750])
+        control_game.set_screen_center([750, 750])
 
         control_game.player.pos = [670, 950]
         control_game.pyro.pos = [910, 850]
@@ -108,13 +108,13 @@ label start:
 
     "...I suddenly found two other voices sharing [mc.name]'s head with me."
 
-    $ control_game.player.add_effect(effects.FadeEffect(control_game.player, 15.0, 0, 255))
+    $ control_game.player.add_effect(effects.FadeEffect(control_game.player, .75, 0, 255))
 
     calm "Alright. Let's set things straight, here: who are you two?"
 
     "The first voice to speak up sounds refined and classy."
 
-    $ control_game.pyro.add_effect(effects.FadeEffect(control_game.pyro, 15.0, 0, 255))
+    $ control_game.pyro.add_effect(effects.FadeEffect(control_game.pyro, .75, 0, 255))
 
     "Voice #2" "Well, I do suppose that a round of introductions is in order." (who_color="#ffa126")
 
@@ -124,7 +124,7 @@ label start:
 
     "He's quickly interrupted by a rough, growling voice."
 
-    $ control_game.survivor.add_effect(effects.FadeEffect(control_game.survivor, 15.0, 0, 255))
+    $ control_game.survivor.add_effect(effects.FadeEffect(control_game.survivor, .75, 0, 255))
 
     "Voice #3" "He means he's a fucking pyromaniac, and that his life's goal is to burn everything to the ground." (who_color="#3d660e")
 
@@ -169,7 +169,7 @@ label start:
 
     pause 1
 
-    $ control_game.artist.add_effect(effects.FadeEffect(control_game.artist, 15.0, 0, 255))
+    $ control_game.artist.add_effect(effects.FadeEffect(control_game.artist, .75, 0, 255))
     $ control_game.allow_clickfwd = True
 
     "Voice #4" "...fine. Hi." (who_color="#6800b7")
@@ -229,11 +229,11 @@ label start:
 
     surv "Hrmph. Well, if that's how you want to play it... fine. But I will find a way, I promise you that."
 
-    $ control_game.survivor.add_effect(effects.FadeEffect(control_game.survivor, 15.0, 255, 0))
+    $ control_game.survivor.add_effect(effects.FadeEffect(control_game.survivor, .75, 255, 0))
 
     pyro "I suggest you watch your back from here on out. I {i}will{/i} see my mission through."
 
-    $ control_game.pyro.add_effect(effects.FadeEffect(control_game.pyro, 15.0, 255, 0))
+    $ control_game.pyro.add_effect(effects.FadeEffect(control_game.pyro, .75, 255, 0))
 
     artist "..."
 
@@ -241,7 +241,7 @@ label start:
     pause 1
     $ control_game.allow_clickfwd = True
 
-    $ control_game.artist.add_effect(effects.FadeEffect(control_game.artist, 15.0, 255, 0))
+    $ control_game.artist.add_effect(effects.FadeEffect(control_game.artist, .75, 255, 0))
 
     "And with that, they vanish into the recesses of [mc.name]'s mind."
 

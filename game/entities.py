@@ -43,6 +43,7 @@ class Entity(pygame.sprite.Sprite):
 
     def set_render_viewpoint(self, center=None):
         self.rect = self.image.get_rect()
+
         if center is None:
             self.rect.centerx = self.pos[0]
             self.rect.centery = self.pos[1]
@@ -131,7 +132,9 @@ class Artist(Voice):
 class Player(Voice):
     def __init__(self, pos):
         Voice.__init__(self, pos, 'voice1', 'calm')
-        self.movement_allowed = True
+        self.movement_allowed = False
+
+        self.m_pos = (0, 0)
 
     def mouse_update(self, m_pos):
         self.m_pos = m_pos
