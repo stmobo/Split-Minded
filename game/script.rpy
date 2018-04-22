@@ -1,16 +1,41 @@
-﻿# The script of the game goes in this file.
+# Positions for VN characters
+define left = Transform(ypos=30, xpos=-80, xzoom=-1)
+define right = Transform(ypos=30, xpos=300)
+define center = Transform(ypos=30, xpos=80)
+define flip = Transform(xzoom=-1)
 
-# Declare characters used by this game. The color argument colorizes the
-# name of the character.
+define scene_bg = Transform(xpos=0, ypos=0, size=(750, 720))
+define shooter_bg = Transform(xpos=750, ypos=540, size=(530, 180))
+
+image controlgame_textbox_bg = "controlgame_textbox_bg.png"
+image walk_to_school = "dummy-school.png"
+image school = Placeholder('bg')
+image classroom = Placeholder('bg')
+image hallway = Placeholder('bg')
+image theatre = Placeholder('bg')
+image library = Placeholder('bg')
+image home = Placeholder('bg')
+image bedroom = Placeholder('bg')
+image black = Solid('#000')
+
+image hitomi happy = "hitomi/upscaled/happy.png"
+image hitomi happy2 = "hitomi/upscaled/happy2.png"
+image hitomi shy = "hitomi/upscaled/shy.png"
+image hitomi shy2 = "hitomi/upscaled/shy2.png"
+image hitomi angry = "hitomi/upscaled/angry.png"
+image hitomi annoyed = "hitomi/upscaled/annoyed.png"
+image hitomi curious = "hitomi/upscaled/curious.png"
+image hitomi worried = "hitomi/upscaled/worried.png"
+
+image nanami happy = "nanami/upscaled/happy.png"
+image nanami angry = "nanami/upscaled/angry.png"
+image nanami annoyed = "nanami/upscaled/annoyed.png"
+image nanami normal = "nanami/upscaled/normal.png"
+image nanami worried = "nanami/upscaled/worried.png"
 
 define mc = Character("Kei")
 define hitomi = Character("Hitomi", color="#28a25b")
 define nanami = Character("Nanami", color="#ff6060")
-
-image controlgame_textbox_bg = "controlgame_textbox_bg.png"
-image school = "dummy-school.png"
-
-image hitomi happy = "hitomi/upscaled/happy.png"
 
 define calm = Character("The Calm One", color="#ffffff") # The Calm One
 define pyro = Character("The Pyromaniac", color="#ffa126") # The Pyromaniac
@@ -34,11 +59,9 @@ init python:
             else:
                 return None
 
-    left = Transform(ypos=30, xpos=-50)
-    scene_bg = Transform(xpos=0, ypos=0, size=(750, 720))
-    shooter_bg = Transform(xpos=750, ypos=540, size=(530, 180))
-
 screen ctrl_game:
+    zorder 1
+
     key "S" action NullAction()
     key "D" action NullAction()
     key "dismiss" action ClickForwardAction()
@@ -51,7 +74,7 @@ screen ctrl_game:
 label start:
     show screen ctrl_game
 
-    scene school at scene_bg
+    scene walk_to_school at scene_bg
     show controlgame_textbox_bg at shooter_bg onlayer game_bg
 
     python:
@@ -62,12 +85,12 @@ label start:
         control_game.survivor.set_surface_alpha(0)
         control_game.artist.set_surface_alpha(0)
 
-        control_game.set_screen_center([1200, 1200])
+        #control_game.set_screen_center([750, 750])
 
-        control_game.player.pos = [1120, 1400]
-        control_game.pyro.pos = [1360, 1300]
-        control_game.survivor.pos = [1040, 1100]
-        control_game.artist.pos = [1250, 1000]
+        control_game.player.pos = [670, 950]
+        control_game.pyro.pos = [910, 850]
+        control_game.survivor.pos = [590, 650]
+        control_game.artist.pos = [800, 550]
 
         control_game.pyro.turn_to(control_game.player.pos)
         control_game.survivor.turn_to(control_game.player.pos)
@@ -220,6 +243,6 @@ label start:
 
     $ control_game.artist.add_effect(effects.FadeEffect(control_game.artist, 15.0, 255, 0))
 
-    "And with that, they vanished into the recesses of [mc.name]'s mind, leaving me alone to guide him through the day at school."
+    "And with that, they vanish into the recesses of [mc.name]'s mind."
 
-    return
+    jump day0_hitomi
