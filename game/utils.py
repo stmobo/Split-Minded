@@ -18,8 +18,14 @@ def rect_overlap(r1, r2):
 def magn(v):
     return math.sqrt(v[0]**2 + v[1]**2)
 
+def dist(v1, v2):
+    return math.sqrt((v2[0] - v1[0])**2 + (v2[1] - v1[1])**2)
+
 def unit_vec(v):
     m = math.sqrt(v[0]**2 + v[1]**2)
+
+    if m < 0.0001:
+        m = 0.0001
 
     return [v[0] / m, v[1] / m]
 

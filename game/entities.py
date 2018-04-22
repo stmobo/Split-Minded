@@ -213,8 +213,16 @@ class Voice(Entity):
         damaged = health < self.health and health >= 0
 
         if health < 0:
-            self.health = 0
-            self.add_effect(effects.FadeEffect(self, 0.25, 255, 0))
+            # make sure there's at least one voice left alive
+            n_live_voices = 0
+
+            for voice in all_voices.sprites():
+                if voice.alive():
+                    n_live_voices += 1
+
+            if n_live_voices > 1:
+                self.health = 0
+                self.add_effect(effects.FadeEffect(self, 0.25, 255, 0))
         elif health > self.max_health:
             self.health = self.max_health
         else:
@@ -223,11 +231,15 @@ class Voice(Entity):
 
         if damaged:
             self.add_effect(effects.BlinkEffect(self, 0.75, 128))
+            self.on_damaged(attacker)
 
         #print("{} health now at {}".format(self.id, self.health))
 
     def turn_to(self, point):
         self.rot = math.atan2(point[1] - self.pos[1], point[0] - self.pos[0]) + (math.pi / 2)
+
+    def on_damaged(self, attacker):
+        pass
 
     def update(self, dt, acc=(0, 0)):
         if game_data.combat_in_progress:
@@ -255,10 +267,18 @@ class AIVoice(Voice):
                     live_voices = []
 
                     for voice in all_voices.sprites():
-                        if voice.alive():
+                        if voice != self and voice.alive():
                             live_voices.append(voice)
 
-                    self.target = renpy.random.choice(live_voices)
+                    if len(live_voices) == 0:
+                        self.target = None
+                    elif len(live_voices) == 1:
+                        self.target = live_voices[0]
+                    else:
+                        self.target = renpy.random.choice(live_voices)
+                else:
+                    if utils.dist(self.pos, self.target.pos) < 50:
+                        self.weapon.fire()
 
         Voice.update(self, dt, acc)
 
