@@ -92,10 +92,10 @@ label start:
 
         control_game.set_screen_center([750, 750])
 
-        control_game.player.pos = [670, 950]
-        control_game.pyro.pos = [910, 850]
-        control_game.survivor.pos = [590, 650]
-        control_game.artist.pos = [800, 550]
+        control_game.player.pos = [game_data.tile_size*15, game_data.tile_size*15.5]
+        control_game.pyro.pos = [game_data.tile_size*18, game_data.tile_size*12]
+        control_game.survivor.pos = [game_data.tile_size*11, game_data.tile_size*13]
+        control_game.artist.pos = [game_data.tile_size*15, game_data.tile_size*10]
 
         control_game.pyro.turn_to(control_game.player.pos)
         control_game.survivor.turn_to(control_game.player.pos)

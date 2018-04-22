@@ -9,10 +9,14 @@ all_walls = pygame.sprite.Group()
 tilemap = []
 tile_sprites = []
 
+tilemap_ctrlpanel = 2
 tilemap_wall = 1
 tilemap_empty = 0
+tilemap_skip = -1
 
 tilemap_loaded = False
+
+control_panel_sprite = pygame.image.load(renpy.file('tiles/control_panel.png'))
 
 floor_tile_sprites = {
     'normal': pygame.image.load(renpy.file('tiles/floor_tiles/basic.png')),
@@ -116,6 +120,10 @@ class FloorTile(Tile):
         else:
             Tile.__init__(self, pos, renpy.random.choice(floor_tile_sprites['wiring']))
 
+class ControlPanel(Tile):
+    def __init__(self, pos):
+        Tile.__init__(self, pos, control_panel_sprite)
+        all_walls.add(self)
 
 class WallTile(Tile):
     def __init__(self, pos):
@@ -196,10 +204,14 @@ def read_tilemap():
 
         for y, tile_char in enumerate(row):
             pos = (x, y)
+            s = None
             if tile_char == tilemap_wall:
                 s = WallTile(pos)
-            else:  # use floortiles by default
+            elif tile_char == tilemap_ctrlpanel:
+                s = ControlPanel(pos)
+            elif tile_char == tilemap_empty:
                 s = FloorTile(pos)
+
             sprite_row.append(s)
 
         tile_sprites.append(sprite_row)
@@ -211,6 +223,8 @@ def load_map_image(file):
 
     free_value = surf.get_at((0, 0))
     wall_value = surf.get_at((1, 0))
+    skip_value = surf.get_at((2, 0))
+    ctrl_panel_value = surf.get_at((3, 0))
 
     map = []
 
@@ -220,8 +234,12 @@ def load_map_image(file):
             c = surf.get_at((x, y+1))
             if c == wall_value:
                 row.append(tilemap_wall)
-            else:
+            elif c == free_value:
                 row.append(tilemap_empty)
+            elif c == ctrl_panel_value:
+                row.append(tilemap_ctrlpanel)
+            else:
+                row.append(tilemap_skip)
 
         map.append(row)
 
