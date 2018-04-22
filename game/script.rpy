@@ -45,7 +45,7 @@ define artist = Character("The Artist", color="#6800b7") # The Artist
 init python:
     #config.developer = False
     config.layers = ['game_bg', 'master', 'transient', 'screens', 'overlay']
-    config.rollback_enabled = False
+    # config.rollback_enabled = False
     config.keymap['developer'] = ['shift_F']
     config.keymap['screenshot'] = ['shift_S']
 

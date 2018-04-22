@@ -214,20 +214,11 @@ label day0_end:
 
     surv "Exactly."
 
-    python:
-        control_game.player.weapon.controllable = True
-        control_game.allow_clickfwd = False
+    $ control_game.start_combat()
 
     "..."
 
-    python:
-        game_data.combat_in_progress = False
-        winner = control_game.get_winning_voice()
-        control_game.allow_clickfwd = True
-
-        control_game.player.weapon.controllable = False
-
-    show screen ctrl_game
+    $ winner = control_game.end_combat()
 
     if winner.id == "calm":
         "And that's how I kept control even after the others tried to kill me."

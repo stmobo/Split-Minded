@@ -40,6 +40,8 @@ def get_winning_voice():
             return voice
 
 def start_combat():
+    global allow_clickfwd
+    
     renpy.block_rollback()
 
     game_data.combat_in_progress = True
@@ -48,6 +50,8 @@ def start_combat():
     allow_clickfwd = False
 
 def end_combat():
+    global allow_clickfwd
+    
     game_data.combat_in_progress = False
     player.weapon.controllable = False
     allow_clickfwd = True
