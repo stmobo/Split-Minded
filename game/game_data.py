@@ -11,3 +11,4 @@ gameplay_screen_size = [640, 640]
 screen_center = None
 
 combat_in_progress = False
+ai_active = False

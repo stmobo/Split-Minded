@@ -200,10 +200,42 @@ label day0_end:
 
     artist "Hi."
 
-    pyro "Oh, you got one of those as well? That makes things slightly more complicated."
+    pyro "Oh, you got a weapon as well? That makes things slightly more complicated."
 
     calm "What's happening? What is this?"
 
     surv "It's a coup, dumbass. We want to run things our own way, and you're getting in the way of that."
 
-    
+    pyro "If it's any consolation, though, I don't think we can truly die, being mental constructs."
+
+    artist "But we can kill you over and over again."
+
+    calm "So, what? You're going to kill me and take control?"
+
+    surv "Exactly."
+
+    python:
+        control_game.player.weapon.controllable = True
+        control_game.allow_clickfwd = False
+
+    "..."
+
+    python:
+        game_data.combat_in_progress = False
+        winner = control_game.get_winning_voice()
+        control_game.allow_clickfwd = True
+
+        control_game.player.weapon.controllable = False
+
+    show screen ctrl_game
+
+    if winner.id == "calm":
+        "And that's how I kept control even after the others tried to kill me."
+    elif winner.id == "surv":
+        "And that's how the Survivor seized the controls from me."
+    elif winner.id == "pyro":
+        "And that's how the Pyromaniac seized the controls from me."
+    elif winner.id == "artist":
+        "And that's how the Artist seized the controls from me."
+
+    calm "Well, shit."

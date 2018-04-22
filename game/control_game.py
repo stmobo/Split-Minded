@@ -24,6 +24,37 @@ def screen_center():
 def set_screen_center(center=None):
     game_data.screen_center = center
 
+def voices_alive():
+    n = 0
+    for voice in [player, pyro, survivor, artist]:
+        if voice.alive():
+            n += 1
+    return n
+
+def get_winning_voice():
+    if voices_alive() != 1:
+        return None
+
+    for voice in [player, pyro, survivor, artist]:
+        if voice.alive():
+            return voice
+
+def start_combat():
+    renpy.block_rollback()
+
+    game_data.combat_in_progress = True
+    player.movement_allowed = True
+    player.weapon.controllable = True
+    allow_clickfwd = False
+
+def end_combat():
+    game_data.combat_in_progress = False
+    player.weapon.controllable = False
+    allow_clickfwd = True
+
+    return get_winning_voice()
+
+
 class MentalControlGame(renpy.Displayable):
     def __init__(self, **kwargs):
         super(MentalControlGame, self).__init__(**kwargs)
@@ -54,6 +85,9 @@ class MentalControlGame(renpy.Displayable):
         if ev.type == pygame.MOUSEBUTTONDOWN and ev.button == 1:
             player.weapon.fire()
 
+        if game_data.combat_in_progress and voices_alive() == 1:
+            return True
+
     def render(self, width, height, st, at):
         render = renpy.Render(width, height)
 
@@ -82,7 +116,7 @@ class MentalControlGame(renpy.Displayable):
 
         for voice, weapons in pygame.sprite.groupcollide(entities.all_voices, entities.all_weapons, False, False).items():
             for weapon in weapons:
-                if voice != weapon.wielder and game_data.combat_in_progress and weapon.active and weapon.can_damage and weapon.is_melee:
+                if voice != weapon.wielder and voice.alive() and game_data.combat_in_progress and weapon.active and weapon.can_damage and weapon.is_melee:
                     weapon.deal_damage(voice)
 
         surf = render.canvas().get_surface()

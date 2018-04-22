@@ -204,12 +204,15 @@ class Voice(Entity):
         Entity.__init__(self, pos)
         all_voices.add(self)
 
+    def alive(self):
+        return self.health > 0
+
     def set_health(self, health, attacker=None):
         damaged = health < self.health and health >= 0
 
         if health < 0:
             self.health = 0
-            self.surf_alpha = 0
+            self.add_effect(effects.FadeEffect(self, 0.75, 255, 0))
         elif health > self.max_health:
             self.health = self.max_health
         else:
@@ -224,7 +227,6 @@ class Voice(Entity):
     def turn_to(self, point):
         self.rot = math.atan2(point[1] - self.pos[1], point[0] - self.pos[0]) + (math.pi / 2)
 
-
     def update(self, dt, acc=(0, 0)):
         if game_data.combat_in_progress:
             self.base_image = self.char_images['with_weapon']
@@ -232,6 +234,7 @@ class Voice(Entity):
             self.base_image = self.char_images['default']
 
         Entity.update(self, dt, acc)
+        
 
 class AIVoice(Voice):
     def __init__(self, pos, image_folder, id):
