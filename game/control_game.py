@@ -1,5 +1,6 @@
 import math
 import renpy.exports as renpy
+import renpy.config as config
 import pygame
 import entities
 import tiles
@@ -26,7 +27,7 @@ def set_screen_center(center=None):
 
 def voices_alive():
     n = 0
-    for voice in [player, pyro, survivor, artist]:
+    for voice in entities.all_voices.sprites():
         if voice.alive():
             n += 1
     return n
@@ -35,24 +36,34 @@ def get_winning_voice():
     if voices_alive() != 1:
         return None
 
-    for voice in [player, pyro, survivor, artist]:
+    for voice in entities.all_voices.sprites():
         if voice.alive():
             return voice
 
 def start_combat():
     global allow_clickfwd
-    
+
+    #renpy.choice_for_skipping()
+    config.skipping = False
     renpy.block_rollback()
 
     game_data.combat_in_progress = True
+    game_data.ai_active = True
     player.movement_allowed = True
     player.weapon.controllable = True
     allow_clickfwd = False
 
+    for voice in entities.all_voices.sprites():
+        if not voice.alive():
+            voice.pos = list(voice.default_spawn_point)
+
+        voice.set_health(voice.max_health)
+
 def end_combat():
     global allow_clickfwd
-    
+
     game_data.combat_in_progress = False
+    game_data.ai_active = False
     player.weapon.controllable = False
     allow_clickfwd = True
 
@@ -117,6 +128,22 @@ class MentalControlGame(renpy.Displayable):
                 else:
                     voice.pos[1] += y_overlap / 2
                     voice.vel[1] = 0
+
+        for voice, colliding_voices in pygame.sprite.groupcollide(entities.all_voices, entities.all_voices, False, False).items():
+            for colliding_voice in colliding_voices:
+                if voice != colliding_voice:
+                    x_overlap, y_overlap = utils.rect_overlap(voice.rect, colliding_voice.rect)
+
+                    if abs(x_overlap) < abs(y_overlap):
+                        voice.pos[0] += x_overlap / 20
+                        #colliding_voice.pos[0] -= x_overlap / 16
+
+                        voice.vel[0] = 0
+                    else:
+                        voice.pos[1] += y_overlap / 20
+                        #colliding_voice.pos[1] -= y_overlap / 16
+
+                        voice.vel[1] = 0
 
         for voice, weapons in pygame.sprite.groupcollide(entities.all_voices, entities.all_weapons, False, False).items():
             for weapon in weapons:

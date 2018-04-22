@@ -230,3 +230,5 @@ label day0_end:
         "And that's how the Artist seized the controls from me."
 
     calm "Well, shit."
+
+    
