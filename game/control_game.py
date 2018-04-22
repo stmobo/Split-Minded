@@ -43,8 +43,9 @@ def get_winning_voice():
 def start_combat():
     global allow_clickfwd
 
-    #renpy.choice_for_skipping()
+    renpy.choice_for_skipping()
     config.skipping = False
+    
     renpy.block_rollback()
 
     game_data.combat_in_progress = True
