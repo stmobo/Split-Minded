@@ -78,10 +78,16 @@ class Entity(pygame.sprite.Sprite):
         self.rot = math.atan2(point[1] - self.pos[1], point[0] - self.pos[0])
 
     def update(self, dt, acc=(0, 0)):
+        if type(self.vel) == tuple:
+            self.vel = list(self.vel)
+
         self.vel[0] += acc[0] * dt
         self.vel[1] += acc[1] * dt
 
         self.last_pos = [self.pos[0], self.pos[1]]
+
+        if type(self.pos) == tuple:
+            self.pos = list(self.pos)
 
         self.pos[0] += self.vel[0] * dt
         self.pos[1] += self.vel[1] * dt

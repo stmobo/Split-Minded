@@ -96,5 +96,6 @@ image bedroom night dark = "bg/bedroom/night_dark.jpg"
 image bedroom night light = "bg/bedroom/night_light.jpg"
 
 image konbini = "bg/konbini.jpg"
+image art_store = "bg/art_store.jpg"
 
 image black = Solid('#000')

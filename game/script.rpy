@@ -32,10 +32,10 @@ define artist_mc = Character(mc.name, color="#6800b7")
 define hitomi = Character("Hitomi", color="#28a25b")
 define nanami = Character("Nanami", color="#ff6060")
 
-define calm = Character("The Calm One", color="#ffffff")   # The Calm One
-define pyro = Character("The Pyromaniac", color="#ffa126") # The Pyromaniac
-define surv = Character("The Survivor", color="#3d660e")   # The Survivor
-define artist = Character("The Artist", color="#6800b7")   # The Artist
+define calm = Character("The Calm One", color="#ffffff")
+define pyro = Character("The Pyromaniac", color="#ffa126")
+define surv = Character("The Survivor", color="#3d660e")
+define artist = Character("The Artist", color="#6800b7")
 
 init python:
     #config.developer = False
@@ -148,6 +148,12 @@ init python:
 
         control_game.set_screen_center(center)
         saved_screen_center = center
+
+    def reset_to_default_spawns():
+        set_voice_pos('player', control_game.player.default_spawn_point)
+        set_voice_pos('pyro', control_game.pyro.default_spawn_point)
+        set_voice_pos('survivor', control_game.survivor.default_spawn_point)
+        set_voice_pos('artist', control_game.artist.default_spawn_point)
 
     def set_control(v):
         global calm_visible, pyro_visible, artist_visible, survivor_visible, voice_in_control
