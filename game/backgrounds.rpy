@@ -37,6 +37,7 @@ image hardware_store night dark rain = "bg/hardware_store/night_dark_rain.jpg"
 image hardware_store night light = "bg/hardware_store/night_light.jpg"
 image hardware_store night light rain = "bg/hardware_store/night_light_rain.jpg"
 image hardware_store cloudy = "bg/hardware_store/cloud.jpg"
+image hardware_store inside = "bg/hardware_store/inside.jpg"
 
 image school = "bg/school_front/day.jpg"
 image school day = "bg/school_front/day.jpg"
