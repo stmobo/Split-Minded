@@ -15,3 +15,13 @@ label calm_day0_winner:
     surv "You betcha."
 
     calm "Fuck."
+
+    pyro "Rather unfortunately, I think it will take some time for us to reconstitute ourselves.{p}So we'll be seeing you later, rather than sooner."
+
+    "...{p}I feel their presences vanish."
+
+    "And with that out of the way, I guide [mc.name] back to sleep..."
+
+    $ complete_fadeout()
+
+    jump day1_start
