@@ -44,7 +44,7 @@ label day1_start:
         is_afternoon_diversion = False
         is_day2_diversion = False
 
-        current_location = 'school'
+        current_location = 'home'
 
         call_diversion(winner, 'day1_start')
 
@@ -125,7 +125,7 @@ label day1_start_diverted:
     else:
         "With that out of the way, [voice_name] sits back and stops directly controlling [mc.name], who starts actually walking to class, now under his own initiative."
 
-    scene school day at scene_bg
+    scene hallway alt day at scene_bg
     with dissolve
 
     "The combination of [mc.name]'s tiredness and the diversion, however, means that we end up being seriously late to class."
@@ -192,6 +192,7 @@ label day1_afterclass:
     else:
         "As we walk out of the classroom at the end of the day, the other voices and I can feel our bodies finish reconstituting."
 
+    $ reset_to_default_spawns()
     $ start_combat()
 
     "And we're back to fighting for the controls..."
@@ -271,6 +272,7 @@ label day1_leaving_school:
     else:
         "Before we can even take five steps, however, we all feel a wave of energy, and manifest once more."
 
+    $ reset_to_default_spawns()
     $ start_combat()
 
     "Naturally, we begin fighting for the controls again."
@@ -288,8 +290,8 @@ label day1_leaving_school:
     with dissolve
 
     python:
-        is_morning_diversion = True
-        is_afternoon_diversion = False
+        is_morning_diversion = False
+        is_afternoon_diversion = True
         is_day2_diversion = False
         current_location = 'school'
         call_diversion(winner, 'day1_leaving_school')
@@ -309,5 +311,7 @@ label day1_leaving_school:
     with dissolve
 
     "Even though there's definitely still not even evening yet, we opt to simply head to our bed, where we almost instantly fall into a deep sleep..."
+
+    $ complete_fadeout()
 
     jump day2_start
