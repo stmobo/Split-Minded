@@ -256,6 +256,7 @@ init python:
                 voice.pos = list(voice.default_spawn_point)
 
             voice.set_health(voice.max_health)
+            set_voice_visible(voice.id, True)
 
     def end_combat():
         global combat_in_progress, player_movement_allowed, player_weapon_controllable, click_forward_enabled, ai_active
@@ -307,12 +308,23 @@ init python:
 
     config.after_load_callbacks.append(on_load_callback)
 
-
     def complete_fadeout():
         renpy.scene()
         renpy.show('black')
         renpy.hide_screen('ctrl_game')
         renpy.with_statement(dissolve)
+
+    def add_diversion_points(voice_id, n):
+        global calm_diversion_points, survivor_diversion_points, pyro_diversion_points, artist_diversion_points
+        
+        if voice_id == "calm" or voice_id == "player":
+            calm_diversion_points += n
+        elif voice_id == "survivor" or voice_id == "surv":
+            survivor_diversion_points += n
+        elif voice_id == "pyro":
+            pyro_diversion_points += n
+        elif voice_id == "artist":
+            artist_diversion_points += n
 
     class ClickForwardAction(Action):
         def __call__(self):

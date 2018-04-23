@@ -228,47 +228,24 @@ label day0_end:
 
     "..."
 
-    $ complete_fadeout()
-    $ winner = end_combat()
-    $ set_control(winner)
+    python:
+        complete_fadeout()
+        winner = end_combat()
+
+        set_control(winner)
+        add_diversion_points(winner, 1)
+
+    pause
+
+    scene bedroom night dark at scene_bg
+    show screen ctrl_game
+    with dissolve
 
     if winner == "calm":
-        $ calm_diversion_points += 1
-
-        pause
-
-        scene bedroom night dark at scene_bg
-        show screen ctrl_game
-        with dissolve
-
         jump calm_day0_winner
     elif winner == "surv":
-        $ survivor_diversion_points += 1
-
-        pause
-
-        scene bedroom night dark at scene_bg
-        show screen ctrl_game
-        with dissolve
-
         jump survivor_day0_winner
     elif winner == "pyro":
-        $ pyro_diversion_points += 1
-
-        pause
-
-        scene bedroom night dark at scene_bg
-        show screen ctrl_game
-        with dissolve
-
         jump pyro_day0_winner
     elif winner == "artist":
-        $ artist_diversion_points += 1
-
-        pause
-
-        scene bedroom night dark at scene_bg
-        show screen ctrl_game
-        with dissolve
-
         jump artist_day0_winner
