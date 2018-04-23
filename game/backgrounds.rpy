@@ -89,6 +89,7 @@ image auditorium cloudy = "bg/auditorium/cloud.jpg"
 image auditorium evening = "bg/auditorium/evening.jpg"
 image auditorium night dark = "bg/auditorium/night_dark.jpg"
 image auditorium night light = "bg/auditorium/night_light.jpg"
+image auditorium backstage = "bg/auditorium/backstage.jpg"
 
 image library = "bg/library.jpg"
 

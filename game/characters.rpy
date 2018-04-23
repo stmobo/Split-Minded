@@ -12,11 +12,16 @@ image hitomi normal alt = "hitomi/upscaled/normal_2.png"
 
 image nanami happy = "nanami/upscaled/happy.png"
 image nanami angry = "nanami/upscaled/angry.png"
+image nanami angry yelling = "nanami/upscaled/angry_yelling.png"
 image nanami curious = "nanami/upscaled/curoius.png"
 image nanami annoyed = "nanami/upscaled/annoyed.png"
 image nanami normal = "nanami/upscaled/normal.png"
 image nanami normal alt = "nanami/upscaled/normal_2.png"
+image nanami shy = "nanami/upscaled/shy.png"
+image nanami shy alt = "nanami/upscaled/shy_2.png"
 image nanami worried = "nanami/upscaled/worried.png"
+image nanami excited = "nanami/upscaled/excited.png"
+image nanami reciting = "nanami/upscaled/reciting.png"
 
 define mc = Character("Kei", color="#0099cc")
 define calm_mc = Character(mc.name, color="#ffffff")
