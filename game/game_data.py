@@ -12,3 +12,5 @@ screen_center = None
 
 combat_in_progress = False
 ai_active = False
+
+force_combat_winner = None  # dev purposes only

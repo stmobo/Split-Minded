@@ -186,7 +186,7 @@ label day0_end:
 
     "Suddenly, I'm jolted back into awareness by a sound.{p}Footsteps."
 
-    scene black at scene_bg
+    scene bedroom night dark at scene_bg
     show screen ctrl_game
     with dissolve
 
@@ -230,36 +230,45 @@ label day0_end:
 
     $ complete_fadeout()
     $ winner = end_combat()
+    $ set_control(winner)
 
-    if winner.id == "calm":
+    if winner == "calm":
         $ calm_diversion_points += 1
-        $ set_control('calm')
 
         pause
-        $ complete_fadein()
+
+        scene bedroom night dark at scene_bg
+        show screen ctrl_game
+        with dissolve
 
         jump calm_day0_winner
-    elif winner.id == "surv":
+    elif winner == "surv":
         $ survivor_diversion_points += 1
-        $ set_control('survivor')
 
         pause
-        $ complete_fadein()
+
+        scene bedroom night dark at scene_bg
+        show screen ctrl_game
+        with dissolve
 
         jump survivor_day0_winner
-    elif winner.id == "pyro":
+    elif winner == "pyro":
         $ pyro_diversion_points += 1
-        $ set_control('pyro')
 
         pause
-        $ complete_fadein()
+
+        scene bedroom night dark at scene_bg
+        show screen ctrl_game
+        with dissolve
 
         jump pyro_day0_winner
-    elif winner.id == "artist":
+    elif winner == "artist":
         $ artist_diversion_points += 1
-        $ set_control('artist')
 
         pause
-        $ complete_fadein()
+
+        scene bedroom night dark at scene_bg
+        show screen ctrl_game
+        with dissolve
 
         jump artist_day0_winner

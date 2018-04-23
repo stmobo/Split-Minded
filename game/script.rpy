@@ -24,14 +24,18 @@ image nanami annoyed = "nanami/upscaled/annoyed.png"
 image nanami normal = "nanami/upscaled/normal.png"
 image nanami worried = "nanami/upscaled/worried.png"
 
-define mc = Character("Kei")
+define mc = Character("Kei", color="#ffffff")
+define pyro_mc = Character(mc.name, color="#ffa126")
+define surv_mc = Character(mc.name, color="#3d660e")
+define artist_mc = Character(mc.name, color="#6800b7")
+
 define hitomi = Character("Hitomi", color="#28a25b")
 define nanami = Character("Nanami", color="#ff6060")
 
-define calm = Character("The Calm One", color="#ffffff") # The Calm One
+define calm = Character("The Calm One", color="#ffffff")   # The Calm One
 define pyro = Character("The Pyromaniac", color="#ffa126") # The Pyromaniac
-define surv = Character("The Survivor", color="#3d660e") # The Survivor
-define artist = Character("The Artist", color="#6800b7") # The Artist
+define surv = Character("The Survivor", color="#3d660e")   # The Survivor
+define artist = Character("The Artist", color="#6800b7")   # The Artist
 
 init python:
     #config.developer = False
@@ -139,6 +143,12 @@ init python:
             else:
                 control_game.artist.set_surface_alpha(0)
 
+    def set_screen_center(center=None):
+        global saved_screen_center
+
+        control_game.set_screen_center(center)
+        saved_screen_center = center
+
     def set_control(v):
         global calm_visible, pyro_visible, artist_visible, survivor_visible, voice_in_control
 
@@ -155,6 +165,7 @@ init python:
         control_game.artist.set_surface_alpha(0)
 
         set_voice_pos(v, control_panel_pos)
+        set_screen_center(control_panel_pos)
 
         if v == 'calm':
             calm_visible = True
@@ -164,21 +175,23 @@ init python:
             pyro_visible = True
             control_game.pyro.vel = [0, 0]
             control_game.pyro.set_surface_alpha(None)
+            control_game.pyro.rot = 0
+
+            control_game.pyro.target = None
         elif v == 'survivor' or v == 'surv':
             survivor_visible = True
             control_game.survivor.vel = [0, 0]
             control_game.survivor.set_surface_alpha(None)
+            control_game.survivor.rot = 0
+
+            control_game.survivor.target = None
         elif v == 'artist':
             artist_visible = True
             control_game.artist.vel = [0, 0]
             control_game.artist.set_surface_alpha(None)
+            control_game.artist.rot = 0
 
-
-    def set_screen_center(center=None):
-        global saved_screen_center
-
-        control_game.set_screen_center(center)
-        saved_screen_center = center
+            control_game.artist.target = None
 
     def set_clickfoward_status(allowed):
         global click_forward_enabled
@@ -217,6 +230,8 @@ init python:
         config.skipping = False
 
         renpy.block_rollback()
+
+        set_screen_center()
 
         combat_in_progress = True
         player_movement_allowed = True
@@ -291,12 +306,6 @@ init python:
         renpy.scene()
         renpy.show('black')
         renpy.hide_screen('ctrl_game')
-        renpy.with_statement(dissolve)
-
-    def complete_fadein():
-        renpy.scene()
-        renpy.show('black', at_list=[scene_bg])
-        renpy.show_screen('ctrl_game')
         renpy.with_statement(dissolve)
 
     class ClickForwardAction(Action):

@@ -51,9 +51,12 @@ def get_winning_voice():
     if voices_alive() != 1:
         return None
 
+    if game_data.force_combat_winner is not None:
+        return game_data.force_combat_winner
+
     for voice in entities.all_voices.sprites():
         if voice.alive():
-            return voice
+            return voice.id
 
 
 class MentalControlGame(renpy.Displayable):
