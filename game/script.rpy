@@ -51,6 +51,8 @@ init python:
     import game_data
     import tiles
 
+    is_morning_diversion = False
+
     calm_diversion_points = 0
     pyro_diversion_points = 0
     artist_diversion_points = 0
@@ -316,7 +318,7 @@ init python:
 
     def add_diversion_points(voice_id, n):
         global calm_diversion_points, survivor_diversion_points, pyro_diversion_points, artist_diversion_points
-        
+
         if voice_id == "calm" or voice_id == "player":
             calm_diversion_points += n
         elif voice_id == "survivor" or voice_id == "surv":

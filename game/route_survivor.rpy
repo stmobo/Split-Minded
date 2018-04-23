@@ -49,9 +49,15 @@ label survivor_day0_winner:
 
     surv_mc "Our enemy's negligence plays into our hands, it seems."
 
+    scene school back night dark at scene_bg
+    with dissolve
+
     "We circle around the school, with the Survivor noting every window and door that seems to be unlocked."
 
     surv_mc "North-northeast door, by the open field... seems to be unlocked and disused. Potential entry point..."
+
+    scene school night dark at scene_bg
+    with dissolve
 
     "By the time he's satisfied, it's almost 3 o'clock in the morning."
 

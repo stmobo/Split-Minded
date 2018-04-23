@@ -1,6 +1,7 @@
 label day1_start:
     $ reset_to_default_spawns()
     $ set_screen_center(control_panel_pos)
+    $ is_morning_diversion = True
 
     pause
 

@@ -49,6 +49,16 @@ image school night light = "bg/school_front/night_light.jpg"
 image school night light rain = "bg/school_front/night_light_rain.jpg"
 image school cloudy = "bg/school_front/cloud.jpg"
 
+image school back = "bg/school_back/day.jpg"
+image school back day = "bg/school_back/day.jpg"
+image school back day rain = "bg/school_back/rain.jpg"
+image school back evening = "bg/school_back/evening.jpg"
+image school back night dark = "bg/school_back/night_dark.jpg"
+image school back night dark rain = "bg/school_back/night_dark_rain.jpg"
+image school back night light = "bg/school_back/night_light.jpg"
+image school back night light rain = "bg/school_back/night_light_rain.jpg"
+image school back cloudy = "bg/school_back/cloud.jpg"
+
 image classroom = "bg/classroom/day.jpg"
 image classroom day = "bg/classroom/day.jpg"
 image classroom cloudy = "bg/classroom/cloud.jpg"
@@ -98,5 +108,6 @@ image bedroom night light = "bg/bedroom/night_light.jpg"
 
 image konbini = "bg/konbini.jpg"
 image art_store = "bg/art_store.jpg"
+image gas_station = "bg/gas_station.jpg"
 
 image black = Solid('#000')
