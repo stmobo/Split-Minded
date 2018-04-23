@@ -58,7 +58,7 @@ label day0_hitomi:
 
     mc "Speaking of, what are you doing for the festival, Hitomi?"
 
-    show hitomi happy2 at center
+    show hitomi happy alt at center
     with dissolve
 
     # NOTE: should it be a Literature Club or a Writing Club? Either way, she's going to be eerily reminiscent of DDLC...
@@ -133,7 +133,7 @@ label day0_nanami:
 
     mc "Yeah."
 
-    nanami "Then you should definitely come and see the play! It's going to be great!"
+    nanami "Then you should definitely come and see the play! It's going to be awesome!"
 
     show nanami annoyed at center
     with dissolve
@@ -150,7 +150,7 @@ label day0_nanami:
     show nanami normal at center
     with dissolve
 
-    nanami "Honestly, though, you should probably go get some rest or something. You don't look too good."
+    nanami "Honestly, though, you should probably go get some rest or something. You don't look so good."
 
     mc "...yeah, you're right. I'll see you, then."
 
@@ -241,7 +241,10 @@ label day0_end:
     show screen ctrl_game
     with dissolve
 
+    $ day0_diverted = True
+
     if winner == "calm":
+        $ day0_diverted = False
         jump calm_day0_winner
     elif winner == "surv":
         jump survivor_day0_winner

@@ -10,21 +10,26 @@ define shooter_bg = Transform(xpos=750, ypos=540, size=(530, 180))
 image controlgame_textbox_bg = "controlgame_textbox_bg.png"
 
 image hitomi happy = "hitomi/upscaled/happy.png"
-image hitomi happy2 = "hitomi/upscaled/happy2.png"
+image hitomi happy alt = "hitomi/upscaled/happy2.png"
 image hitomi shy = "hitomi/upscaled/shy.png"
 image hitomi shy2 = "hitomi/upscaled/shy2.png"
 image hitomi angry = "hitomi/upscaled/angry.png"
 image hitomi annoyed = "hitomi/upscaled/annoyed.png"
 image hitomi curious = "hitomi/upscaled/curious.png"
 image hitomi worried = "hitomi/upscaled/worried.png"
+image hitomi normal = "hitomi/upscaled/normal.png"
+image hitomi normal alt = "hitomi/upscaled/normal_2.png"
 
 image nanami happy = "nanami/upscaled/happy.png"
 image nanami angry = "nanami/upscaled/angry.png"
+image nanami curious = "nanami/upscaled/curoius.png"
 image nanami annoyed = "nanami/upscaled/annoyed.png"
 image nanami normal = "nanami/upscaled/normal.png"
+image nanami normal alt = "nanami/upscaled/normal_2.png"
 image nanami worried = "nanami/upscaled/worried.png"
 
-define mc = Character("Kei", color="#ffffff")
+define mc = Character("Kei", color="#0099cc")
+define calm_mc = Character(mc.name, color="#ffffff")
 define pyro_mc = Character(mc.name, color="#ffa126")
 define surv_mc = Character(mc.name, color="#3d660e")
 define artist_mc = Character(mc.name, color="#6800b7")
@@ -52,6 +57,7 @@ init python:
     import tiles
 
     is_morning_diversion = False
+    diverting_from = None
 
     calm_diversion_points = 0
     pyro_diversion_points = 0
@@ -327,6 +333,47 @@ init python:
             pyro_diversion_points += n
         elif voice_id == "artist":
             artist_diversion_points += n
+
+    def call_diversion(voice_id, divert_from):
+        global calm_diversion_points, survivor_diversion_points, pyro_diversion_points, artist_diversion_points, diverting_from
+
+        diverting_from = divert_from
+
+        if voice_id == "survivor" or voice_id == "surv":
+            return renpy.call('survivor_diversion_'+str(survivor_diversion_points))
+        elif voice_id == "pyro":
+            return renpy.call('pyro_diversion_'+str(pyro_diversion_points))
+        elif voice_id == "artist":
+            return renpy.call('artist_diversion_'+str(artist_diversion_points))
+        elif voice_id == "calm" or voice_id == "player":
+            return renpy.call("calm_"+divert_from)
+
+    def get_controlling_voice_name(i_for_calm=True): # if I_for_calm is true, then we return 'I' when Calm is in control; otherwise return 'Calm'
+        global voice_in_control
+
+        if voice_in_control == 'player' or voice_in_control == 'calm':
+            if i_for_calm:
+                return 'I'
+            else:
+                return 'Calm'
+        elif voice_in_control == 'survivor' or voice_in_control == 'surv':
+            return 'Survivor'
+        elif voice_in_control == 'pyro':
+            return 'Pyro'
+        elif voice_in_control == 'artist':
+            return 'Artist'
+
+    def say_current_mc(t, *args, **kwargs):
+        global voice_in_control, mc, surv_mc, pyro_mc, artist_mc
+
+        if voice_in_control == 'player' or voice_in_control == 'calm':
+            return renpy.say(mc, t, *args, **kwargs)
+        elif voice_in_control == 'survivor' or voice_in_control == 'surv':
+            return renpy.say(surv_mc, t, *args, **kwargs)
+        elif voice_in_control == 'pyro':
+            return renpy.say(pyro_mc, t, *args, **kwargs)
+        elif voice_in_control == 'artist':
+            return renpy.say(artist_mc, t, *args, **kwargs)
 
     class ClickForwardAction(Action):
         def __call__(self):

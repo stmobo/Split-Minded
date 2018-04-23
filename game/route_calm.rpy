@@ -25,3 +25,7 @@ label calm_day0_winner:
     $ complete_fadeout()
 
     jump day1_start
+
+# When Calm wins the day 1 morning fight
+label calm_day1_start:
+    return
