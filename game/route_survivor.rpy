@@ -147,6 +147,8 @@ label survivor_diversion_1:
 
     surv_mc "Son, good intelligence is vital to winning any war.{p}'If you know both yourself and your enemy, you can win a hundred battles', yeah?"
 
+    $ current_location = 'school'
+
     return
 
 
@@ -210,6 +212,8 @@ label survivor_diversion_2:
 
     "We leave the wood and nails in a big pile in the living room."
 
+    $ current_location = 'home'
+
     return
 
 
@@ -270,6 +274,8 @@ label survivor_diversion_3:
     with dissolve
 
     "We dump the things in the same disorganized pile left from our previous hardware store trip."
+
+    $ current_location = 'home'
 
     return
 
@@ -351,5 +357,7 @@ label survivor_diversion_4:
     pyro "Just... try not to get us blown up, okay?"
 
     surv_mc "Son, you know I can't make that promise. War is dangerous, okay?"
+
+    $ current_location = 'home'
 
     return

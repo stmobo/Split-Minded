@@ -27,6 +27,9 @@ init python:
     is_afternoon_diversion = False
     is_day2_diversion = False
 
+    current_location = None  # used for marking where the MC is at the end of a diversion
+    current_time = None
+
     diverting_from = None
 
     calm_diversion_points = 0

@@ -47,18 +47,90 @@ label day1_hitomi_start:
 
     "We take a seat next to her."
 
-    show hitomi shy at center
+    show hitomi curious at center
     with dissolve
 
-    hitomi "So... um... where do we start?"
+    hitomi "So... where do we start?"
 
     mc "Hmm..."
 
     if winner == "artist":
-        mc "Why don't we start with colors? You can get plenty of ideas from those."
+        mc "Really, you can find inspiration in anything: love, the sky, your dreams... why don't we start with those?"
+
+        hitomi "My dreams? Love? ...well, now that I think about it..."
     elif winner == "pyro":
         mc "Maybe you should write about something that you're passionate about."
+
+        hitomi "Passionate? ...Well, I guess it's not something I'm {i}passionate{/i} about, but..."
     elif winner == "surv":
-        mc "Wouldn't it be easiest to write about something that you like? I mean, like... something you'd want to protect at all costs."
+        mc "Wouldn't it be easiest to write about something or someone that you care about? I mean, like... someone you'd want to protect at all costs."
+
+        hitomi "Someone I care about? ...well, now that you mention it..."
     elif winner == "calm":
-        mc "So what else is on your mind, other than the festival?"
+        mc "Is there anything on your mind, other than the festival?"
+
+        hitomi "Well... since you're asking..."
+
+    show hitomi shy alt at center
+    with dissolve
+
+    hitomi "I have a... a friend. And she's known this boy for a really long time..."
+
+    hitomi "But they're not as close as they were before. And..."
+
+    hitomi "She's... {size=-10}kindofinlovewithhim.{/size}"
+
+    mc "Huh? What was that?"
+
+    hitomi "I meant she's in... love with him."
+
+    hitomi "But they're drifting apart, and now she thinks he's out of reach."
+
+    mc "Hmm...{p}You know, Hitomi..."
+
+    show hitomi shy at center
+    with dissolve
+
+    hitomi "Yes, [mc.name]?"
+
+    mc "...that would make a really good theme for a poem.{p}You know, unrequited love?"
+
+    show hitomi thinking at center
+    with dissolve
+
+    hitomi "Yeah... I guess you're right."
+
+    hitomi "I could... write it from her perspective, I suppose?"
+
+    mc "Yeah, that could work."
+
+    hitomi "..."
+
+    hitomi "...what if I started the poem with this line, then.."
+
+    "She put her pen to paper, and began to write."
+
+    "Hitomi puts intense thought and care into every word she writes and re-writes."
+
+    "We fall into silence at her side, not wanting to break her focus."
+
+    "Eventually, she comes to something she's satisfied with."
+
+    hitomi "There. I think it's complete."
+
+    mc "Oh? Can I read it?"
+
+    "She pulls the poem close to her chest."
+
+    hitomi "Hmm... no."
+
+    show hitomi happy at center
+    with dissolve
+
+    hitomi "I'll read it at the festival. If you want to hear it, you'll have to come visit me there."
+
+    mc "Then I'll definitely make sure to drop by."
+
+    hitomi "I'll hold you to that.{p}See you later."
+
+    jump day1_leaving_school

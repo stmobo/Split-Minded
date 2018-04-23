@@ -42,6 +42,10 @@ label day1_start:
 
         is_morning_diversion = True
         is_afternoon_diversion = False
+        is_day2_diversion = False
+
+        current_location = 'school'
+
         call_diversion(winner, 'day1_start')
 
     if winner == 'calm':  # no diversion
@@ -50,10 +54,13 @@ label day1_start:
         jump day1_start_diverted
 
 label day1_start_no_diversion:
-    "With that out of the way, [mc.name] starts walking to school."
+    if current_location != 'school':
+        "With that out of the way, [mc.name] starts walking to school."
 
-    scene school day at scene_bg
-    with dissolve
+        scene school day at scene_bg
+        with dissolve
+    else:
+        "With that out of the way, [mc.name] actually starts walking to class."
 
     scene hallway alt day at scene_bg
     with dissolve
@@ -109,7 +116,14 @@ label day1_start_no_diversion:
 
 label day1_start_diverted:
     $ voice_name = get_controlling_voice_name()
-    "With that out of the way, [voice_name] sits back and stops directly controlling [mc.name], who starts walking to school on his own initiative."
+
+    if current_location != 'school':
+        "With that out of the way, [voice_name] sits back and stops directly controlling [mc.name], who starts walking to school on his own initiative."
+
+        scene school day at scene_bg
+        with dissolve
+    else:
+        "With that out of the way, [voice_name] sits back and stops directly controlling [mc.name], who starts actually walking to class, now under his own initiative."
 
     scene school day at scene_bg
     with dissolve
@@ -190,7 +204,7 @@ label day1_afterclass:
 
     pause
 
-    scene hallway alt day at scene_bg
+    scene hallway day at scene_bg
     show screen ctrl_game
     with dissolve
 
@@ -241,3 +255,59 @@ label day1_afterclass:
         mc "...maybe I'll go visit the auditorium."
 
         jump day1_nanami_start
+
+
+label day1_leaving_school:
+    scene hallway alt day at scene_bg
+    with dissolve
+
+    scene school day at scene_bg
+    with dissolve
+
+    "We leave the school, and start our afternoon walk back home."
+
+    if winner == 'calm':
+        "Before we can even take five steps, however, I feel a wave of energy.{p}The other voices must have come back."
+    else:
+        "Before we can even take five steps, however, we all feel a wave of energy, and manifest once more."
+
+    $ start_combat()
+
+    "Naturally, we begin fighting for the controls again."
+
+    python:
+        complete_fadeout()
+        winner = end_combat()
+
+        set_control(winner)
+        add_diversion_points(winner, 1)
+
+    pause
+
+    scene school day at scene_bg
+    with dissolve
+
+    python:
+        is_morning_diversion = True
+        is_afternoon_diversion = False
+        is_day2_diversion = False
+        current_location = 'school'
+        call_diversion(winner, 'day1_leaving_school')
+
+    if current_location != 'home':
+        "With that diversion out of the way, we continue heading home."
+
+        scene walk_to_school day at scene_bg
+        with dissolve
+
+        scene home day at scene_bg
+        with dissolve
+
+    "Unfortunately, as soon as we get home, our exhaustion catches back up to us."
+
+    scene bedroom day at scene_bg
+    with dissolve
+
+    "Even though there's definitely still not even evening yet, we opt to simply head to our bed, where we almost instantly fall into a deep sleep..."
+
+    jump day2_start

@@ -99,6 +99,8 @@ label pyro_diversion_1:
 
     "Picking them up, we quickly pay for them and leave."
 
+    $ current_location = 'walk_to_school'
+
     return
 
 label pyro_diversion_2:
@@ -157,6 +159,8 @@ label pyro_diversion_2:
     with dissolve
 
     "We leave the store, gas cans in hand, and quickly drop them off at home."
+
+    $ current_location = 'home'
 
     return
 
@@ -223,6 +227,8 @@ label pyro_diversion_3:
 
     "The filled cans are heavy, but with some effort we manage to bring all of them home in one go."
 
+    $ current_location = 'home'
+
     return
 
 # point of no return
@@ -287,6 +293,8 @@ label pyro_diversion_4:
     calm "Shit."
 
     "And with the rate things are going, he's definitely going to be able to do just that..."
+
+    $ current_location = 'school'
 
     return
 
