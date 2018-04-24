@@ -298,51 +298,75 @@ label pyro_diversion_4:
 
     return
 
-# Diversions 5, 6, and 7 always happen during the end-game shopping segment
-label pyro_diversion_5:
-    "The Pyromaniac reassumes control over [mc.name]."
+label pyro_shopping_takeover:
+    $ voice_name = get_controlling_voice_name(True)
+    "[mc.name]'s mental exhaustion suddenly overcomes us, nearly crushing us with a wave of fatigue and deabilitiation."
 
-    pyro_mc "Hmm... well, I've got everything I need for my main goals, don't I?"
+    if voice_in_control == 'pyro':
+        "The Pyro powers through it surprisingly quickly, though, and uses the opportunity to do something none of us expected."
+    elif voice_in_control == 'calm':
+        "The Pyro seems much less affected by it, however, and takes advantage of my temporary weakness to do something none of us expected."
+    else:
+        "The Pyro seems much less affected by it, however, and takes advantage of The [voice_name]'s temporary weakness to do something none of us expected."
 
-    pyro_mc "I'm sure I'll find something to do. I have extra gas at home, if I recall..."
+    "Using the energy he's accumulated from his previous battles and control takeovers, he quickly forces myself into control and locks himself in with a mental block."
 
-    scene walk_to_school day at scene_bg
+    "Those of us left outside immediately sense a change."
+
+    surv "Huh? What just happened?"
+
+    calm "The Pyro just did something to the controls."
+
+    pyro "I've locked myself into the controls. If I'm correct, your energy will be too drained from the constant battles to take control anymore."
+
+    surv "Why you little-- I'll show you!"
+
+    "I can feel him futilely try to struggle against the barrier The Pyro's set up. He gets nowhere, of course."
+
+    "And for me... it's over. The Pyro's permanently taken control."
+
+    "All I can do is just sit and watch what he does."
+
+    jump pyro_endgame
+
+
+label pyro_endgame:
+    python:
+        complete_fadeout()
+        reset_to_default_spawns()
+        set_screen_center(control_panel_pos)
+        set_control('pyro')
+
+    pause
+
+    scene bedroom day at scene_bg
+    show screen ctrl_game
     with dissolve
 
-    scene home day at scene_bg
+    "It's the day of the festival."
+
+    "[mc.name], under the Pyro's control, doesn't even bother going to school that day."
+
+    "Instead, he waits until the evening, until the festival opens, before making his way to the school."
+
+    if pyro_diversion_points < 4:
+        "Naturally, he brings some cans of gas along with him, wrapped and hidden inside a blanket."
+
+    scene walk_to_school evening at scene_bg
     with dissolve
 
-    "We return home, and pick up an extra can of gas lying around the house."
-
-    scene walk_to_school day at scene_bg
+    scene school back at scene_bg
     with dissolve
 
-    "Heading back out onto the street, the Pyro's attention is immediately captured by a sleek black car several doors down."
+    "[mc.name] circles around and enters the school grounds near the back. It's completely deserted-- all of the excitement of the festival is towards the front of the school."
 
-    pyro_mc "Ah, that looks flammable! And expensive, too!"
+    if pyro_diversion_points < 4:
+        "Then, he begins liberally dousing the school with the cans of gas he brought along with him."
+    elif pyro_diversion_points >= 4:
+        "Then, he begins liberally dousing the school with the cans of gas he'd hid around the grounds."
 
-    "He quickly dashes to the car, gas can in hand."
+    "With that done, he takes a match and..."
 
-    calm "Oh no."
+    $ complete_fadeout()
 
-    "Of course, none of us can do anything to stop him."
-
-    "The Pyro pours the entire can out onto the car, and the gas seeps into it, working its way through the gaps in the windows and the body..."
-
-    "Then the Pyro pulls a matchbook from his pocket, and picks out a match."
-
-    "With a single deft stroke, he lights the match and tosses it onto the car."
-
-    "We immediately turn to run away, the fireball's heat scorching the hairs on the back of our neck."
-
-    "Running back to our home, we dive behind our trash bin and watch the flames from there."
-
-    pyro_mc "It's so beautiful..."
-
-    surv "I wonder where the owner is."
-
-    artist "Orange, red, yellow..."
-
-    calm "We're definitely going to get arrested, at the rate we're going..."
-
-    return
+    "...the entire school is lit aflame."

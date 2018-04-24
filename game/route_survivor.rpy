@@ -352,7 +352,7 @@ label survivor_diversion_4:
 
     surv_mc "...and... there. This looks good, eh?"
 
-    "In our hands is a pipe bomb."
+    "In our hands is what appears to be a tripwire-activated pipe bomb."
 
     pyro "Just... try not to get us blown up, okay?"
 
@@ -361,3 +361,76 @@ label survivor_diversion_4:
     $ current_location = 'home'
 
     return
+
+
+label survivor_shopping_takeover:
+    $ voice_name = get_controlling_voice_name(True)
+    "[mc.name]'s mental exhaustion suddenly overcomes us, nearly crushing us with a wave of fatigue and deabilitiation."
+
+    if voice_in_control == 'survivor':
+        "The Survivor powers through it surprisingly quickly, though, and uses the opportunity to do something none of us expected."
+    elif voice_in_control == 'calm':
+        "The Survivor seems much less affected by it, however, and takes advantage of my temporary weakness to do something none of us expected."
+    else:
+        "The Survivor seems much less affected by it, however, and takes advantage of The [voice_name]'s temporary weakness to do something none of us expected."
+
+    "Using the energy he's accumulated from his previous battles and control takeovers, he quickly forces myself into control and locks himself in with a mental block."
+
+    "Those of us left outside immediately sense a change."
+
+    artist "...what happened?"
+
+    calm "The Survivor just did something to the controls."
+
+    surv "I've locked myself into these here controls, see? You guys don't have to energy to take control again after all of those battles-- which means I'm going to have permanent control here."
+
+    pyro "Why you little-- I'll show you!"
+
+    "I can feel him futilely try to struggle against the barrier The Survivor's set up. He gets nowhere, of course."
+
+    "And for me... it's over. The Survivor's permanently taken control."
+
+    "All I can do is just sit and watch what he does."
+
+    jump survivor_endgame
+
+label survivor_endgame:
+    python:
+        complete_fadeout()
+        reset_to_default_spawns()
+        set_screen_center(control_panel_pos)
+        set_control('survivor')
+
+    pause
+
+    scene bedroom cloudy at scene_bg
+    show screen ctrl_game
+    with dissolve
+
+    "It's the early, early morning before the festival. The sun is barely out."
+
+    scene walk_to_school cloudy at scene_bg
+    with dissolve
+
+    scene school front cloudy at scene_bg
+    with dissolve
+
+    scene hallway alt cloudy at scene_bg
+    with dissolve
+
+    scene library at scene_bg
+    with dissolve
+
+    "[mc.name], under the Survivor's control, sneaks back into the school, and breaks into the library."
+
+    "[mc.name] quickly begins setting up his 'defenses'-- rolling out barbed wire, boarding up the doors and windows, and setting up tripwires and explosives."
+
+    "With that done, he retreats inside, boarding up the last entrance to the library-- the one he used to get in."
+
+    $ complete_fadeout()
+
+    "And as the first students filter in that morning..."
+
+    "{i}Boom! Boom! Boom!{/i}"
+
+    "...they become the first students to fall to [mc.name]'s traps."

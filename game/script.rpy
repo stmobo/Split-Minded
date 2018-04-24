@@ -362,6 +362,20 @@ init python:
         elif voice_in_control == 'artist':
             return renpy.say(artist, t, *args, **kwargs)
 
+    def voice_locked_in():
+        global calm_diversion_points, survivor_diversion_points, pyro_diversion_points, artist_diversion_points
+
+        if calm_diversion_points >= 4:
+            return "calm"
+        elif survivor_diversion_points >= 4:
+            return "survivor"
+        elif pyro_diversion_points >= 4:
+            return "pyro"
+        elif artist_diversion_points >= 4:
+            return "artist"
+        else:
+            return None
+
     class ClickForwardAction(Action):
         def __call__(self):
             global calm_pos, pyro_pos, artist_pos, survivor_pos, pyro_target, artist_target, survivor_target

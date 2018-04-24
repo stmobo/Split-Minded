@@ -134,3 +134,61 @@ label day1_hitomi_start:
     hitomi "I'll hold you to that.{p}See you later."
 
     jump day1_leaving_school
+
+label day2_hitomi:
+    scene hallway day at scene_bg
+    with dissolve
+
+    scene library at scene_bg
+    with dissolve
+
+    "We walk back into the library, and this time find what seems to be the entire Writing Club in a frenzy of activity."
+
+    "Hitomi immediately catches sight of us when we walk in, and runs up to us with worry written all across her face."
+
+    show hitomi worried at center
+    with dissolve
+
+    hitomi "I'm so glad you're here, [mc.name]."
+
+    hitomi "We're trying to decorate the library before the festival tomorrow, and we just realized there are a number of items we need here that we don't have on hand."
+
+    hitomi "But we need everyone here to decorate and make other preparations."
+
+    hitomi "Could you go out instead and buy the supplies we need, please?"
+
+    mc "Of course I can. Do you have a list of what I should buy?"
+
+    hitomi "Certainly. Here."
+
+    "She pulls out a notebook from her uniform pocket, and neatly tears out a sheet of paper from it, handing it to us."
+
+    "There's a list of various things written on it in Hitomi's ever-neat handwriting.{p}We quickly skim through it."
+
+    mc "Lined paper, pens, construction paper ... candles, flour ... an HDMI cable ..."
+
+    mc "There's a lot of different things on here. It might take me a while to go to all of the stores for these."
+
+    hitomi "It's okay. The school will be open all night, tonight, for everyone who still needs to make preparations before the festival."
+
+    hitomi "And we have many things we still need to finish here, so don't worry about time."
+
+    mc "Alright, then. I guess I'll be going?"
+
+    show hitomi happy at center
+    with dissolve
+
+    hitomi "Thank you so much for everything you've done, [mc.name]. You're a wonderful friend."
+
+    jump day2_shopping_start
+
+label hitomi_calm_endgame:
+    pause
+
+    "FarawayVision" "..."
+
+    "FarawayVision" "Okay, I'm going to have to stop the game, here."
+
+    "FarawayVision" "I'm so sorry."
+
+    "FarawayVision" "But I didn't actually have time to put anything here within the time limit."

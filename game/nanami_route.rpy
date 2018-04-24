@@ -135,3 +135,52 @@ label day1_nanami_start:
     nanami "Hey, thanks for your help today, [mc.name]! Seeya!"
 
     jump day1_leaving_school
+
+label day2_nanami:
+    scene hallway day at scene_bg
+    with dissolve
+
+    scene auditorium day at scene_bg
+    with dissolve
+
+    "We make our way back to the auditorium, and find everyone there in a frenzy of activity."
+
+    "Nanami immediately notices us when we walk in, and runs up to us, worry etched across her face."
+
+    show nanami worried at center
+    with dissolve
+
+    nanami "Oh, thank goodness you're here! The set crew just realized they're missing a ton of things they need for the play, and we need every hand on deck here to finish preparations."
+
+    nanami "Do you think you could run out and go buy those things for us?"
+
+    mc "Of course. Do you have a list or anything?"
+
+    nanami "Yeah, yeah! Um, wait, hang on."
+
+    hide nanami with dissolve
+    pause 0.5
+    show nanami worried with dissolve
+
+    "She runs off backstage, and comes back with a piece of paper."
+
+    nanami "Here it is. There's not actually a whole lot of stuff on the list, but some of the things here are kind of hard to find. You'll probably need to go to a bunch of different stores."
+
+    nanami "Don't worry about taking too long. At the rate things are going, we're going to be here all night anyways."
+
+    mc "Alright then. I guess I'll be going, then."
+
+    nanami "Thank you so much for all your help, [mc.name]. Seriously, you don't know how much you've done for us."
+
+    jump day2_shopping_start]
+
+label nanami_calm_endgame:
+    pause
+
+    "FarawayVision" "..."
+
+    "FarawayVision" "Okay, I'm going to have to stop the game, here."
+
+    "FarawayVision" "I'm so sorry."
+
+    "FarawayVision" "But I didn't actually have time to put anything here within the time limit."

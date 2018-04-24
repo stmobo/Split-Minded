@@ -287,6 +287,7 @@ label day1_leaving_school:
     pause
 
     scene school day at scene_bg
+    show screen ctrl_game
     with dissolve
 
     python:
@@ -305,7 +306,9 @@ label day1_leaving_school:
         scene home day at scene_bg
         with dissolve
 
-    "Unfortunately, as soon as we get home, our exhaustion catches back up to us."
+        "Unfortunately, as soon as we get home, [mc.name]'s exhaustion catches back up to us."
+    else:
+        "Unfortunately, at this moment, [mc.name]'s exhaustion catches back up to us."
 
     scene bedroom day at scene_bg
     with dissolve
