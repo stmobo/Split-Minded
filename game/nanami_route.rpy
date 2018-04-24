@@ -172,7 +172,7 @@ label day2_nanami:
 
     nanami "Thank you so much for all your help, [mc.name]. Seriously, you don't know how much you've done for us."
 
-    jump day2_shopping_start]
+    jump day2_shopping_start
 
 label nanami_calm_endgame:
     pause
