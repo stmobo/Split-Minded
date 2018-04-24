@@ -337,10 +337,7 @@ class Player(Voice):
 
     def mouse_update(self, m_pos):
         self.m_pos = m_pos
-
-    def set_health(self, health, attacker=None):
-        pass
-
+        
     def update(self, dt):
         pressed = pygame.key.get_pressed()
 

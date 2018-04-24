@@ -1,4 +1,8 @@
 # Split-Minded
+
+CHANGELOG:
+ * 1.0.1 - fixed other voices not being able to damage the player (whoops)
+
 Dating Sim &amp; Top-Down Shooter Fusion -- Written for Ludum Dare 41
 
 Backgrounds found at:
