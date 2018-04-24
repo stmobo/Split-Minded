@@ -1,5 +1,6 @@
 import math
 import renpy.exports as renpy
+import renpy.config as config
 import pygame
 import game_data
 import effects
@@ -9,6 +10,12 @@ all_entities = None
 all_voices = None
 all_projectiles = None
 all_weapons = None
+
+pyro_spawned = False
+survivor_spawned = False
+player_spawned = False
+artist_spawned = False
+
 
 def init():
     global all_entities, all_voices, all_projectiles, all_weapons
@@ -171,11 +178,12 @@ class Weapon(Entity):
 
 
 class Sword(Weapon):
-    def __init__(self, wielder):
+    def __init__(self, wielder, damage=35):
         Weapon.__init__(self, wielder, 'weapons/sword.png', anchor_pt=(5, 60))
 
         self.swing_time = .125
         self.arc_angle = math.radians(90)
+        self.damage = damage
         self.swing_increment = self.arc_angle / self.swing_time
         self.is_melee = True
 
@@ -189,10 +197,10 @@ class Sword(Weapon):
             self.rot_offset = -(self.arc_angle / 2)
 
     def deal_damage(self, victim):
-        victim.set_health(victim.health - 35, self.wielder)
+        victim.set_health(victim.health - self.damage, self.wielder)
         self.can_damage = False
 
-        victim.add_effect(effects.PushbackEffect(victim, self, .75, 200))
+        victim.add_effect(effects.PushbackEffect(victim, self, .75, 250))
 
     def update(self, dt, acc=(0, 0)):
         if self.swinging:
@@ -220,6 +228,7 @@ class Voice(Entity):
         self.health = 100
         self.max_health = 100
         self.default_spawn_point = (15 * game_data.tile_size, 15 * game_data.tile_size)
+        self.invuln_time = 0.75
 
         Entity.__init__(self, pos)
         all_voices.add(self)
@@ -230,7 +239,10 @@ class Voice(Entity):
     def set_health(self, health, attacker=None):
         damaged = health < self.health and health >= 0
 
-        if health < 0:
+        if health < self.health and self.invuln_time > 0:
+            return
+
+        if health <= 0:
             # make sure there's at least one voice left alive
             n_live_voices = 0
 
@@ -240,7 +252,8 @@ class Voice(Entity):
 
             if n_live_voices > 1:
                 self.health = 0
-                self.add_effect(effects.FadeEffect(self, 0.25, 255, 0))
+                self.set_surface_alpha(0)
+                #self.add_effect(effects.FadeEffect(self, 0.1, 255, 0))
         elif health > self.max_health:
             self.health = self.max_health
         else:
@@ -248,6 +261,7 @@ class Voice(Entity):
             self.surf_alpha = None
 
         if damaged:
+            self.invuln_time = 0.75
             self.add_effect(effects.BlinkEffect(self, 0.75, 128))
             self.on_damaged(attacker)
 
@@ -260,6 +274,11 @@ class Voice(Entity):
         pass
 
     def update(self, dt, acc=(0, 0)):
+        if self.invuln_time > 0:
+            self.invuln_time -= dt
+        else:
+            self.invuln_time = 0
+
         if game_data.combat_in_progress:
             self.base_image = self.char_images['with_weapon']
         else:
@@ -303,30 +322,54 @@ class AIVoice(Voice):
 
 class Pyromaniac(AIVoice):
     def __init__(self, pos):
+        global pyro_spawned
+
+        if pyro_spawned and config.developer:
+            raise RuntimeError("Attempted to spawn Pyromaniac twice!")
+        pyro_spawned = True
+
         AIVoice.__init__(self, pos, 'voice2', 'pyro')
 
-        self.weapon = Sword(self)
+        self.weapon = Sword(self, 5)
         self.default_spawn_point = (4 * game_data.tile_size, 4 * game_data.tile_size)
 
 
 class Survivor(AIVoice):
     def __init__(self, pos):
+        global survivor_spawned
+
+        if survivor_spawned and config.developer:
+            raise RuntimeError("Attempted to spawn Survivor twice!")
+        survivor_spawned = True
+
         AIVoice.__init__(self, pos, 'voice3', 'surv')
 
-        self.weapon = Sword(self)
+        self.weapon = Sword(self, 5)
         self.default_spawn_point = (26 * game_data.tile_size, 4 * game_data.tile_size)
 
 
 class Artist(AIVoice):
     def __init__(self, pos):
+        global artist_spawned
+
+        if artist_spawned and config.developer:
+            raise RuntimeError("Attempted to spawn Artist twice!")
+        artist_spawned = True
+
         AIVoice.__init__(self, pos, 'voice4', 'artist')
 
-        self.weapon = Sword(self)
+        self.weapon = Sword(self, 5)
         self.default_spawn_point = (26 * game_data.tile_size, 27 * game_data.tile_size)
 
 
 class Player(Voice):
     def __init__(self, pos):
+        global player_spawned
+
+        if player_spawned and config.developer:
+            raise RuntimeError("Attempted to spawn Player twice!")
+        player_spawned = True
+
         Voice.__init__(self, pos, 'voice1', 'calm')
         self.movement_allowed = False
 
@@ -337,7 +380,7 @@ class Player(Voice):
 
     def mouse_update(self, m_pos):
         self.m_pos = m_pos
-        
+
     def update(self, dt):
         pressed = pygame.key.get_pressed()
 

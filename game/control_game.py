@@ -123,7 +123,7 @@ class MentalControlGame(renpy.Displayable):
 
         for voice, colliding_voices in pygame.sprite.groupcollide(entities.all_voices, entities.all_voices, False, False).items():
             for colliding_voice in colliding_voices:
-                if voice != colliding_voice:
+                if voice.alive() and colliding_voice.alive() and voice != colliding_voice:
                     x_overlap, y_overlap = utils.rect_overlap(voice.rect, colliding_voice.rect)
 
                     if abs(x_overlap) < abs(y_overlap):

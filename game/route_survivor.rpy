@@ -82,7 +82,7 @@ label survivor_day0_winner:
 label survivor_diversion_1:
     "The Survivor quickly asserts control over [mc.name]."
 
-    surv "Hah! I won! Take {i}that{our/i}, you assholes!{p}So let's see here, how did you guys get this to work..."
+    surv "Hah! I won! Take {i}that{/i}, you assholes!{p}So let's see here, how did you guys get this to work..."
 
     surv_mc "Aha! Got it!"
 
@@ -125,12 +125,12 @@ label survivor_diversion_1:
         scene walk_to_school day at scene_bg
         with dissolve
 
-        scene school_back day at scene_bg
+        scene school back day at scene_bg
         with dissolve
 
         "We make our way to the school, and instead of walking up to the front gate, circle around to the back."
     else:
-        scene school_back day at scene_bg
+        scene school back day at scene_bg
         with dissolve
 
         "We exit at the back of the school, and hide behind some plants."

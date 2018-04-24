@@ -238,6 +238,17 @@ init python:
             if not voice.alive():
                 voice.pos = list(voice.default_spawn_point)
 
+            if isinstance(voice, entities.AIVoice) and voice.target is None:
+                possible_targets = [
+                    control_game.player,
+                    control_game.pyro,
+                    control_game.survivor,
+                    control_game.artist
+                ]
+
+                possible_targets.remove(voice)
+                voice.target = renpy.random.choice(possible_targets)
+
             voice.set_health(voice.max_health)
             set_voice_visible(voice.id, True)
 
