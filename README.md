@@ -20,3 +20,5 @@ Credit to:
     - fix some script typos and misspellings (in tags and filenames and etc)
  * 1.0.1:
     - fixed other voices not being able to damage the player (whoops)
+ * 1.0.0:
+    - initial release (Ludum Dare 41 deadline)
