@@ -95,6 +95,7 @@ class Tile(pygame.sprite.Sprite):
         all_tiles.add(self)
 
         self.pos = tile_pos
+        self.base_image = base_image  # for compat with Entities
         self.image = base_image
 
         self.rect = self.image.get_rect()

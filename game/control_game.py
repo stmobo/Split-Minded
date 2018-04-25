@@ -112,35 +112,24 @@ class MentalControlGame(renpy.Displayable):
 
         for voice, walls in pygame.sprite.groupcollide(entities.all_voices, tiles.all_walls, False, False).items():
             for wall in walls:
-                x_overlap, y_overlap = utils.rect_overlap(voice.rect, wall.rect)
-
-                if abs(x_overlap) < abs(y_overlap):
-                    voice.pos[0] += x_overlap / 2
-                    voice.vel[0] = 0
-                else:
-                    voice.pos[1] += y_overlap / 2
-                    voice.vel[1] = 0
+                mvt = voice.check_collision(wall)
+                if mvt is not None:
+                    voice.pos[0] += mvt[0]
+                    voice.pos[1] += mvt[1]
 
         for voice, colliding_voices in pygame.sprite.groupcollide(entities.all_voices, entities.all_voices, False, False).items():
             for colliding_voice in colliding_voices:
                 if voice.alive() and colliding_voice.alive() and voice != colliding_voice:
-                    x_overlap, y_overlap = utils.rect_overlap(voice.rect, colliding_voice.rect)
-
-                    if abs(x_overlap) < abs(y_overlap):
-                        voice.pos[0] += x_overlap / 20
-                        #colliding_voice.pos[0] -= x_overlap / 16
-
-                        voice.vel[0] = 0
-                    else:
-                        voice.pos[1] += y_overlap / 20
-                        #colliding_voice.pos[1] -= y_overlap / 16
-
-                        voice.vel[1] = 0
+                    mvt = voice.check_collision(colliding_voice)
+                    if mvt is not None:
+                        voice.pos[0] += mvt[0]
+                        voice.pos[1] += mvt[1]
 
         for voice, weapons in pygame.sprite.groupcollide(entities.all_voices, entities.all_weapons, False, False).items():
             for weapon in weapons:
                 if voice != weapon.wielder and voice.alive() and game_data.combat_in_progress and weapon.active and weapon.can_damage and weapon.is_melee:
-                    weapon.deal_damage(voice)
+                    if voice.check_collision(weapon) is not None:
+                        weapon.deal_damage(voice)
 
         surf = render.canvas().get_surface()
         surf.fill((0, 0, 0))

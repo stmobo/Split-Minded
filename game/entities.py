@@ -1,6 +1,7 @@
 import math
 import renpy.exports as renpy
 import renpy.config as config
+import collision_detection as cd
 import pygame
 import game_data
 import effects
@@ -232,6 +233,20 @@ class Voice(Entity):
 
         Entity.__init__(self, pos)
         all_voices.add(self)
+
+    def check_collision(self, other):
+        polyA = cd.Rectangle(self.base_image.get_rect())
+        polyB = cd.Rectangle(other.base_image.get_rect())
+
+        polyA.rotate(self.rot)
+        polyA.translate(self.pos)
+
+        if other.rot is not None:
+            polyB.rotate(other.rot)
+
+        polyB.translate(other.pos)
+
+        return cd.check_collision(polyA, polyB)
 
     def alive(self):
         return self.health > 0
