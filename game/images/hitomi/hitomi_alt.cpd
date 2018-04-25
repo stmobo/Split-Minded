@@ -1,0 +1,20 @@
+[Character]
+name=default
+[Parts]
+hair_front=Hair - High Class
+hair_back=Hair2 - Wavy Pony Tail
+head=Head - Normal 2
+face=Exp. - Shy 4
+eye=Eyes - Eye 195
+body=Body - Blazer
+accessory=
+[Color]
+hair_rgb=4
+hair_gray=3
+eye_rgb=3
+eye_gray=3
+skin_rgb=0
+skin_gray=3
+body_rgb=0
+body_gray=3
+bg_rgb=255,255,255

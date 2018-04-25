@@ -1,28 +1,50 @@
+## Hitomi Images
 image hitomi happy = "hitomi/upscaled/happy.png"
 image hitomi happy alt = "hitomi/upscaled/happy2.png"
+
 image hitomi shy = "hitomi/upscaled/shy.png"
 image hitomi shy alt = "hitomi/upscaled/shy2.png"
+
 image hitomi angry = "hitomi/upscaled/angry.png"
 image hitomi annoyed = "hitomi/upscaled/annoyed.png"
 image hitomi thinking = "hitomi/upscaled/thinking.png"
 image hitomi curious = "hitomi/upscaled/curious.png"
 image hitomi worried = "hitomi/upscaled/worried.png"
+
 image hitomi normal = "hitomi/upscaled/normal.png"
 image hitomi normal alt = "hitomi/upscaled/normal_2.png"
 
+image hitomi normal alt_hair = "hitomi/upscaled/alt_normal.png"
+image hitomi shy alt_hair = "hitomi/upscaled/alt_shy.png"
+image hitomi smiling alt_hair = "hitomi/upscaled/alt_smiling.png"
+image hitomi worried alt_hair = "hitomi/upscaled/alt_worried.png"
+
+## Nanami Images
 image nanami happy = "nanami/upscaled/happy.png"
-image nanami angry = "nanami/upscaled/angry.png"
-image nanami angry yelling = "nanami/upscaled/angry_yelling.png"
 image nanami curious = "nanami/upscaled/curious.png"
 image nanami annoyed = "nanami/upscaled/annoyed.png"
-image nanami normal = "nanami/upscaled/normal.png"
-image nanami normal alt = "nanami/upscaled/normal_2.png"
-image nanami shy = "nanami/upscaled/shy.png"
-image nanami shy alt = "nanami/upscaled/shy_2.png"
 image nanami worried = "nanami/upscaled/worried.png"
 image nanami excited = "nanami/upscaled/excited.png"
 image nanami reciting = "nanami/upscaled/reciting.png"
 
+image nanami angry = "nanami/upscaled/angry.png"
+image nanami angry yelling = "nanami/upscaled/angry_yelling.png"
+
+image nanami normal = "nanami/upscaled/normal.png"
+image nanami normal alt = "nanami/upscaled/normal_2.png"
+
+image nanami shy = "nanami/upscaled/shy.png"
+image nanami shy alt = "nanami/upscaled/shy_2.png"
+
+image nanami happy alt_hair alt_clothes = "nanami/upscaled/alt_happy.png"
+image nanami normal alt_hair alt_clothes = "nanami/upscaled/alt_normal.png"
+image nanami reciting alt_hair alt_clothes = "nanami/upscaled/alt_reciting.png"
+
+image nanami happy alt_clothes = "nanami/upscaled/alt_happy_hair.png"
+image nanami normal alt_clothes = "nanami/upscaled/alt_normal_hair.png"
+image nanami reciting alt_clothes = "nanami/upscaled/alt_reciting_hair.png"
+
+## Text character definitions
 define mc = Character("Kei", color="#0099cc")
 define calm_mc = Character(mc.name, color="#ffffff")
 define pyro_mc = Character(mc.name, color="#ffa126")
