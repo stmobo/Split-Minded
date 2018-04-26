@@ -89,7 +89,10 @@ class MentalControlGame(renpy.Displayable):
         if ev.type == pygame.MOUSEBUTTONDOWN and ev.button == 1:
             player.weapon.fire()
 
-        if game_data.combat_in_progress and voices_alive() == 1:
+        if game_data.combat_in_progress and game_data.skip_combat and game_data.force_combat_winner is not None:
+            return True
+
+        if game_data.combat_in_progress and (voices_alive() == 1):
             return True
 
     def render(self, width, height, st, at):

@@ -12,7 +12,7 @@ image controlgame_textbox_bg = "controlgame_textbox_bg.png"
 image hitomi happy = "hitomi/upscaled/happy.png"
 image hitomi happy alt = "hitomi/upscaled/happy2.png"
 image hitomi shy = "hitomi/upscaled/shy.png"
-image hitomi shy2 = "hitomi/upscaled/shy2.png"
+image hitomi shy alt = "hitomi/upscaled/shy2.png"
 image hitomi angry = "hitomi/upscaled/angry.png"
 image hitomi annoyed = "hitomi/upscaled/annoyed.png"
 image hitomi curious = "hitomi/upscaled/curious.png"
@@ -70,6 +70,8 @@ init python:
     control_panel_pos = [game_data.tile_size*15, game_data.tile_size*15.5]
 
     voice_in_control = 'calm'
+
+    route_choice = None
 
     calm_visible = True
     pyro_visible = False
@@ -377,6 +379,18 @@ init python:
             return renpy.say(pyro_mc, t, *args, **kwargs)
         elif voice_in_control == 'artist':
             return renpy.say(artist_mc, t, *args, **kwargs)
+
+    def say_current_voice(t, *args, **kwargs):
+        global voice_in_control, calm, pyro, surv, artist
+
+        if voice_in_control == 'player' or voice_in_control == 'calm':
+            return renpy.say(calm, t, *args, **kwargs)
+        elif voice_in_control == 'survivor' or voice_in_control == 'surv':
+            return renpy.say(surv, t, *args, **kwargs)
+        elif voice_in_control == 'pyro':
+            return renpy.say(pyro, t, *args, **kwargs)
+        elif voice_in_control == 'artist':
+            return renpy.say(artist, t, *args, **kwargs)
 
     class ClickForwardAction(Action):
         def __call__(self):

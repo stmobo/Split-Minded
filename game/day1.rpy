@@ -198,4 +198,46 @@ label day1_afterclass:
 
     mc "Something tells me I shouldn't leave just yet."
 
-    mc "But what should I do..."
+    mc "But what should I do?"
+
+    $ route_choice = renpy.random.choice(['hitomi', 'nanami'])
+
+    if winner != 'calm':
+        $ voice_name = get_controlling_voice_name()
+        "[voice_name] gives [mc.name] a slight nudge..."
+
+        if route_choice == 'hitomi':
+            if winner == 'pyro':
+                pyro "Hitomi seems like a charming girl. Let's go visit her in the library, shall we?"
+            elif winner == 'artist':
+                artist "The library is quiet, right?{p}I want to go there."
+            elif winner == 'surv':
+                surv "I need to do some deeper recon. Let's go to the library."
+        elif route_choice == 'nanami':
+            if winner == 'pyro':
+                pyro "That Nanami girl-- she said they were preparing for a play performance, yes? Let's go visit her."
+            elif winner == 'artist':
+                artist "I need inspiration.{p}I wonder if I'll find it in the auditorium?"
+            elif winner == 'surv':
+                surv "I need to do deeper recon. We should go scope out the auditorium.."
+
+    menu:
+        "Go visit the library." if route_choice == 'hitomi' or winner == 'calm':
+            $ route_choice = 'hitomi'
+        "Go visit the auditorium." if route_choice == 'nanami' or winner == 'calm':
+            $ route_choice = 'nanami'
+
+    if route_choice == 'hitomi':
+        if winner == 'calm':
+            calm "Why don't we go see what's happening in the library? We might find Hitomi there."
+
+        mc "...maybe I'll go visit the library."
+
+        jump day1_hitomi_start
+    elif route_choice == 'nanami':
+        if winner == 'calm':
+            calm "Why don't we go see what's happening in the auditorium? Nanami might need our help with her performance."
+
+        mc "...maybe I'll go visit the auditorium."
+
+        jump day1_nanami_start
