@@ -172,3 +172,30 @@ label day1_start_diverted:
 
 label day1_afterclass:
     "Classes come and go as quickly as usual."
+
+    if winner == 'calm':
+        "As we walk out of the classroom at the end of the day, I can feel the other voices finish reconstituting."
+    else:
+        "As we walk out of the classroom at the end of the day, the other voices and I can feel our bodies finish reconstituting."
+
+    $ start_combat()
+
+    "And we're back to fighting for the controls..."
+
+    python:
+        complete_fadeout()
+        winner = end_combat()
+
+        set_control(winner)
+
+    pause
+
+    scene hallway alt day at scene_bg
+    show screen ctrl_game
+    with dissolve
+
+    "And when the dust settles, we're left with a choice."
+
+    mc "Something tells me I shouldn't leave just yet."
+
+    mc "But what should I do..."
