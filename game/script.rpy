@@ -57,6 +57,9 @@ init python:
     import tiles
 
     is_morning_diversion = False
+    is_afternoon_diversion = False
+    is_day2_diversion = False
+
     diverting_from = None
 
     calm_diversion_points = 0

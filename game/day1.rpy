@@ -41,6 +41,7 @@ label day1_start:
         renpy.with_statement(dissolve)
 
         is_morning_diversion = True
+        is_afternoon_diversion = False
         call_diversion(winner, 'day1_start')
 
     if winner == 'calm':  # no diversion
