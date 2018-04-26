@@ -82,7 +82,7 @@ label survivor_day0_winner:
 label survivor_diversion_1:
     "The Survivor quickly asserts control over [mc.name]."
 
-    surv "Hah! I won! Take {i}that{/i}, you assholes!{p}So let's see here, how did you guys get this to work..."
+    surv "Hah! I won! Take {i}that{our/i}, you assholes!{p}So let's see here, how did you guys get this to work..."
 
     surv_mc "Aha! Got it!"
 
@@ -149,6 +149,7 @@ label survivor_diversion_1:
 
     return
 
+
 label survivor_diversion_2:
     "The Survivor asserts control over [mc.name] again."
 
@@ -211,6 +212,144 @@ label survivor_diversion_2:
 
     return
 
+
 label survivor_diversion_3:
+    "The Survivor asserts control over [mc.name] for the third time."
+
+    surv_mc "There we go. Hey, I think I'm getting used to this!"
+
+    pyro "Unfortunately."
+
+    scene walk_to_school day at scene_bg
+    with dissolve
+
+    scene shops day at scene_bg
+    with dissolve
+
+    scene hardware_store day at scene_bg
+    with dissolve
+
+    "The Survivor quickly brings [mc.name] out to the hardware store."
+
+    artist "Here again?"
+
+    surv_mc "Yeah... I need some more supplies, see?"
+
+    scene hardware_store inside at scene_bg
+    with dissolve
+
+    "We quickly head inside.{p}The Survivor pulls out his notebook again."
+
+    surv_mc "Let's see... what first..."
+
+    "The first section we visit seems to carry a wide variety of electrical cables and equipment."
+
+    surv_mc "I'll need that... and that..."
+
+    "The Survivor picks out an equally wide selection of cables and sautering equipment."
+
+    "As we're walking down one of the aisles near the back of the store, a shiny black spool of wire catches the Survivor's eye."
+
+    surv_mc "Wait, is that..."
+
+    "He picks up the spool and inspects it."
+
+    calm "...barbed wire?"
+
+    surv_mc "Heh, this is a pleasant surprise. I didn't know they sold this stuff here."
+
+    "After picking up a few more items-- pipes, tools, batteries, nails, screws, and so on-- we pay for our things and leave."
+
+    scene shops day at scene_bg
+    with dissolve
+
+    scene walk_to_school day at scene_bg
+    with dissolve
+
+    scene home day at scene_bg
+    with dissolve
+
+    "We dump the things in the same disorganized pile left from our previous hardware store trip."
+
+    return
+
 
 label survivor_diversion_4:
+    "The Survivor asserts control over [mc.name] so smoothly, we can barely notice it."
+
+    surv_mc "Heheh. Just one last thing I need to get..."
+
+    scene walk_to_school day at scene_bg
+    with dissolve
+
+    scene shops day at scene_bg
+    with dissolve
+
+    scene hardware_store day at scene_bg
+    with dissolve
+
+    scene hardware_store inside at scene_bg
+    with dissolve
+
+    "The Survivor quickly brings us back to the hardware store once more, and heads for the outdoors section."
+
+    "There, he picks up a large bag of fertilizer."
+
+    pyro "...ammonium nitrate?"
+
+    surv_mc "Yeah. It's the last thing I need from here."
+
+    calm "Wait, isn't that the stuff people use in homemade explosives?"
+
+    surv_mc "Yep. Or at least, I think so."
+
+    scene shops day at scene_bg
+    with dissolve
+
+    scene walk_to_school day at scene_bg
+    with dissolve
+
+    scene home day at scene_bg
+    with dissolve
+
+    "We quickly bring the ammonium nitrate back home, and set it off to the side."
+
+    "The Survivor looks over the large pile of stuff from the hardware store that's accumulated in our living room."
+
+    calm "Wood, nails, barbed wire, electrical cables, and fertilizer.{p}What are you planning to do with these?"
+
+    surv_mc "Well, at this point I might as well tell you..."
+
+    surv_mc "I've received vital intelligence regarding the movements of the enemy around the school."
+
+    surv_mc "They're planning some sort of major operation tomorrow."
+
+    calm "...the school festival?"
+
+    surv_mc "Yeah, whatever. Anyways, we need to strike back and make a stand."
+
+    surv_mc "So I've been gathering these materials to fortify a central position to base myself in during the enemy operation."
+
+    calm "...you're going to make some kind of bunker. In the middle of the school."
+
+    surv_mc "Yeah. I'm thinking about hunkering down in that big room with the books."
+
+    pyro "That's a library, you idiot."
+
+    surv_mc "Oh, that's what it was? I thought it was just some random storeroom."
+
+    "The Survivor sits down at our kitchen table, and starts filling some pipes with fertilizer."
+
+    "He then starts taking some matches, and wrapping bare, thin electrical wire around them..."
+
+    surv_mc "Then just wire that to this, connect this... drop this in here..."
+
+    surv_mc "...and... there. This looks good, eh?"
+
+    "In our hands is a pipe bomb."
+
+    pyro "Just... try not to get us blown up, okay?"
+
+    surv_mc "Son, you know I can't make that promise. War is dangerous, okay?"
+
+    return
