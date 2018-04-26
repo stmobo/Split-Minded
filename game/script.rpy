@@ -11,6 +11,8 @@ image controlgame_textbox_bg = "controlgame_textbox_bg.png"
 
 init python:
     #config.developer = False
+    if config.developer:
+        config.log = './renpy.log'
     config.layers = ['game_bg', 'master', 'transient', 'screens', 'overlay']
     # config.rollback_enabled = False
     config.keymap['developer'] = ['shift_F']
@@ -430,8 +432,12 @@ label start:
     show controlgame_textbox_bg at shooter_bg onlayer game_bg
 
     python:
-        control_game.init()
-        tiles.init()
+        if not control_game.initialized:
+            control_game.init()
+            tiles.init()
+
+        control_game.player.movement_allowed = True
+        player_movement_allowed = True
 
         set_control('calm')
         end_combat()

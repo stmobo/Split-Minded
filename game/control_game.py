@@ -15,13 +15,17 @@ pyro = None
 survivor = None
 artist = None
 
+initialized = False
+
 def on_load(voice_in_control):
     for voice in entities.all_voices.sprites():
         voice.pos = list(voice.default_spawn_point)
         voice.set_health(voice.max_health)
 
 def init():
-    global player, pyro, survivor, artist
+    global player, pyro, survivor, artist, initialized
+
+    initialized = True
 
     entities.init()
     tiles.init()
@@ -110,21 +114,37 @@ class MentalControlGame(renpy.Displayable):
         for entity in entities.all_entities.sprites():
             entity.set_render_viewpoint()
 
+        #renpy.log("Checking for voice/wall collisions...")
         for voice, walls in pygame.sprite.groupcollide(entities.all_voices, tiles.all_walls, False, False).items():
+            #print("potential voice/wall collision detected for {}".format(voice.id))
+            #if voice.id != 'calm':
+            #    continue
+
             for wall in walls:
                 mvt = voice.check_collision(wall)
                 if mvt is not None:
+                    #print(mvt)
                     voice.pos[0] += mvt[0]
                     voice.pos[1] += mvt[1]
 
+                    #voice.vel[0] = 0
+                    #voice.vel[1] = 0
+
+        #renpy.log("Checking for voice/voice collisions...")
         for voice, colliding_voices in pygame.sprite.groupcollide(entities.all_voices, entities.all_voices, False, False).items():
             for colliding_voice in colliding_voices:
-                if voice.alive() and colliding_voice.alive() and voice != colliding_voice:
+                if voice.alive() and colliding_voice.alive() and voice.surf_alpha > 16 and colliding_voice.surf_alpha > 16 and voice != colliding_voice:
                     mvt = voice.check_collision(colliding_voice)
                     if mvt is not None:
                         voice.pos[0] += mvt[0]
                         voice.pos[1] += mvt[1]
 
+                        #print(mvt)
+
+                        #voice.vel[0] = 0
+                        #voice.vel[1] = 0
+
+        #renpy.log("Checking for voice/weapon collisions...")
         for voice, weapons in pygame.sprite.groupcollide(entities.all_voices, entities.all_weapons, False, False).items():
             for weapon in weapons:
                 if voice != weapon.wielder and voice.alive() and game_data.combat_in_progress and weapon.active and weapon.can_damage and weapon.is_melee:

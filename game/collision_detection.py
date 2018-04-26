@@ -1,13 +1,12 @@
 import math
 import pygame
+import renpy.exports as renpy
 
 class Vector2D:
-    x = 0
-    y = 0
-
     def __init__(self, x = None, y = None):
         if x is None and y is None:
-            return
+            self.x = 0
+            self.y = 0
         elif y is None:
             self.x = x[0]
             self.y = x[1]
@@ -53,67 +52,67 @@ class Vector2D:
             raise IndexError("Invalid index for 2D vector: "+str(key))
 
     def __add__(self, other):
-        if isinstance(other, Vector2D):
-            return Vector2D(self.x+other.x, self.y+other.y)
-        else:
+        try:
+            return Vector2D(self.x + other[0], self.y + other[1])
+        except (IndexError, TypeError):
             return Vector2D(self.x + other, self.y + other)
 
     def __sub__(self, other):
-        if isinstance(other, Vector2D):
-            return Vector2D(self.x-other.x, self.y-other.y)
-        else:
+        try:
+            return Vector2D(self.x - other[0], self.y - other[1])
+        except (IndexError, TypeError):
             return Vector2D(self.x - other, self.y - other)
 
     def __mul__(self, other):
-        if isinstance(other, Vector2D):
-            return Vector2D(self.x*other.x, self.y*other.y)
-        else:
+        try:
+            return Vector2D(self.x * other[0], self.y * other[1])
+        except (IndexError, TypeError):
             return Vector2D(self.x * other, self.y * other)
 
     def __truediv__(self, other):
-        if isinstance(other, Vector2D):
-            return Vector2D(self.x / other.x, self.y / other.y)
-        else:
+        try:
+            return Vector2D(self.x / other[0], self.y / other[1])
+        except (IndexError, TypeError):
             return Vector2D(self.x / other, self.y / other)
 
     def __div__(self, other):
         return self.__truediv__(other)
 
     def __iadd__(self, other):
-        if isinstance(other, Vector2D):
-            self.x += other.x
-            self.y += other.y
-        else:
+        try:
+            self.x += other[0]
+            self.y += other[1]
+        except (IndexError, TypeError):
             self.x += other
             self.y += other
 
         return self
 
     def __isub__(self, other):
-        if isinstance(other, Vector2D):
-            self.x -= other.x
-            self.y -= other.y
-        else:
+        try:
+            self.x -= other[0]
+            self.y -= other[1]
+        except (IndexError, TypeError):
             self.x -= other
             self.y -= other
 
         return self
 
     def __imul__(self, other):
-        if isinstance(other, Vector2D):
-            self.x *= other.x
-            self.y *= other.y
-        else:
+        try:
+            self.x *= other[0]
+            self.y *= other[1]
+        except (IndexError, TypeError):
             self.x *= other
             self.y *= other
 
         return self
 
     def __itruediv__(self, other):
-        if isinstance(other, Vector2D):
-            self.x /= other.x
-            self.y /= other.y
-        else:
+        try:
+            self.x /= other[0]
+            self.y /= other[1]
+        except (IndexError, TypeError):
             self.x /= other
             self.y /= other
 
@@ -175,8 +174,21 @@ class Polygon:
     def __iter__(self):
         return self.points.__iter__()
 
+    def __repr__(self):
+        return '[' + ', '.join([str(p) for p in self.points]) + ']'
+
     def copy(self):
         return Polygon(*tuple(self.points))
+
+    def center(self):
+        center = Vector2D(0, 0)
+
+        for p in self.points:
+            center += p
+
+        center /= len(self.points)
+
+        return center
 
     def translate(self, v):
         for idx, point in enumerate(self.points):
@@ -184,12 +196,7 @@ class Polygon:
 
     def rotate(self, angle, center=None):
         if center is None:
-            center = Vector2D(0, 0)
-
-            for p in self.points:
-                center += p
-
-            center /= len(self.points)
+            center = self.center()
 
         self.translate(-center)
 
@@ -237,20 +244,30 @@ class Polygon:
 
 def Rectangle(r, pos=None):
     if isinstance(r, pygame.Rect):
-        return Polygon(r.topleft, r.topright, r.bottomright, r.bottomleft)
+        if r.width == 0 or r.height == 0:
+            raise ValueError("Cannot have a rectangle of zero width or height!")
+
+        p = Polygon(r.topleft, r.topright, r.bottomright, r.bottomleft)
     else:
+        if r[0] == 0 or r[1] == 0:
+            raise ValueError("Cannot have a rectangle of zero width or height!")
+
         p = Polygon((-r[0]/2, r[1]/2), (r[0]/2, r[1]/2), (r[0]/2, -r[1]/2), (-r[0]/2, -r[1]/2))
 
         if pos is not None:
             p.translate(Vector2D(pos))
 
-        return p
+    return p
 
 
 # Test to see if two Polygons intersect.
 # If they don't, this returns None.
 # Otherwise this returns the minimum translation vector needed to separate them.
 def check_collision(polyA, polyB):
+    #print("checking collisions between:")
+    #print(str(polyA))
+    #print(str(polyB))
+
     # Test all possible separating axes from A
     min_overlap_axis = None
     min_overlap = None
@@ -299,5 +316,10 @@ def check_collision(polyA, polyB):
         else:
             min_overlap = overlap
             min_overlap_axis = normal
+
+    min_overlap = -abs(min_overlap)
+    if min_overlap_axis.dot(polyB.center() - polyA.center()) < 0:
+        # overlap axis points from polyB to polyA-- reverse overlap?
+        min_overlap *= -1
 
     return min_overlap_axis * min_overlap

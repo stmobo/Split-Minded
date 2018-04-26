@@ -225,6 +225,8 @@ class Voice(Entity):
         }
 
         self.base_image = self.char_images['default']
+        self.collider_scale_factor_x = 0.8
+        self.collider_scale_factor_y = 0.6
 
         self.health = 100
         self.max_health = 100
@@ -235,16 +237,28 @@ class Voice(Entity):
         all_voices.add(self)
 
     def check_collision(self, other):
-        polyA = cd.Rectangle(self.base_image.get_rect())
-        polyB = cd.Rectangle(other.base_image.get_rect())
+        A_sz = cd.Vector2D(self.base_image.get_rect().size)
+        B_sz = cd.Vector2D(other.base_image.get_rect().size)
+
+        A_sz[0] *= self.collider_scale_factor_x
+        A_sz[1] *= self.collider_scale_factor_y
+
+        if hasattr(other, 'collider_scale_factor_x'):
+            B_sz[0] *= other.collider_scale_factor_x
+
+        if hasattr(other, 'collider_scale_factor_y'):
+            B_sz[1] *= other.collider_scale_factor_y
+
+        polyA = cd.Rectangle(A_sz)
+        polyB = cd.Rectangle(B_sz)
 
         polyA.rotate(self.rot)
-        polyA.translate(self.pos)
+        polyA.translate(self.rect.center)
 
-        if other.rot is not None:
+        if hasattr(other, 'rot'):
             polyB.rotate(other.rot)
 
-        polyB.translate(other.pos)
+        polyB.translate(other.rect.center)
 
         return cd.check_collision(polyA, polyB)
 
