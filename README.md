@@ -13,6 +13,9 @@ Credit to:
  * Every other person/organization I'm forgetting from google images that I sourced background art from
 
 ## Changelog
+ * 2.0.0 (Post-Ludum Dare):
+    - Rewrite / extend collision engine -- this should fix most of the bugs and weirdness in collision detection
+    - Add thorough save and load capabilities for all parts of the game
  * 1.0.2:
     - fix Voices still having collision when dead
     - make sure all Voices have targets when combat starts
