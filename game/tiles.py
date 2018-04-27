@@ -3,12 +3,6 @@ import pygame
 import math
 import game_data
 
-all_tiles = None
-all_walls = None
-
-tilemap = []
-tile_sprites = []
-
 tilemap_ctrlpanel = 2
 tilemap_wall = 1
 tilemap_empty = 0
@@ -65,41 +59,24 @@ wall_tile_sprites = {
     'single': pygame.image.load(renpy.file('tiles/wall_tile_single.png')),
 }
 
-tile_surface = pygame.Surface(game_data.field_size)
-tile_surface.fill((0, 0, 0))
-
-def update_tiles(center):
-    r = pygame.Rect((0, 0), game_data.gameplay_screen_size)
-
-    r.centerx = center[0]
-    r.centery = center[1]
-
-    if r.x < 0:
-        r.x = 0
-    elif r.x > game_data.field_size[0] - game_data.gameplay_screen_size[0]:
-        r.x = game_data.field_size[0] - game_data.gameplay_screen_size[0]
-
-    if r.y < 0:
-        r.y = 0
-    elif r.y > game_data.field_size[1] - game_data.gameplay_screen_size[1]:
-        r.y = game_data.field_size[1] - game_data.gameplay_screen_size[1]
-
-    offset = (r.centerx - center[0], r.centery - center[1])
-
-    return tile_surface.subsurface(r), offset
-
 class Tile(pygame.sprite.Sprite):
     def __init__(self, tile_pos, base_image):
         pygame.sprite.Sprite.__init__(self)
 
-        all_tiles.add(self)
-
         self.pos = tile_pos
         self.base_image = base_image  # for compat with Entities
         self.image = base_image
+        self.is_wall = False
 
         self.rect = self.image.get_rect()
         self.rect.x, self.rect.y = self.pixel_pos()
+
+    def __getstate__(self):
+        return { 'pos': self.pos, 'is_wall': self.is_wall }
+
+    def __setstate__(self, state):
+        pygame.sprite.Sprite.__init__(self)
+        self.is_wall = state['is_wall']
 
     def pixel_pos(self):
         return (
@@ -108,24 +85,45 @@ class Tile(pygame.sprite.Sprite):
         )
 
 class FloorTile(Tile):
-    def __init__(self, pos):
-        rand = renpy.random.random()
-        if rand < .90:
+    def __init__(self, pos, visual=None):
+        if visual is None:
+            self.visual = renpy.random.random()
+        else:
+            self.visual = visual
+
+        if self.visual < .90:
             Tile.__init__(self, pos, floor_tile_sprites['normal'])
-        elif rand < .97:
+        elif self.visual < .97:
             Tile.__init__(self, pos, renpy.random.choice(floor_tile_sprites['panel']))
-        elif rand < .993:
+        elif self.visual < .993:
             Tile.__init__(self, pos, renpy.random.choice((floor_tile_sprites['vent'])))
         else:
             Tile.__init__(self, pos, renpy.random.choice(floor_tile_sprites['wiring']))
 
+    def __getstate__(self):
+        d = Tile.__getstate__(self)
+        d['visual'] = self.visual
+
+        return d
+
+    def __setstate__(self, state):
+        FloorTile.__init__(self, state['pos'], state['visual'])
+
+
 class ControlPanel(Tile):
     def __init__(self, pos):
+        self.is_wall = True
+
         Tile.__init__(self, pos, control_panel_sprite)
-        all_walls.add(self)
+
+    def __setstate__(self, state):
+        ControlPanel.__init__(self, state['pos'])
+
 
 class WallTile(Tile):
-    def __init__(self, pos):
+    def __init__(self, pos, tilemap):
+        self.is_wall = True
+
         n_neighbors = 0
 
         if pos[0] > 0 and tilemap[pos[0]-1][pos[1]] == tilemap_wall:
@@ -140,7 +138,6 @@ class WallTile(Tile):
         else:
             neighbor_right = False
 
-
         if pos[1] > 0 and tilemap[pos[0]][pos[1]-1] == tilemap_wall:
             neighbor_up = True
             n_neighbors += 1
@@ -153,79 +150,85 @@ class WallTile(Tile):
         else:
             neighbor_down = False
 
-        if n_neighbors == 0:
-            base_image = wall_tile_sprites['single']
-        elif n_neighbors == 1:
-            if neighbor_up:
-                base_image = wall_tile_sprites['cap'][0]
-            elif neighbor_right:
-                base_image = wall_tile_sprites['cap'][1]
-            elif neighbor_down:
-                base_image = wall_tile_sprites['cap'][2]
-            else:
-                base_image = wall_tile_sprites['cap'][3]
-        elif n_neighbors == 2:
-            if neighbor_up and neighbor_down:
-                base_image = wall_tile_sprites['line'][0]
-            elif neighbor_left and neighbor_right:
-                base_image = wall_tile_sprites['line'][1]
-            else:
-                if neighbor_up and neighbor_left:
-                    base_image = wall_tile_sprites['bend'][2]
-                elif neighbor_up and neighbor_right:
-                    base_image = wall_tile_sprites['bend'][3]
-                elif neighbor_down and neighbor_left:
-                    base_image = wall_tile_sprites['bend'][1]
-                elif neighbor_down and neighbor_right:
-                    base_image = wall_tile_sprites['bend'][0]
-        elif n_neighbors == 3:
-            if not neighbor_left:
-                base_image = wall_tile_sprites['junction'][0]
-            elif not neighbor_up:
-                base_image = wall_tile_sprites['junction'][1]
-            elif not neighbor_right:
-                base_image = wall_tile_sprites['junction'][2]
-            elif not neighbor_down:
-                base_image = wall_tile_sprites['junction'][3]
-        elif n_neighbors == 4:
-            base_image = wall_tile_sprites['cross']
+        base_image = self.determine_base_image(n_neighbors, neighbor_left, neighbor_right, neighbor_down, neighbor_up)
+
+        self.neighbors = {
+            'n': n_neighbors,
+            'left': neighbor_left,
+            'right': neighbor_right,
+            'down': neighbor_down,
+            'up': neighbor_up,
+        }
 
         Tile.__init__(self, pos, base_image)
-        all_walls.add(self)
 
-def read_tilemap():
-    tile_sprites = []
-    all_tiles.empty()
-    tile_surface.fill((0, 0, 0))
+    def __getstate__(self):
+        d = Tile.__getstate__(self)
+        d['neighbors'] = self.neighbors
 
-    for x, row in enumerate(tilemap):
-        sprite_row = []
+        return d
 
-        for y, tile_char in enumerate(row):
-            pos = (x, y)
-            s = None
-            if tile_char == tilemap_wall:
-                s = WallTile(pos)
-            elif tile_char == tilemap_ctrlpanel:
-                s = ControlPanel(pos)
-            elif tile_char == tilemap_empty:
-                s = FloorTile(pos)
+    def __setstate__(self, state):
+        n = state['neighbors']
 
-            sprite_row.append(s)
+        base_image = self.determine_base_image(
+            n['n'],
+            n['left'],
+            n['right'],
+            n['down'],
+            n['up'],
+        )
 
-        tile_sprites.append(sprite_row)
+        Tile.__init__(self, state['pos'], base_image)
+        self.is_wall = True
 
-    all_tiles.draw(tile_surface)
+    def determine_base_image(self, n_neighbors, neighbor_left, neighbor_right, neighbor_down, neighbor_up):
+        if n_neighbors == 0:
+            return wall_tile_sprites['single']
+        elif n_neighbors == 1:
+            if neighbor_up:
+                return wall_tile_sprites['cap'][0]
+            elif neighbor_right:
+                return wall_tile_sprites['cap'][1]
+            elif neighbor_down:
+                return wall_tile_sprites['cap'][2]
+            else:
+                return wall_tile_sprites['cap'][3]
+        elif n_neighbors == 2:
+            if neighbor_up and neighbor_down:
+                return wall_tile_sprites['line'][0]
+            elif neighbor_left and neighbor_right:
+                return wall_tile_sprites['line'][1]
+            else:
+                if neighbor_up and neighbor_left:
+                    return wall_tile_sprites['bend'][2]
+                elif neighbor_up and neighbor_right:
+                    return wall_tile_sprites['bend'][3]
+                elif neighbor_down and neighbor_left:
+                    return wall_tile_sprites['bend'][1]
+                elif neighbor_down and neighbor_right:
+                    return wall_tile_sprites['bend'][0]
+        elif n_neighbors == 3:
+            if not neighbor_left:
+                return wall_tile_sprites['junction'][0]
+            elif not neighbor_up:
+                return wall_tile_sprites['junction'][1]
+            elif not neighbor_right:
+                return wall_tile_sprites['junction'][2]
+            elif not neighbor_down:
+                return wall_tile_sprites['junction'][3]
+        elif n_neighbors == 4:
+            return wall_tile_sprites['cross']
 
-def load_map_image(file):
-    surf = pygame.image.load(file).convert(32)
+def load_map_image(file='map.png'):
+    surf = pygame.image.load(renpy.file(file)).convert(32)
 
     free_value = surf.get_at((0, 0))
     wall_value = surf.get_at((1, 0))
     skip_value = surf.get_at((2, 0))
     ctrl_panel_value = surf.get_at((3, 0))
 
-    map = []
+    tilemap = []
 
     for x in range(game_data.field_sz_tiles[0]):
         row = []
@@ -240,21 +243,30 @@ def load_map_image(file):
             else:
                 row.append(tilemap_skip)
 
-        map.append(row)
+        tilemap.append(row)
 
-    return map
-
-def init():
-    global tilemap, all_tiles, all_walls
-
-    if all_tiles is not None:
-        all_tiles.empty()
-
-    if all_walls is not None:
-        all_walls.empty()
 
     all_tiles = pygame.sprite.Group()
     all_walls = pygame.sprite.Group()
 
-    tilemap = load_map_image(renpy.file('map.png'))
-    read_tilemap()
+    tile_surface = pygame.Surface(game_data.field_size)
+    tile_surface.fill((0, 0, 0))
+
+    for x, row in enumerate(tilemap):
+        for y, tile_char in enumerate(row):
+            pos = (x, y)
+            s = None
+
+            if tile_char == tilemap_wall:
+                s = WallTile(pos, tilemap)
+                all_walls.add(s)
+            elif tile_char == tilemap_ctrlpanel:
+                s = ControlPanel(pos)
+                all_walls.add(s)
+            elif tile_char == tilemap_empty:
+                s = FloorTile(pos)
+
+            if s is not None:
+                all_tiles.add(s)
+
+    return all_tiles, all_walls

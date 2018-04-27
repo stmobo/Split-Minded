@@ -199,9 +199,9 @@ label day0_end:
         set_voice_target('pyro', 'player')
         set_voice_target('artist', 'player')
 
-        control_game.survivor.add_effect(effects.FadeEffect(control_game.survivor, .75, 0, 255))
-        control_game.pyro.add_effect(effects.FadeEffect(control_game.pyro, .75, 0, 255))
-        control_game.artist.add_effect(effects.FadeEffect(control_game.artist, .75, 0, 255))
+        game.survivor.add_effect(effects.FadeEffect(game.survivor, .75, 0, 255))
+        game.pyro.add_effect(effects.FadeEffect(game.pyro, .75, 0, 255))
+        game.artist.add_effect(effects.FadeEffect(game.artist, .75, 0, 255))
 
     artist "Hi."
 

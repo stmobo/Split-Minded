@@ -7,38 +7,16 @@ import game_data
 import effects
 import utils
 
-all_entities = None
-all_voices = None
-all_projectiles = None
-all_weapons = None
-
-pyro_spawned = False
-survivor_spawned = False
-player_spawned = False
-artist_spawned = False
-
-
-def init():
-    global all_entities, all_voices, all_projectiles, all_weapons
-
-    for group in [all_entities, all_voices, all_projectiles, all_weapons]:
-        if group is not None:
-            group.empty()
-
-    all_entities = pygame.sprite.Group()
-    all_voices = pygame.sprite.Group()
-    all_projectiles = pygame.sprite.Group()
-    all_weapons = pygame.sprite.Group()
-
 class Entity(pygame.sprite.Sprite):
-    def __init__(self, pos):
+    def __init__(self, game, pos):
         pygame.sprite.Sprite.__init__(self)
 
+        self.game = game
         self.pos = list(pos)
         self.vel = [0, 0]
         self.rot = 0
 
-        all_entities.add(self)
+        game.all_entities.add(self)
 
         self.m_pos = pygame.mouse.get_pos()
 
@@ -47,6 +25,33 @@ class Entity(pygame.sprite.Sprite):
 
         self.surf_alpha = None
         self.update_hooks = []
+
+    def __getstate__(self):
+        return {
+            'pos': self.pos,
+            'vel': self.vel,
+            'rot': self.rot,
+            'surf_alpha': self.surf_alpha
+        }
+
+    def __setstate__(self, state):
+        self.pos = list(state['pos'])
+        self.vel = list(state['vel'])
+        self.rot = state['rot']
+        self.surf_alpha = state['surf_alpha']
+        self.update_hooks = []
+
+        if config.developer and self.base_image is None:
+            raise NotImplementedError("base_image not set on unpickle")
+
+        pygame.sprite.Sprite.__init__(self)
+
+    def __new__(cls, *args, **kwargs):
+        # set game attribute by default...
+        i = super(Entity, cls).__new__(cls, *args, **kwargs)
+        i.game = game_data.game
+
+        return i
 
     def add_effect(self, effect):
         self.update_hooks.append(effect)
@@ -116,10 +121,10 @@ class Entity(pygame.sprite.Sprite):
 
 
 class Weapon(Entity):
-    def __init__(self, wielder, image, mount_point=(35, 10), anchor_pt=(5, 40)):
+    def __init__(self, game, wielder, image, mount_point=(35, 10), anchor_pt=(5, 40)):
         self.mount_point = mount_point
         self.anchor_pt = anchor_pt
-        self.wielder = wielder
+        self.__wielder = wielder
 
         self.base_image = pygame.image.load(renpy.file(image))
 
@@ -127,12 +132,49 @@ class Weapon(Entity):
         self.can_damage = False
         self.is_melee = False
         self.rot_offset = 0
+        self.controllable = True
 
         self.rotate_to_wielder()
 
-        Entity.__init__(self, self.pos)
+        Entity.__init__(self, game, self.pos)
 
-        all_weapons.add(self)
+        game.all_weapons.add(self)
+
+    def __getstate__(self):
+        d = Entity.__getstate__(self)
+        d.update({
+            'active': self.active,
+            'can_damage': self.can_damage,
+            'is_melee': self.is_melee,
+            'controllable': self.controllable,
+            'rot_offset': self.rot_offset,
+            'mount_point': self.mount_point,
+            'anchor_pt': self.anchor_pt,
+            'wielder_id': self.wielder.id
+        })
+
+        return d
+
+    def __setstate__(self, state):
+        self.active = state['active']
+        self.can_damage = state['can_damage']
+        self.is_melee = state['is_melee']
+        self.controllable = state['controllable']
+        self.rot_offset = state['rot_offset']
+        self.mount_point = state['mount_point']
+        self.anchor_pt = state['anchor_pt']
+        self.__wielder = state['wielder_id']
+
+        Entity.__setstate__(self, state)
+
+    def __getattr__(self, name):
+        if name == 'wielder':
+            if isinstance(self.__wielder, Voice):
+                return self.__wielder
+            elif isinstance(self.__wielder, str):
+                return self.game.voice_by_id(self.__wielder)
+        else:
+            raise AttributeError("No attribute '"+str(name)+"' in this object!")
 
     def rotate_to_wielder(self):
         actual_anchor_pt = [
@@ -170,7 +212,7 @@ class Weapon(Entity):
         self.vel = [0, 0]
         self.rotate_to_wielder()
 
-        if not self.active or not game_data.combat_in_progress or (self.wielder.surf_alpha is not None and self.wielder.surf_alpha == 0):
+        if not self.active or not self.game.combat_in_progress or (self.wielder.surf_alpha is not None and self.wielder.surf_alpha == 0):
             self.set_surface_alpha(0)
         else:
             self.set_surface_alpha(None)
@@ -179,8 +221,8 @@ class Weapon(Entity):
 
 
 class Sword(Weapon):
-    def __init__(self, wielder, damage=35):
-        Weapon.__init__(self, wielder, 'weapons/sword.png', anchor_pt=(5, 60))
+    def __init__(self, game, wielder, damage=35):
+        Weapon.__init__(self, game, wielder, 'weapons/sword.png', anchor_pt=(5, 60))
 
         self.swing_time = .125
         self.arc_angle = math.radians(90)
@@ -189,7 +231,31 @@ class Sword(Weapon):
         self.is_melee = True
 
         self.swinging = False
-        self.controllable = True
+
+    def __getstate__(self):
+        d = Weapon.__getstate__(self)
+        d.update({
+            'swing_time': self.swing_time,
+            'arc_angle': self.arc_angle,
+            'damage': self.damage,
+            'swing_increment': self.swing_increment,
+            'swing_time': self.swing_time,
+            'swinging': self.swinging,
+        })
+
+        return d
+
+    def __setstate__(self, state):
+        self.image = self.base_image = pygame.image.load(renpy.file('weapons/sword.png'))
+
+        self.swing_time = state['swing_time']
+        self.arc_angle = state['arc_angle']
+        self.damage = state['damage']
+        self.swing_increment = state['swing_increment']
+        self.swing_time = state['swing_time']
+        self.swinging = state['swinging']
+
+        Weapon.__setstate__(self, state)
 
     def fire(self):
         if not self.swinging and self.controllable:
@@ -216,9 +282,10 @@ class Sword(Weapon):
 
 
 class Voice(Entity):
-    def __init__(self, pos, image_folder, char_id):
+    def __init__(self, game, pos, image_folder, char_id):
         self.id = char_id
 
+        self.__image_folder = image_folder
         self.char_images = {
             'default': pygame.image.load(renpy.file(image_folder+'/default.png')),
             'with_weapon': pygame.image.load(renpy.file(image_folder+'/with_weapon.png')),
@@ -233,8 +300,49 @@ class Voice(Entity):
         self.default_spawn_point = (15 * game_data.tile_size, 15 * game_data.tile_size)
         self.invuln_time = 0.75
 
-        Entity.__init__(self, pos)
-        all_voices.add(self)
+        self.weapon = None
+
+        Entity.__init__(self, game, pos)
+        game.all_voices.add(self)
+
+    def __getstate__(self):
+        img_state = 'default'
+        if self.base_image == self.char_images['with_weapon']:
+            img_state = 'with_weapon'
+
+        d = Entity.__getstate__(self)
+        d.update({
+            'id': self.id,
+            'image_folder': self.__image_folder,
+            'collider_scale_factor_x': self.collider_scale_factor_x,
+            'collider_scale_factor_y': self.collider_scale_factor_y,
+            'health': self.health,
+            'max_health': self.max_health,
+            'default_spawn_point': self.default_spawn_point,
+            'invuln_time': self.invuln_time,
+            'img_state': img_state,
+        })
+
+        return d
+
+    def __setstate__(self, state):
+        self.id = state['id']
+        self.__image_folder = state['image_folder']
+        self.collider_scale_factor_x = state['collider_scale_factor_x']
+        self.collider_scale_factor_y = state['collider_scale_factor_y']
+        self.health = state['health']
+        self.max_health = state['max_health']
+        self.default_spawn_point = state['default_spawn_point']
+        self.invuln_time = state['invuln_time']
+
+        self.char_images = {
+            'default': pygame.image.load(renpy.file(self.__image_folder+'/default.png')),
+            'with_weapon': pygame.image.load(renpy.file(self.__image_folder+'/with_weapon.png')),
+        }
+
+        self.base_image = self.image = self.char_images[state['img_state']]
+
+        Entity.__setstate__(self, state)
 
     def check_collision(self, other):
         A_sz = cd.Vector2D(self.base_image.get_rect().size)
@@ -273,13 +381,7 @@ class Voice(Entity):
 
         if health <= 0:
             # make sure there's at least one voice left alive
-            n_live_voices = 0
-
-            for voice in all_voices.sprites():
-                if voice.alive():
-                    n_live_voices += 1
-
-            if n_live_voices > 1:
+            if game.voices_alive() > 1:
                 self.health = 0
                 self.set_surface_alpha(0)
                 #self.add_effect(effects.FadeEffect(self, 0.1, 255, 0))
@@ -294,8 +396,6 @@ class Voice(Entity):
             self.add_effect(effects.BlinkEffect(self, 0.75, 128))
             self.on_damaged(attacker)
 
-        #print("{} health now at {}".format(self.id, self.health))
-
     def turn_to(self, point):
         self.rot = math.atan2(point[1] - self.pos[1], point[0] - self.pos[0]) + (math.pi / 2)
 
@@ -308,7 +408,7 @@ class Voice(Entity):
         else:
             self.invuln_time = 0
 
-        if game_data.combat_in_progress:
+        if self.game.combat_in_progress:
             self.base_image = self.char_images['with_weapon']
         else:
             self.base_image = self.char_images['default']
@@ -317,22 +417,54 @@ class Voice(Entity):
 
 
 class AIVoice(Voice):
-    def __init__(self, pos, image_folder, id):
-        Voice.__init__(self, pos, image_folder, id)
+    def __init__(self, game, pos, image_folder, id):
+        Voice.__init__(self, game, pos, image_folder, id)
 
-        self.target = None
+        self.__target = None
+
+    def __setattr__(self, name, value):
+        if name == 'target':
+            self.__target = value # apply name-mangling
+            #Voice.__setattr__(self, '__target', value)
+        else:
+            Voice.__setattr__(self, name, value)
+
+    def __getattr__(self, name):
+        if name == 'target':
+            if isinstance(self.__target, Voice):
+                return self.__target
+            elif isinstance(self.__target, str):
+                return game_data.game.voice_by_id(self.__target)
+            elif self.__target is None:
+                return None
+        else:
+            raise AttributeError("No such attribute '"+str(name)+"' in AIVoice instance")
+
+    def __getstate__(self):
+        d = Voice.__getstate__(self)
+        if self.target is not None:
+            d['target_id'] = self.target.id
+        else:
+            d['target_id'] = None
+
+        return d
+
+    def __setstate__(self, state):
+        self.__target = state['target_id']
+
+        Voice.__setstate__(self, state)
 
     def update(self, dt, acc=(0, 0)):
         if self.target is not None:
             self.turn_to(self.target.pos)
 
-            if game_data.ai_active:
+            if self.game.ai_active:
                 self.vel = utils.magn_dir_vec(200, self.target.pos, self.pos)
 
                 if not self.target.alive():
                     live_voices = []
 
-                    for voice in all_voices.sprites():
+                    for voice in game.all_voices.sprites():
                         if voice != self and voice.alive():
                             live_voices.append(voice)
 
@@ -350,62 +482,72 @@ class AIVoice(Voice):
 
 
 class Pyromaniac(AIVoice):
-    def __init__(self, pos):
-        global pyro_spawned
-
-        if pyro_spawned and config.developer:
+    def __init__(self, game, pos):
+        if hasattr(game, 'pyro') and config.developer:
             raise RuntimeError("Attempted to spawn Pyromaniac twice!")
-        pyro_spawned = True
 
-        AIVoice.__init__(self, pos, 'voice2', 'pyro')
+        game.pyro = self
 
-        self.weapon = Sword(self, 5)
+        AIVoice.__init__(self, game, pos, 'voice2', 'pyro')
+
+        self.weapon = Sword(game, self, 5)
         self.default_spawn_point = (4 * game_data.tile_size, 4 * game_data.tile_size)
 
 
 class Survivor(AIVoice):
-    def __init__(self, pos):
-        global survivor_spawned
-
-        if survivor_spawned and config.developer:
+    def __init__(self, game, pos):
+        if hasattr(game, 'survivor') and config.developer:
             raise RuntimeError("Attempted to spawn Survivor twice!")
-        survivor_spawned = True
 
-        AIVoice.__init__(self, pos, 'voice3', 'surv')
+        game.survivor = self
 
-        self.weapon = Sword(self, 5)
+        AIVoice.__init__(self, game, pos, 'voice3', 'surv')
+
+        self.weapon = Sword(game, self, 5)
         self.default_spawn_point = (26 * game_data.tile_size, 4 * game_data.tile_size)
 
 
 class Artist(AIVoice):
-    def __init__(self, pos):
-        global artist_spawned
-
-        if artist_spawned and config.developer:
+    def __init__(self, game, pos):
+        if hasattr(game, 'artist') and config.developer:
             raise RuntimeError("Attempted to spawn Artist twice!")
-        artist_spawned = True
 
-        AIVoice.__init__(self, pos, 'voice4', 'artist')
+        game.artist = self
 
-        self.weapon = Sword(self, 5)
+        AIVoice.__init__(self, game, pos, 'voice4', 'artist')
+
+        self.weapon = Sword(game, self, 5)
         self.default_spawn_point = (26 * game_data.tile_size, 27 * game_data.tile_size)
 
 
 class Player(Voice):
-    def __init__(self, pos):
-        global player_spawned
-
-        if player_spawned and config.developer:
+    def __init__(self, game, pos):
+        if hasattr(game, 'player') and config.developer:
             raise RuntimeError("Attempted to spawn Player twice!")
-        player_spawned = True
 
-        Voice.__init__(self, pos, 'voice1', 'calm')
+        Voice.__init__(self, game, pos, 'voice1', 'calm')
+        game.player = self
+
         self.movement_allowed = False
 
-        self.weapon = Sword(self)
+        self.weapon = Sword(game, self)
         self.default_spawn_point = (3 * game_data.tile_size, 27 * game_data.tile_size)
 
         self.m_pos = (0, 0)
+
+    def __getstate__(self):
+        d = Voice.__getstate__(self)
+        d.update({
+            'movement_allowed': self.movement_allowed
+        })
+
+        return d
+
+    def __setstate__(self, state):
+        self.movement_allowed = state['movement_allowed']
+        self.m_pos = (0, 0)
+
+        Voice.__setstate__(self, state)
 
     def mouse_update(self, m_pos):
         self.m_pos = m_pos
