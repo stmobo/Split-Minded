@@ -85,13 +85,12 @@ init python:
         set_voice_pos(voice_id, control_panel_pos)
         set_screen_center(control_panel_pos)
 
-
-
         if voice_id == 'calm':
             game.player.vel = [0, 0]
             game.player.set_surface_alpha(None)
         else:
             v = game.voice_by_id(voice_id)
+
             v.vel = [0, 0]
             v.set_surface_alpha(None)
             v.rot = 0

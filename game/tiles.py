@@ -179,6 +179,8 @@ class WallTile(Tile):
             n['up'],
         )
 
+        self.neighbors = state['neighbors']
+
         Tile.__init__(self, state['pos'], base_image)
         self.is_wall = True
 

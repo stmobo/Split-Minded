@@ -181,7 +181,7 @@ class MentalControlGame:
 
         for voice, weapons in pygame.sprite.groupcollide(self.all_voices, self.all_weapons, False, False).items():
             for weapon in weapons:
-                if voice != weapon.wielder and voice.alive() and game_data.combat_in_progress and weapon.active and weapon.can_damage and weapon.is_melee:
+                if voice != weapon.wielder and voice.alive() and self.combat_in_progress and weapon.active and weapon.can_damage and weapon.is_melee:
                     if voice.check_collision(weapon) is not None:
                         weapon.deal_damage(voice)
 

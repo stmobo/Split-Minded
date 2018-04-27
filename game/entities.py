@@ -381,7 +381,7 @@ class Voice(Entity):
 
         if health <= 0:
             # make sure there's at least one voice left alive
-            if game.voices_alive() > 1:
+            if self.game.voices_alive() > 1:
                 self.health = 0
                 self.set_surface_alpha(0)
                 #self.add_effect(effects.FadeEffect(self, 0.1, 255, 0))
@@ -464,7 +464,7 @@ class AIVoice(Voice):
                 if not self.target.alive():
                     live_voices = []
 
-                    for voice in game.all_voices.sprites():
+                    for voice in self.game.all_voices.sprites():
                         if voice != self and voice.alive():
                             live_voices.append(voice)
 
