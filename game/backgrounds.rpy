@@ -58,6 +58,7 @@ image school back night dark rain = "bg/school_back/night_dark_rain.jpg"
 image school back night light = "bg/school_back/night_light.jpg"
 image school back night light rain = "bg/school_back/night_light_rain.jpg"
 image school back cloudy = "bg/school_back/cloud.jpg"
+image school back sakura = "bg/school_back/sakura.png"
 
 image classroom = "bg/classroom/day.jpg"
 image classroom day = "bg/classroom/day.jpg"
@@ -110,5 +111,9 @@ image bedroom night light = "bg/bedroom/night_light.jpg"
 image konbini = "bg/konbini.jpg"
 image art_store = "bg/art_store.jpg"
 image gas_station = "bg/gas_station.jpg"
+image sakura = "bg/sakura_big.jpg"
+
+
+image hitomi_kiss_cg = Placeholder("bg")
 
 image black = Solid('#000')

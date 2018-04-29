@@ -5,12 +5,14 @@ Dating Sim &amp; Top-Down Shooter Fusion -- Written for Ludum Dare 41
 Backgrounds found at:
  * http://ayaemo.skr.jp/material_school.html
  * http://www.library-furniture.org
+ * https://aminoapps.com/c/japan/page/blog/hanami/bLso_u8pV3WrpMXwYJ0lN7b7vjgJB5 (cherry blossoms BG)
 
 Credit to:
  * Erik Cleves Kristensen (Home backgrounds)
  * fukapon (Classroom, Auditorium backgrounds)
  * antmoose (Bedroom backgrounds)
  * Every other person/organization I'm forgetting from google images that I sourced background art from
+
 
 ## Changelog
  * 2.0.0 (Post-Ludum Dare):

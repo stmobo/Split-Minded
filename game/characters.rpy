@@ -15,9 +15,15 @@ image hitomi normal = "hitomi/upscaled/normal.png"
 image hitomi normal alt = "hitomi/upscaled/normal_2.png"
 
 image hitomi normal alt_hair = "hitomi/upscaled/alt_normal.png"
+image hitomi annoyed alt_hair = "hitomi/upscaled/alt_annoyed.png"
+image hitomi annoyed closeup alt_hair = "hitomi/upscaled/alt_annoyed_closeup.png"
+image hitomi shy eyes_closed closeup alt_hair = "hitomi/upscaled/alt_shy_eyesclosed_closeup.png"
+image hitomi shy angry alt_hair = "hitomi/upscaled/alt_shy_angry.png"
 image hitomi shy alt_hair = "hitomi/upscaled/alt_shy.png"
 image hitomi smiling alt_hair = "hitomi/upscaled/alt_smiling.png"
 image hitomi worried alt_hair = "hitomi/upscaled/alt_worried.png"
+image hitomi shocked alt_hair = "hitomi/upscaled/alt_sad_shocked.png"
+image hitomi shilouette alt_hair = "hitomi/upscaled/alt_shilouette.png"
 
 ## Nanami Images
 image nanami happy = "nanami/upscaled/happy.png"
