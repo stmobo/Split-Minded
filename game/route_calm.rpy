@@ -139,12 +139,6 @@ label calm_shopping_takeover:
 
     "It feels good to be back in control. Permanently.{p}Just like before."
 
-    python:
-        complete_fadeout()
-        reset_to_default_spawns()
-        set_screen_center(control_panel_pos)
-        set_control('calm')
-
     if route_choice == 'hitomi':
         jump hitomi_calm_endgame
     else:

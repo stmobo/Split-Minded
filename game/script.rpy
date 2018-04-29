@@ -4,6 +4,8 @@ define right = Transform(ypos=30, xpos=300)
 define center = Transform(ypos=30, xpos=80)
 define flip = Transform(xzoom=-1)
 
+define closeup = Transform(zoom=1.1)
+
 define scene_bg = Transform(xpos=0, ypos=0, size=(750, 720))
 define shooter_bg = Transform(xpos=750, ypos=540, size=(530, 180))
 

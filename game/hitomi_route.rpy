@@ -182,13 +182,137 @@ label day2_hitomi:
 
     jump day2_shopping_start
 
+
 label hitomi_calm_endgame:
-    pause
+    python:
+        complete_fadeout()
+        reset_to_default_spawns()
+        set_screen_center(control_panel_pos)
+        set_control('calm')
 
-    "FarawayVision" "..."
+    show screen ctrl_game
+    with dissolve
 
-    "FarawayVision" "Okay, I'm going to have to stop the game, here."
+    jump hitomi_confession
 
-    "FarawayVision" "I'm so sorry."
 
-    "FarawayVision" "But I didn't actually have time to put anything here within the time limit."
+label hitomi_confession:  # in which Kei is basically deaf
+    scene library at scene_bg
+    with dissolve
+
+    "We carefully unfold the paper and read through it."
+
+    "There's Hitomi's poem, of course, but at the very bottom there's a note..."
+
+    # maybe use a special screen for this?
+    hitomi "{i}Please come to the cherry blossom trees behind the school.\n{p}There's something I have to tell you.{/i}"
+
+    "I look up. It looks like most of the Writing Club is done reciting their poems-- {w}they're busy dragging some poor freshman up to the podium--{w} so we quietly slip out of the library."
+
+    scene hallway alt cloudy at scene_bg
+    with dissolve
+
+    "The sky outside the windows is already dark and starry. Did the sun really set that quickly?"
+
+    scene school back night light at scene_bg
+    with dissolve
+
+    "The rear portions of the school are practically deserted-- most of the excitement of the festival is occuring further towards the school's front."
+
+    scene school back sakura at scene_bg
+    with dissolve
+
+    "Of course, there were still some decorations put up, even here."
+
+    show hitomi shilouette alt_hair at center
+    with dissolve
+
+    "We find Hitomi easily, shilouetted against the lights strung up on the trees."
+
+    "She's turned to face away from us, staring wistfully into the blossoms falling around her."  # holy shit this is so cliche
+
+    show hitomi alt_hair worried at center
+    with dissolve
+
+    "She turns to us as soon as we walk up to her, however."
+
+    hitomi "[mc.name]! Y-You really came!{p}I was so worried that you wouldn't..."
+
+    mc "Of course I would have shown up, Hitomi.{p}So, what's up?"
+
+    hitomi "Well... do you remember, the friend I told you about, when I was writing my poem?"
+
+    mc "Yes?"
+
+    hitomi "That...{w=0.5} {size=-5}friend... {/size} {w=0.75}{size=-8}wasme.{/size}{p=0.75}{size=-11}AndI'minlovewithyou.{/size}"
+
+    mc "..."
+
+    "[mc.name] is silent for a moment, and I can tell from the instruments on the control panel that he's struggling to process the sounds he's hearing.{p}Because..."
+
+    hitomi "[mc.name]?"
+
+    mc "...\n{fast}I'm sorry, Hitomi, but..."
+
+    show hitomi shocked alt_hair at center
+    with dissolve
+
+    hitomi "W-wait, [mc.name]-- d-don't tell me, you're rej--"
+
+    mc "...\nI'm sorry, Hitomi, but...\n{fast}...you'll have to speak up."
+
+    mc "I couldn't hear you.{p}What did you say?"
+
+    "We all stand there, in a stunned silence."
+
+    "Hitomi's expression is frozen across her face, {p}I'm trying to not bang my head repeatedly on the controls, {p}and [mc.name] is simply--{w}purely--{w}confused beyond speech."
+
+    show hitomi shy angry alt_hair at center
+    with dissolve
+
+    "Hitomi quickly recovers from that bit of denseness on [mc.name]'s part, however.{p}She's still seems to be at a loss for words, however."
+
+    hitomi "You didn't-- {w}did you really not-- {w}I--"
+
+    show hitomi annoyed alt_hair at center
+    with dissolve
+
+    "Hitomi groans, and her annoyance is obvious to everyone here--{w}except for [mc.name], of course."
+
+    hitomi "...how did I even fall in love with someone as dense as you, anyways?"
+
+    mc "Wait, hang on-- what? Fall in love?{p}You're-- you're joking, right?"
+
+    show hitomi annoyed closeup alt_hair at center
+    with dissolve
+
+    "She takes a few steps forward, right up against [mc.name]'s rapidly beating heart."
+
+    hitomi "Just-- please stay quiet for now, [mc.name].{w} Please."
+
+    show hitomi shy eyes_closed closeup alt_hair at center
+    with dissolve
+
+    "Then she closes her eyes..."
+
+    scene hitomi_kiss_cg
+    hide screen ctrl_game
+    with dissolve
+
+    "...{fast}and kisses [mc.name]."
+
+    pause 0.5
+
+    "And meanwhile, in the control room, there's a smile plastered across my face."
+
+    "Because, even if things were a bit... {w=0.5}{i}heated and uncertain{/i}, to say the least, over the past few days..."
+
+    "We still did a damn good job."
+
+    "And everything should be fine, from here on out."
+
+    $ complete_fadeout()
+
+    "\n{p}...right?"
+
+    # and that's all for now, folks
