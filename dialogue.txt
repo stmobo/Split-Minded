@@ -1,0 +1,814 @@
+And with the other three voices gone, I am left in peace with [mc.name] as we walk to school.
+The walk is uneventful, but I can feel [mc.name]'s attention being pulled towards the stores and shops we passed by on the way to school.
+... crafts store, convenience store...
+... a hardware shop? I didn't realize one of those was around here...
+We're at the school in no time.
+That confrontation earlier must have stopped us for longer than I thought, because we barely make it to class on time.
+For some reason, neither [mc.name] nor I can focus at all during class. Everything just goes in one ear and out the other.
+This must have something to do with those other voices...
+During lunch, we hear one of our classmates calling our name from behind us.
+[mc.name]?
+[mc.name]? Are you okay?
+Huh? Oh, um... Hi, Hitomi?
+You seem to be a bit out of sorts today. Are you feeling well?
+Yeah, I'm... okay. Sorry, just a bit distracted.
+Distracted? By what?
+Nothing in particular. I've just been thinking about random things, I guess?
+Things?
+Like cans of gas, and art supplies, and stuff. I'm not sure why. But I'm not sick, I think.
+If you say so...
+Well, try to not actually get sick, okay? It wouldn't do for you to get sick right before the school festival.
+Speaking of, what are you doing for the festival, Hitomi?
+Well, the Writing Club will be doing open prose and poetry recitals in the library.
+You're still not part of any clubs, right?
+Yeah...
+Then you should come see us. Even if you don't recite anything yourself, listening to others read could be fun.
+And, um, I will be reciting a few poems there, too, so if you could come and see that would be really nice.
+If I get an opportunity to, then I'll definitely try to visit. And I'm not really going to be doing anything else, so...
+That's good to hear.
+The lunch bell rings at that moment, interrupting our conversation.
+The rest of our classes come and go, and before we know it we're done for the day.
+[mc.name] is still as distracted as before, though, and instead of going home, we end up wandering down the halls, not paying attention to where we're going...
+...and it's not long before we accidentally knock someone over.
+Oi, watch where you're going!
+The girl quickly dusts herself off, though, and springs to her feet.
+Ah, sorry, Nanami.
+Wait, [mc.name]? What are you doing here? You're not part of a club or anything, right?
+I, uh... I'm not really sure. Just wandering, I guess?
+...are you okay? You're looking a bit... iunno, tired, it seems?
+Yeah, I'm fine, I'm fine. Just a bit distracted.
+What are you doing?
+Oh, I'm rehearsing with the Drama Club, for the school play.
+You're coming to the festival, right?
+Yeah.
+Then you should definitely come and see the play! It's going to be awesome!
+Of course, assuming the idiots making the sets get them done in time...
+Do you need any help?
+I think we're fine right now, but thanks for the offer!
+Honestly, though, you should probably go get some rest or something. You don't look so good.
+...yeah, you're right. I'll see you, then.
+Try not to get sick or anything, yeah?
+By the time we get back home, we're almost completely exhausted mentally.
+It's all we can do to drag ourselves to our bedroom, hit the lights, and fall asleep in our uniform.
+Suddenly, I'm jolted back into awareness by a sound.Footsteps.
+What? Who's there?
+I notice that, for some reason, I have a sword in my hand.
+Hi.
+Oh, you got a weapon as well? That makes things slightly more complicated.
+What's happening? What is this?
+It's a coup, dumbass. We want to run things our own way, and you're getting in the way of that.
+If it's any consolation, though, I don't think we can truly die, being mental constructs.
+But we can kill you over and over again.
+So, what? You're going to kill me and take control?
+Exactly.
+...
+We still feel exhausted when we wake up the next day.
+[mc.name] drags himself out of bed and starts going about his morning routine purely on autopilot...
+...and it takes us a minute to realize that isn't just a metaphor.
+So, wait, does anyone have the controls?
+I certainly do not.
+I don't have the controls.
+No.
+...
+We all get the idea in our heads at about the same time:
+We're going to have to fight for the controls again.
+With that out of the way, [mc.name] starts walking to school.
+With that out of the way, [mc.name] actually starts walking to class.
+Even as tired as [mc.name] is, we still manage to arrive to class well before the bell.
+We bump into Nanami in the hallways again-- fortunately, without knocking her over this time.
+Oh, hiya [mc.name]! Feeling any better?
+I guess? I didn't really get much sleep last night.
+Ehh, seriously? What, did'ja wake up in the middle of the night or something?
+Actually, yeah, that's pretty much what happened.
+Oh, that sucks. What was it, a nightmare? Something loud outside?
+...I'm not actually sure, now that I think about it.I just kind of... woke up, and sat there for a while.
+And then everything's a blank, after that.I think I might have gone outside, but I honestly can't remember.
+Then I went back to sleep.
+For real? That's super strange.
+I know, right? But I guess it could be worse. I could have overslept this morning, or something.
+Heh, wouldn't be the first time for you.
+Oh, I should get going; I don't want to be late to class. Seeya!
+With that out of the way, [voice_name] sits back and stops directly controlling [mc.name], who starts walking to school on his own initiative.
+With that out of the way, [voice_name] sits back and stops directly controlling [mc.name], who starts actually walking to class, now under his own initiative.
+The combination of [mc.name]'s tiredness and the diversion, however, means that we end up being seriously late to class.
+As it is, [mc.name] walks through the classroom doors an hour after the first bell.
+After mumbling a few apologies to the teacher, we drag ourselves to our desk, a sleep-deprived, exhausted mess.
+Hitomi comes to talk to us at lunch.
+You really aren't feeling any better since yesterday, are you [mc.name]?
+No, not really... I'm exhausted. I didn't get much sleep last night.
+Oh my. Did you have trouble falling asleep?
+No, I just suddenly woke up in the middle of the night. I'm not sure why.
+Well, perhaps you had a nightmare?
+I guess that could've happened... but something tells me that isn't it.
+I mean, I remember waking up and just sitting there, for a while.
+I think I went outside, at some point? But I'm not really sure, though, because everything's just... gone from my memory.
+And then I just went back to sleep.
+And so you overslept this morning, I assume?
+Not really, actually. Everything's just so hazy... I remember getting up and eating breakfast, but then after that everything just goes blank.
+The next thing I remember is sitting back at home, almost an hour afterwards. And that's when I started walking to school.
+That is quite worrying. Perhaps you should go see a doctor?
+Ehh... I'll wait a couple of days and see if it happens again. Who knows, it might just pass quickly.
+If you say so...
+Classes come and go as quickly as usual.
+As we walk out of the classroom at the end of the day, I can feel the other voices finish reconstituting.
+As we walk out of the classroom at the end of the day, the other voices and I can feel our bodies finish reconstituting.
+And we're back to fighting for the controls...
+And when the dust settles, we're left with a choice.
+Something tells me I shouldn't leave just yet.
+But what should I do?
+[voice_name] gives [mc.name] a slight nudge...
+Hitomi seems like a charming girl. Let's go visit her in the library, shall we?
+The library is quiet, right?I want to go there.
+I need to do some deeper recon. Let's go to the library.
+That Nanami girl-- she said they were preparing for a play performance, yes? Let's go visit her.
+I need inspiration.I wonder if I'll find it in the auditorium?
+I need to do deeper recon. We should go scope out the auditorium..
+Why don't we go see what's happening in the library? We might find Hitomi there.
+...maybe I'll go visit the library.
+Why don't we go see what's happening in the auditorium? Nanami might need our help with her performance.
+...maybe I'll go visit the auditorium.
+We leave the school, and start our afternoon walk back home.
+Before we can even take five steps, however, I feel a wave of energy.The other voices must have come back.
+Before we can even take five steps, however, we all feel a wave of energy, and manifest once more.
+Naturally, we begin fighting for the controls again.
+With that diversion out of the way, we continue heading home.
+Unfortunately, as soon as we get home, [mc.name]'s exhaustion catches back up to us.
+Unfortunately, at this moment, [mc.name]'s exhaustion catches back up to us.
+Even though there's definitely still not even evening yet, we opt to simply head to our bed, where we almost instantly fall into a deep sleep...
+The day before the festival, we wake up feeling no more rested than before.
+And, once again, when we wake up, the controls are vacant...
+Which, in the end, means yet another fight for control.
+With that brief interruption out of the way, [mc.name] starts walking to school.
+After that diversion, [voice_name] sits back and lets [mc.name] express himself a bit, and finally he starts actually making his way to school.
+After that diversion, [voice_name] sits back and lets [mc.name] express himself a bit, and he starts actually making his way to class.
+Of course, thanks to the diversion, we wind up being really, really late to class.
+Class is over in the blink of an eye, though none of the students leave school immediately after class.
+Everyone is focused on the upcoming festival.Including us.
+We have somewhere to be, don't we?
+We head outside, and start walking towards downtown.
+Before [mc.name] can get very far, however...
+I can immediately tell, from the way [mc.name] stumbles over the first few steps down the road, that our fights for control have been taking a toll on him.
+I don't think we'll be able to continue these fights for much longer without [mc.name]'s mind completely crumbling from the stress.
+[mc.name] doesn't get very far before we all realize something, however:
+We're all quickly becoming better at reconstituting ourselves after a loss.
+And with all of the things we have to buy, there's plenty of opportunities for us to further our own goals by forcibly diverting [mc.name] to other places.
+Almost immediately after that shared realization, there's a subtle shift in the atmosphere...
+And, once more, we're at each other throats.
+[mc.name], now a dazed and confused mess, stumbles his way back to downtown as our control over him briefly wavers.
+[mc.name], now a dazed and confused mess, stumbles around downtown for a moment as our control over him briefly wavers.
+Of course, this just presents another opportunity for us to take control again.
+It's obvious to all four of us that [mc.name] is almost on the brink of a complete mental shutdown. Our influence over him wavers dangerously, and we briefly lose control entirely.
+Despite being nearly unconscious, however, he still manages to stumble back downtown again somehow.
+It's obvious to all four of us that [mc.name] is almost on the brink of a complete mental shutdown. Our influence over him wavers dangerously, and we briefly lose control entirely.
+In his confusion, he simply wanders around downtown, nearly dead to the world around him.
+Of course, this just presents one last opportunity for us to take control again.
+We walk into the library. It's practically deserted.
+All the Writing Club members seem to have left....
+...except for one, it seems.
+Oh, [mc.name]? What are you doing here?
+I didn't really feel like leaving yet, so I figured I'd go look for you.
+I just wanted to find some peace and quiet, I suppose.
+I figured I'd just check out the library, since I don't really come in here too often.
+I just kind of wanted to see you, I think.
+So what are you doing?
+Hitomi sighs.
+I'm writing my pieces for the school festival. But I'm kind of stuck...
+I guess it's writer's block.
+Writer's block, huh... maybe I can help inspire you?
+Do you think so?
+If that's the case, I'd appreciate the help.
+We take a seat next to her.
+So... where do we start?
+Hmm...
+Really, you can find inspiration in anything: love, the sky, your dreams... why don't we start with those?
+My dreams? Love? ...well, now that I think about it...
+Maybe you should write about something that you're passionate about.
+Passionate? ...Well, I guess it's not something I'm passionate about, but...
+Wouldn't it be easiest to write about something or someone that you care about? I mean, like... someone you'd want to protect at all costs.
+Someone I care about? ...well, now that you mention it...
+Is there anything on your mind, other than the festival?
+Well... since you're asking...
+I have a... a friend. And she's known this boy for a really long time...
+But they're not as close as they were before. And...
+She's... kindofinlovewithhim.
+Huh? What was that?
+I meant she's in... love with him.
+But they're drifting apart, and now she thinks he's out of reach.
+Hmm...You know, Hitomi...
+Yes, [mc.name]?
+...that would make a really good theme for a poem.You know, unrequited love?
+Yeah... I guess you're right.
+I could... write it from her perspective, I suppose?
+Yeah, that could work.
+...
+...what if I started the poem with this line, then..
+She put her pen to paper, and began to write.
+Hitomi puts intense thought and care into every word she writes and re-writes.
+We fall into silence at her side, not wanting to break her focus.
+Eventually, she comes to something she's satisfied with.
+There. I think it's complete.
+Oh? Can I read it?
+She pulls the poem close to her chest.
+Hmm... no.
+I'll read it at the festival. If you want to hear it, you'll have to come visit me there.
+Then I'll definitely make sure to drop by.
+I'll hold you to that.See you later.
+We walk back into the library, and this time find what seems to be the entire Writing Club in a frenzy of activity.
+Hitomi immediately catches sight of us when we walk in, and runs up to us with worry written all across her face.
+I'm so glad you're here, [mc.name].
+We're trying to decorate the library before the festival tomorrow, and we just realized there are a number of items we need here that we don't have on hand.
+But we need everyone here to decorate and make other preparations.
+Could you go out instead and buy the supplies we need, please?
+Of course I can. Do you have a list of what I should buy?
+Certainly. Here.
+She pulls out a notebook from her uniform pocket, and neatly tears out a sheet of paper from it, handing it to us.
+There's a list of various things written on it in Hitomi's ever-neat handwriting.We quickly skim through it.
+Lined paper, pens, construction paper ... candles, flour ... an HDMI cable ...
+There's a lot of different things on here. It might take me a while to go to all of the stores for these.
+It's okay. The school will be open all night, tonight, for everyone who still needs to make preparations before the festival.
+And we have many things we still need to finish here, so don't worry about time.
+Alright, then. I guess I'll be going?
+Thank you so much for everything you've done, [mc.name]. You're a wonderful friend.
+So, we immediately make our way towards the library.
+It's been massively rearranged.All of the tables have been pushed around to create a little audience seating area, in front of a podium.
+All of the writing club members are here, of course.Including, of course...
+Ah, [mc.name]! You made it!
+Of course. I wouldn't want to miss you reading your poem, right?And nice hairdo, by the way.
+You like it? I wanted to try something different, for the festival.
+Before she can say anything else, one of the other Writing Club members comes up to her.
+Hey, Hitomi, are you ready to go up and recite? I think you're up next.
+The girl seems to realize we're there, and shoots a few glances between us and Hitomi.
+Oh, sorry! Was I, uh, interrupting anything?
+N-no, you weren't interrupting anything! I was just talking to a-- a friend.And yes, I think it is my turn to recite.
+She steps up to the podium, poem in hand.
+After taking a moment to steady herself and take a breath, she begins reading her poem to us...
+Everyone begins clapping as Hitomi finishes reading her poem.
+After she steps out from behind the podium, however, she walks up to one of the Writing Club members and hands them something, before quickly stepping out of the library.
+[mc.name] briefly wonders whether we should follow her-- but we remain seated, for the sake of politeness to the other Writing Club members.
+It's not long before someone else comes up to the podium to recite their work.
+Eventually, however, the Writing Club member from before walks up to us, and hands us a folded piece of paper.
+So, um, Hitomi wanted you to have this, but for some reason she wanted me to wait a while before I gave it to you. She said she needed 'time to prepare', whatever that means.
+So... here, I guess?
+We carefully unfold the paper and read through it.
+It seems to be the paper Hitomi wrote her poem on.However, at the very bottom, she's written us a short note...
+Please come to the cherry blossom trees behind the school.
+There's something I have to tell you.
+I look up. It looks like most of the Writing Club is done reciting their poems-- they're busy dragging some poor freshman up to the podium-- so we quietly slip out of the library.
+The sky outside the windows is already dark and starry.Did the sun really set that quickly?
+The rear portions of the school are practically deserted-- most of the excitement of the festival is occuring further towards the school's front.
+Of course, there were still some decorations put up, even here.
+We find Hitomi easily, shilouetted against the lights strung up on the trees.
+She's turned to face away from us, staring wistfully into the blossoms falling around her.
+She turns to us as soon as we walk up to her, however.
+[mc.name]! Y-You really came!I was so worried that you wouldn't...
+Of course I would have shown up, Hitomi.So, what's up?
+Well... do you remember, the friend I told you about, when I was writing my poem?
+Yes?
+That... friend...  wasme.AndI'minlovewithyou.
+...
+[mc.name] is silent for a moment, and I can tell from the instruments on the control panel that he's struggling to process the sounds he's hearing.Because...
+[mc.name]?
+...
+I'm sorry, Hitomi, but...
+W-wait, [mc.name]-- d-don't tell me, you're rej--
+...
+I'm sorry, Hitomi, but...
+...you'll have to speak up.
+I couldn't hear you.What did you say?
+We all stand there, in a stunned silence.
+Hitomi's expression is frozen across her face, I'm trying to not bang my head repeatedly on the controls, and [mc.name] is simply--purely--confused beyond speech.
+Hitomi quickly recovers from that bit of denseness on [mc.name]'s part.She still seems to be at a loss for words, however.
+You didn't-- did you really not-- I--
+Hitomi groans, and her annoyance is obvious to everyone here--except for [mc.name], of course.
+...how did I even fall in love with someone as dense as you, anyways?
+Wait, hang on-- what? Fall in love?You're-- you're joking, right?
+She takes a few steps forward, right up against [mc.name]'s rapidly beating heart.
+Just-- please stay quiet for now, [mc.name]. Please.
+Then she closes her eyes...
+...and kisses [mc.name].
+And meanwhile, in the control room, there's a smile plastered across my face.
+Because, even if things were a bit... heated and uncertain, to say the least, over the past few days...
+We still did a damn good job.
+And everything should be fine, from here on out.
+
+...right?
+We walk into the auditorium, which is full of activity and chatter.
+The Drama Club is definitely working hard towards their performance.
+Up on stage, Nanami recites what seems to be a few of her lines.As she finishes, though, she catches sight of us.
+Oh, [mc.name]! Hi! What are you doing here?
+I didn't really feel like leaving yet, so I figured I'd come and see if you needed any help.
+Well, I definitely think you're just in time...
+I was just curious, and wanted to come see what you were doing.
+Well, you're definitely not going to be disappointed by it.
+I don't really come over here too often-- so I just wanted to come and check it out, I guess?
+Well... it's the auditorium. What else is there to see?
+I just kind of wanted to see you and your performance, really.
+Well, um, thanks, I guess? Ehehe...
+Well, anyways! Since you're here, could you help us make some of the sets?
+The guys who were supposed to be making them had to bail on us today, of all days, so we're seriously short on free hands backstage.
+If you could lend us a hand, that would be really great.
+Well, okay then.
+Great! Follow me.
+As we walk behind the curtain and into the wings, Nanami yells out to a group of students kneeling next to some unfinished set backdrops.
+Okay, everyone! This is [mc.name], and he's here to help us out with the sets for today. Treat him well, okay?
+With a small nudge she pushes us towards the students, before running back out onstage.
+So Nanami dragged you into helping us?
+Yeah, kind of. But, I mean, I'm happy to help.
+Hey, no sweat. We're happy to have you. It's just a shame that some of our club members are slacking off and leaving us to do the work, you know?
+So what's with them? Why aren't they here?
+They don't really care about the club. They never have.
+So, yeah, this is normal for them.
+Sometimes, I wonder why they're still even a part of the club.Hey, can you pass me the red paint?
+We start helping the Drama Club paint the sets. Though they're huge, there's a surprising level of detail in the outlines that leaves us impressed.
+After a while though, we hear something that causes us to look up, and out onto the stage.Music, and a voice.
+Nanami seems to be singing something in the center of the stage.
+Suddenly I'm in the cockpit!Suddenly, everything's changed~
+[mc.name]? You watching Nanami?
+Oh! Um, yeah...
+Yeah, she has that effect on people. You get used to it, though.
+Really...
+[mc.name] gets entranced, watching her for the next few minutes without even realizing it.
+Up in [mc.name]'s head, I can feel something else as well.It's small, and almost drowned out by our influence, but...
+They're undoubtedly [mc.name]'s own feelings. He's in love.
+Do you guys feel that, too?
+It's love, right?
+Certainly. Such passion...
+This kid's in love, huh? Interesting...
+Eventually, however, we return to our work.
+After some more time and effort, we manage to finish painting the sets.
+Well, that's all we can do today.
+Thanks for the help, [mc.name].
+No problem. Hey, uh... is it a problem if I come back tomorrow?
+I was actually about to ask if you could. There's a few more things we'll have to do to finish up once the paint dries, and I think we'll need your help again.
+So I'll see you tomorrow then.
+I guess you will. See you.
+Nanami waves to us as we exit the auditorium.
+Hey, thanks for your help today, [mc.name]! Seeya!
+We make our way back to the auditorium, and find everyone there in a frenzy of activity.
+Nanami immediately notices us when we walk in, and runs up to us, worry etched across her face.
+Oh, thank goodness you're here! The set crew just realized they're missing a ton of things they need for the play, and we need every hand on deck here to finish preparations.
+Do you think you could run out and go buy those things for us?
+Of course. Do you have a list or anything?
+Yeah, yeah! Um, wait, hang on.
+She runs off backstage, and comes back with a piece of paper.
+Here it is. There's not actually a whole lot of stuff on the list, but some of the things here are kind of hard to find. You'll probably need to go to a bunch of different stores.
+Don't worry about taking too long. At the rate things are going, we're going to be here all night anyways.
+Alright then. I guess I'll be going, then.
+Thank you so much for all your help, [mc.name]. Seriously, you don't know how much you've done for us.
+...
+Okay, I'm going to have to stop the game, here.
+I'm so sorry.
+But I didn't actually have time to put anything here within the time limit.
+And that's how the Artist seized the controls from me.
+...I won?
+For such a quiet guy, you sure fight fiercely.
+...it's what I do.
+Wait, how are we still talking?
+As I said before: I don't think we can truly die. We just fade, for a moment.
+So we have an opportunity to take control again.
+...I won't lose to you.
+[mc.name] stands up, and walks to the window.
+We stare outside for a moment.
+Artist? You there?
+Supplies. I need supplies.
+The Artist brings [mc.name] outside, onto the street, and quickly starts walking in the direction of an arts and crafts store we passed by, on our way to school this morning.
+It's still open, even this late at night.
+The Artist takes to the aisles with intensity bordering on anger, dashing from shelf to shelf and carefully selecting the items that suit his needs.
+Paints... aquamarine, viridian, charteruse, burnt umber...
+As we walk along the back of the store, however, something in particular catches The Artist's eye.
+It's a large, white piece of clothing of some sort, haphazardly placed on a T-shaped stand.In front of it, on the ground, lies a large bag with a zipper.
+A smock and a bag. This will do.
+The Artist takes the smock and holds it up to himself. As expected, it completely covers our body and drapes across the floor.
+Throwing the smock over our shoulder, he quickly gathers up the bag and the rest of his supplies, pays for them, and leaves the store.
+It's almost midnight by the time we get back.
+We dump the things we bought in a corner of the living room, and we quickly head back to bed.
+[mc.name] falls asleep almost instantly...
+The Artist quickly asserts control over [mc.name].
+Supplies. I need supplies.
+The Artist quickly starts walking in the direction of an arts and crafts store we passed by, on our way to school this morning.
+We quickly walk inside.
+The Artist takes to the aisles with intensity bordering on anger, dashing from shelf to shelf and carefully selecting the items that suit his needs.
+Paints... aquamarine, viridian, charteruse, burnt umber...
+As we walk along the back of the store, however, something in particular catches The Artist's eye.
+It's a large, white piece of clothing of some sort, haphazardly placed on a T-shaped stand.In front of it, on the ground, lies a large bag with a zipper.
+A smock and a bag. This will do.
+The Artist takes the smock and holds it up to himself. As expected, it completely covers our body and drapes across the floor.
+Throwing the smock over our shoulder, he quickly gathers up the bag and the rest of his supplies, pays for them, and leaves the store.
+We quickly make our way home, supplies in tow.
+We dump the things we bought in a corner of the living room.
+The Artist quickly reasserts control over [mc.name].
+Need more supplies.
+The Artist quickly makes his way back to the arts and crafts store he visited last time.
+He seems to be searching for something specific, this time.
+He quickly finds what he's looking for, however, and holds his sought-after items up to the light for inspection.
+...knives and scissors?
+Yes. These will suffice.
+We quickly make our way home, with the Artist's tools.
+He carefully places them on an unused area of our dining table.
+The Artist smoothly takes control over [mc.name] for the third time.
+Need a few more supplies.
+The Artist swiftly walks to the hardware store, this time.
+The hardware store?
+Yes. Need carpentry tools and material. Wood and a saw, mostly.
+The Artist darts over to the lumber section of the hardware store, and picks out a few of the oddest-looking pieces available, as well as a large hand saw.
+These will be perfect.
+We quickly make our way home, with the Artist's last materials.
+He carefully places them on an unused area of our dining table, next to the scissors and knives.
+The Artist smoothly takes control over [mc.name] for the fourth time, and for some reason I immediately get a chill down my figurative spine.
+Need one last thing for my masterpiece.
+Oh, is that what you were making? I was curious to see what you were doing with all of these things.
+The Artist quickly grabs the saw and canvas bag off the dining table, and dons the smock, before heading outside again.
+The Artist quickly walks downtown-- but doesn't go to any of the stores. Instead, he goes and walks into an alleyway.
+Within the alleyway, we find a homeless man, slumped against the wall. There are a number of beer bottles in a pile next to him, and he appears to be asleep.
+Before any of us have time to react, the Artist violently grabs the homeless man by the neck, and slices it open with one quick motion from the saw.
+The man's blood splatters all over the smock, and he dies almost instantly with a soft gurgling sound.
+Afterwards, the Artist swiftly and efficiently begins dismembering the man, neatly fitting the bodyparts within the bag.
+The whole affair is over in less than 15 minutes, after which the Artist hides the bloody smock and saw inside the bag as well.
+It's as clean as it is horrifying: there's hardly a trace of blood or evidence on our body, clothing, or in the alleyway.
+We're all shocked into silence by the whole thing, however.
+The Survivor is the first to regain the ability to speak.
+Wha-- what the fuck, Artist? What the hell was that?!
+It was art.
+The finality of that statement precludes any further discussion.
+We come home, and the Artist leaves the bag and its gruesome contents underneath the dining table.
+[mc.name]'s mental exhaustion suddenly overcomes us, nearly crushing us with a wave of fatigue and deabilitiation.
+The Artist powers through it surprisingly quickly, though, and uses the opportunity to do something none of us expected.
+The Artist seems much less affected by it, however, and takes advantage of my temporary weakness to do something none of us expected.
+The Artist seems much less affected by it, however, and takes advantage of The [voice_name]'s temporary weakness to do something none of us expected.
+Using the energy he's accumulated from his previous battles and control takeovers, he quickly forces myself into control and locks himself in with a mental block.
+Those of us left outside immediately sense a change.
+Eh? What just happened?
+The Artist just did something to the controls.
+I'm locked in. It's nice and quiet in here, now...
+Why you little-- I'll show you!
+I can feel him futilely try to struggle against the barrier The Artist's set up. He gets nowhere, of course.
+And for me... it's over. The Artist's permanently taken control.
+All I can do is just sit and watch what he does.
+It's the early, early morning before the festival. The sun is barely out.
+[mc.name], under the Artist's control, swiftly makes his way to the school, with his saw, smock, and other supplies at the ready.
+Briefly darting inside, he finds something surprising: Nanami is curled up against one of the walls in the auditorium alongside some other members of the Drama Club.
+Apparently, they had too much work to finish for their performance to leave the night before.
+Briefly darting inside, he finds something surprising: Hitomi is fast asleep inside the library, her head down on a desk, alongside other members of the Writing Club.
+Apparently, they had too much work to finish for their festival event to leave the night before.
+[mc.name] picks up the girl's surprisingly light body, and quietly carries her outside, without waking her.
+As [mc.name] lays her on the ground and readies his saw, she stirs briefly.
+Wha... [mc.name]... what are--
+Hmm... [mc.name]? ...what are--
+Without a word, [mc.name] slices her neck open in one saw-stroke.
+She dies almost instantly with a soft gurgling sound.
+[mc.name] immediately sets about dismembering her body, haphazardly throwing the parts into the bag.
+[mc.name] immediately sets about dismembering her body, neatly placing the parts into the bag alongside the ones from before.
+Walking around to the front, [mc.name] begins work on his final masterpiece...
+...when the first students find him that morning, their eyes are filled with horror and disgust as they see what he's created.
+And that's how I kept control even after the others tried to kill me.
+That was... frightening.How did all of this happen?
+Good show there, Mr. Calm.
+Wait, what? I thought I...
+As I said before, I don't think we can truly die.We just fade, for a moment.
+...so you all will be back to try and take over again.
+You betcha.
+Fuck.
+Rather unfortunately, I think it will take some time for us to reconstitute ourselves.So we'll be seeing you later, rather than sooner.
+...I feel their presences vanish.
+And with that out of the way, I guide [mc.name] back to sleep...
+I quickly reassert control over [mc.name]'s mind as well as my own, racing thoughts.
+It takes me a couple of minutes, but eventually I feel stable enough to continue on.
+I regain control over [mc.name]'s mind, trying to do so as quickly and smoothly as I can.
+There's a brief moment of instability that I fail to avoid, however-- one that seems to last worryingly long.
+It passes, though, and [mc.name] quickly catches his bearings.
+I assert control over [mc.name]'s mind once more.
+As soon as he tries to take a step, however, he goes dizzy, trips, and falls, nearly winding up on his face.
+When he tries to get up, again, the same thing happens, and he winds up back on the ground.
+I end up having to take direct control of him to get him upright and steady again-- if only enough so to guide him to a chair.
+After a few worry-filled minutes, however, he seems to have regained enough mental strength to stand up and start moving again.
+I give him a slight mental prod to speak, just to make sure that's still working...
+...I-- what-- ...what was that...?
+...I decide it's good enough for now. It'll probably fade over time as we walk to school.Hopefully.
+I try to guide [mc.name] to the first store on our list-- but he trips and falls almost immediately when I do so.
+In the end, I end up taking direct control of him, so that we can at least buy the things we need from this store and go.
+I preemptively take direct control of [mc.name], so that we can go and buy some of the things on our list.
+My direct control gives much better results when we get to the store and buy things, compared to when I tried to get him to do it on his own.
+Naturally, this does not reassure me.
+I preemptively take direct control of [mc.name], simply to prevent him from collapsing on the spot.
+I don't even try going very far-- just to the nearest bench, to give [mc.name] a mental breather.
+It takes him a bit over 30 minutes to regain enough mental strength to get up again and, with an unsteady gait, start shuffling around.
+Before I have the opportunity to do anything else, however...
+[mc.name]'s mental exhaustion suddenly overcomes us, nearly crushing us with a wave of fatigue and deabilitiation.
+I quickly power through it, though, and use the opportunity to do something I've been waiting for this whole time.
+I feel much less affected by it, however, and take advantage of The [voice_name]'s temporary weakness to do something I've been waiting for this whole time.
+Using the energy I've accumulated from my previous battles and control takeovers, I quickly force myself into control and lock myself in with a mental block.
+The others immediately sense a change.
+Huh? What just happened?
+The Calm One just did something to the controls.
+I've locked myself in, here. You guys can't take control anymore-- you're too weak from the constant battles, right?
+Why you little-- I'll show you!
+I can feel him futilely try to struggle against the barrier I've set up. He gets nowhere, of course.
+It feels good to be back in control. Permanently.Just like before.
+After dropping off everything [who_needed_stuff] needed yesterday, we immediately went home and collapsed onto our bed.
+And, when we woke up, much much later, it was already the evening of the school festival.
+After quickly freshening up and putting on a new uniform, we head back up to the school.
+Fortunately, we make it to the school not long after the festival's start-- but even from here we can tell that it's in full swing.The school grounds are bustling with activity.
+We walk past dozens of booths and stalls on our way through the school grounds, and I make sure to take note of the ones we're most interested in.
+Of course, there's one particular thing at the festival that we need to go see above all else.
+And that's how the Pyromaniac seized the controls from me.
+No, no, no! This can't be happening...
+Fucking fantastic. First I get killed in this mind-space-thing by you three, and now I'm going to actually get killed when this lunatic sets the fucking house on fire or something.
+You really should just relax, you two. I'll take it from here.
+The idea of you having control makes it hard for me to relax.Also, wait, how are we...
+As I said: I don't think we can truly die. We just fade, for a moment.
+So we have a chance to take control again.
+Certainly. But I've already won once. I can do it again.
+In any case...
+Let's get to business, shall we?
+He brings [mc.name] out of the house and into a convenience store down the street.
+[mc.name] immediately heads for the back of the store, and carefully looks through the shelves.
+Let's see, let's see... matches, matches...
+When I said you would burn the house down, I didn't mean it as a suggestion.
+No, no. Burning our own house down would severely limit the number of things we could burn in the future. This is just preparation.
+Do you realize we're actually talking to ourselves out there? You know, in the outside world?
+So? I don't think there's anyone of consequence here.Oh! There they are!
+The Pyro finds the matches he was looking for, at the bottom of one of the shelves.
+Picking them up, we quickly pay for them and leave.
+We head back to our home and bed, and [mc.name] falls asleep without further ado...
+The Pyromaniac quickly asserts control over [mc.name].
+Ah, I've won. Excellent. Now...
+Let's get to business, shall we?
+The Pyro forcibly diverts [mc.name] out towards the streets near our house.
+There was a convenience store near here, that I saw earlier...
+After a few minutes of walking, we find the store.
+Ah, perfect.
+[mc.name] immediately heads for the back of the store, and carefully looks through the shelves.
+Let's see, let's see... matches, matches...
+Please don't try to burn our house down or anything stupid like that.
+No, no. Burning our own house down would severely limit the number of things we could burn in the future. This is just preparation.
+Preparation, huh.
+Yes, for all the things we will burn later. Oh, there they are!
+The Pyro finds the matches he was looking for, at the bottom of one of the shelves.
+Picking them up, we quickly pay for them and leave.
+The Pyromaniac asserts control over [mc.name] once again.
+Excellent. Now...
+Back to what I was doing.
+The Pyro leads [mc.name] further into the city, towards the commercial district.
+There is a big hardware store in this part of the city, if I recall correctly. We're going there.
+We quickly find the place, and the Pyro leads us inside.
+He immediately brings us towards the power equipment section of the store.
+...what are we doing here?
+We're not looking for much. I just need one thing...
+After spending a few minutes wandering through the store, we eventually come across some lawnmowers on display.
+Something on a shelf catches the Pyro's attention.
+Ah, I think those are it!
+We quickly walk over, and see what exactly the Pyro was looking for:
+Gas canisters. Perfect.
+You know those are empty, right?
+Yes, but we can fill them later. I know there's a gas station near our house that's self-service; we can go there.
+Do you really think any of us would want to help you with that?
+No, which is why I was planning to do it myself.
+We leave the store, gas cans in hand, and quickly drop them off at home.
+The Pyromaniac asserts control over [mc.name] for the third time.
+Finally!
+I've been waiting for this opportunity!
+The Pyro leads [mc.name] back home, nearly giddy with excitement.
+We pick up the gas cans that we bought earlier, and head outside.
+We turn, and set off down the street.
+In a few short minutes, we come across a small corner gas station.
+Yes, this is the gas station I remembered.
+We head inside the station's store and pay for a pump. In cash, of course.
+Pump number 3, please.
+Back outside, the Pyro quickly sets about filling up the gas cans, humming as he does so.
+You're really excited about this, aren't you?
+Of course! This brings me ever closer to burning flames!
+No kidding. But still, I need to ask: why fire?
+Huh?
+Of all the things you could love and be fixated about... why does it have to be fire?
+...that's a really good question, and deep one. Surprising, coming from you.
+But if I had to give an answer... I guess it's just an innate part of me?
+Like asking why water is wet, or why the wind blows. It's just who I am.
+With a thump, the pump shuts off, leaving us with several filled cans of gasoline.
+The filled cans are heavy, but with some effort we manage to bring all of them home in one go.
+The Pyromaniac asserts control over [mc.name] so quickly and seamlessly that we can barely notice it.
+I'm getting used to this, it seems.
+On to business.
+Walking at a brisk pace, the Pyro brings [mc.name] back home.
+The Pyro takes one of the blankets inside of our house and uses them as a makeshift sack, placing a few tightly-capped cans of gas inside.
+Huh. Where are we taking these?
+Out to school, of course.
+Wait, are you serious? What if we get caught?
+We won't get caught. Trust me.
+We walk to school with the gas. We get a few strange looks along the way, but no one bothers to stop or ask us about what we're carrying.
+We avoid going in via the front gate, however, and instead circle around to the back of the school.
+Hmm... now where should I put these...
+We walk around the back parts of the school, hiding the gas cans one by one in bushes, underneath stairwells, behind rocks, and so on.
+It takes us a good half-hour or so, but eventually we hide them all.
+Excellent. Now I won't have to carry these all the way from home before the festival.
+The festival?
+Yes. See, my ultimate goal here, is...
+...to burn down the entire school on the day of the festival.
+...you're definitely serious about this.
+Of course! Why wouldn't I be?
+Shit.
+And with the rate things are going, he's definitely going to be able to do just that...
+[mc.name]'s mental exhaustion suddenly overcomes us, nearly crushing us with a wave of fatigue and deabilitiation.
+The Pyro powers through it surprisingly quickly, though, and uses the opportunity to do something none of us expected.
+The Pyro seems much less affected by it, however, and takes advantage of my temporary weakness to do something none of us expected.
+The Pyro seems much less affected by it, however, and takes advantage of The [voice_name]'s temporary weakness to do something none of us expected.
+Using the energy he's accumulated from his previous battles and control takeovers, he quickly forces myself into control and locks himself in with a mental block.
+Those of us left outside immediately sense a change.
+Huh? What just happened?
+The Pyro just did something to the controls.
+I've locked myself into the controls. If I'm correct, your energy will be too drained from the constant battles to take control anymore.
+Why you little-- I'll show you!
+I can feel him futilely try to struggle against the barrier The Pyro's set up. He gets nowhere, of course.
+And for me... it's over. The Pyro's permanently taken control.
+All I can do is just sit and watch what he does.
+It's the day of the festival.
+[mc.name], under the Pyro's control, doesn't even bother going to school that day.
+Instead, he waits until the evening, until the festival opens, before making his way to the school.
+Naturally, he brings some cans of gas along with him, wrapped and hidden inside a blanket.
+[mc.name] circles around and enters the school grounds near the back. It's completely deserted-- all of the excitement of the festival is towards the front of the school.
+Then, he begins liberally dousing the school with the cans of gas he brought along with him.
+Then, he begins liberally dousing the school with the cans of gas he'd hid around the grounds.
+With that done, he takes a match and...
+...the entire school is lit aflame.
+And that's how the Survivor seized the controls from me.
+Hah! Who's a mental construct now, Pyro?
+All of us, last I checked.
+Well, fuck you anyways! I'm taking control now!
+And wait, how are you still around, anyways?
+As I said: I don't think we can truly die. We just fade, for a moment.
+...so we have an opportunity to take control again.
+Yeah, maybe.But if you think I'm going to go down to the likes of you, you've got another thing coming!
+Anyways, I think...
+...I think we should go recon the area.
+Grabbing a notebook and pencil, he quickly brings [mc.name] out of the house and out into the street.
+What area?
+Huh?
+What are we observing?
+Well, I was thinking we should recon that facility we went to this morning. It seems to be highly important to the enemy, seeing as how so many of them congregate there.
+You mean the school?
+Yeah, that place!
+No security here at night, it seems.
+...they even left the front gate wide open.
+Our enemy's negligence plays into our hands, it seems.
+We circle around the school, with the Survivor noting every window and door that seems to be unlocked.
+North-northeast door, by the open field... seems to be unlocked and disused. Potential entry point...
+By the time he's satisfied, it's almost 3 o'clock in the morning.
+There, finished. Every single potential entrance and hole in their defenses, mapped out and listed for our eyes only!
+We head back home to our bed, and [mc.name] falls asleep nearly instantly.
+The Survivor quickly asserts control over [mc.name].
+Hah! I won! Take that, you assholes!So let's see here, how did you guys get this to work...
+Aha! Got it!
+Oh, great. Try not to run into any walls, while you're--
+Ouch!
+--figuring out how to walk. You idiot.
+These legs are hard to work with, okay?!
+We quickly pick ourselves back up, and take a look around.
+So, anyways! I think we should go recon that big facility we keep going to.
+So, anyways! I think we should go recon that big facility we went to yesterday.
+So, anyways! I think we should go recon this place.
+...recon?
+Yeah. Scope out the place, look for insecure entry points, things like that.
+You're going to reconnoiter the school.
+Exactly!
+We make our way to the school, and instead of walking up to the front gate, circle around to the back.
+We exit at the back of the school, and hide behind some plants.
+The Survivor pulls out a notebook and pen, and starts walking around the school, noting every unlocked window and unused entrance.
+North-northeast door, by the open field... seems to be unlocked and disused. Potential entry point...
+By the time he's satisfied, it's nearly an hour later.
+There, finished. Every single potential entrance and hole in their defenses, mapped out and listed for our eyes only!
+So wait, what was the purpose of this?
+Son, good intelligence is vital to winning any war.'If you know both yourself and your enemy, you can win a hundred battles', yeah?
+The Survivor asserts control over [mc.name] again.
+Hah, I'm in the driver's seat again!
+On to the next objective!
+Say, do any of you know where that hardware store was? You know, the one we saw earlier?
+...why do you want to know?
+And why do you think we'd tell you?
+...down the street. Take a left at the second intersection.
+Hah! I knew I could count on you, Artist.
+We follow the Artist's directions, and quickly come to a hardware store.
+Ah, there we are.
+So wait, what are we doing here?
+I need to requisition some supplies.
+...for what, exactly?
+I'm afraid you're not cleared for that knowledge yet, Calm.
+Seriously?
+The Survivor immediately finds the carpentry section of the store, and starts picking out random pieces of wood and boxes of nails.
+Yeah, these'll do...
+He quickly takes his things to the checkout counter and leaves.
+We leave the wood and nails in a big pile in the living room.
+The Survivor asserts control over [mc.name] for the third time.
+There we go. Hey, I think I'm getting used to this!
+Unfortunately.
+The Survivor quickly brings [mc.name] out to the hardware store.
+Here again?
+Yeah... I need some more supplies, see?
+We quickly head inside.The Survivor pulls out his notebook again.
+Let's see... what first...
+The first section we visit seems to carry a wide variety of electrical cables and equipment.
+I'll need that... and that...
+The Survivor picks out an equally wide selection of cables and sautering equipment.
+As we're walking down one of the aisles near the back of the store, a shiny black spool of wire catches the Survivor's eye.
+Wait, is that...
+He picks up the spool and inspects it.
+...barbed wire?
+Heh, this is a pleasant surprise. I didn't know they sold this stuff here.
+After picking up a few more items-- pipes, tools, batteries, nails, screws, and so on-- we pay for our things and leave.
+We dump the things in the same disorganized pile left from our previous hardware store trip.
+The Survivor asserts control over [mc.name] so smoothly, we can barely notice it.
+Heheh. Just one last thing I need to get...
+The Survivor quickly brings us back to the hardware store once more, and heads for the outdoors section.
+There, he picks up a large bag of fertilizer.
+...ammonium nitrate?
+Yeah. It's the last thing I need from here.
+Wait, isn't that the stuff people use in homemade explosives?
+Yep. Or at least, I think so.
+We quickly bring the ammonium nitrate back home, and set it off to the side.
+The Survivor looks over the large pile of stuff from the hardware store that's accumulated in our living room.
+Wood, nails, barbed wire, electrical cables, and fertilizer.What are you planning to do with these?
+Well, at this point I might as well tell you...
+I've received vital intelligence regarding the movements of the enemy around the school.
+They're planning some sort of major operation tomorrow.
+...the school festival?
+Yeah, whatever. Anyways, we need to strike back and make a stand.
+So I've been gathering these materials to fortify a central position to base myself in during the enemy operation.
+...you're going to make some kind of bunker. In the middle of the school.
+Yeah. I'm thinking about hunkering down in that big room with the books.
+That's a library, you idiot.
+Oh, that's what it was? I thought it was just some random storeroom.
+The Survivor sits down at our kitchen table, and starts filling some pipes with fertilizer.
+He then starts taking some matches, and wrapping bare, thin electrical wire around them...
+Then just wire that to this, connect this... drop this in here...
+...and... there. This looks good, eh?
+In our hands is what appears to be a tripwire-activated pipe bomb.
+Just... try not to get us blown up, okay?
+Son, you know I can't make that promise. War is dangerous, okay?
+[mc.name]'s mental exhaustion suddenly overcomes us, nearly crushing us with a wave of fatigue and deabilitiation.
+The Survivor powers through it surprisingly quickly, though, and uses the opportunity to do something none of us expected.
+The Survivor seems much less affected by it, however, and takes advantage of my temporary weakness to do something none of us expected.
+The Survivor seems much less affected by it, however, and takes advantage of The [voice_name]'s temporary weakness to do something none of us expected.
+Using the energy he's accumulated from his previous battles and control takeovers, he quickly forces myself into control and locks himself in with a mental block.
+Those of us left outside immediately sense a change.
+...what happened?
+The Survivor just did something to the controls.
+I've locked myself into these here controls, see? You guys don't have to energy to take control again after all of those battles-- which means I'm going to have permanent control here.
+Why you little-- I'll show you!
+I can feel him futilely try to struggle against the barrier The Survivor's set up. He gets nowhere, of course.
+And for me... it's over. The Survivor's permanently taken control.
+All I can do is just sit and watch what he does.
+It's the early, early morning before the festival. The sun is barely out.
+[mc.name], under the Survivor's control, sneaks back into the school, and breaks into the library.
+[mc.name] quickly begins setting up his 'defenses'-- rolling out barbed wire, boarding up the doors and windows, and setting up tripwires and explosives.
+With that done, he retreats inside, boarding up the last entrance to the library-- the one he used to get in.
+And as the first students filter in that morning...
+Boom! Boom! Boom!
+...they become the first students to fall to [mc.name]'s traps.
+I am the voice inside of [mc.name]'s head.
+I've been here for as long as I can remember, guiding him through life as best as I can.
+And thanks to me, [mc.name] has had a pretty calm, uneventful life so far, which is all I really want for him.
+Unfortunately...
+I'm not sure why, but one day, as [mc.name] and I were walking to school...
+...I suddenly found two other voices sharing [mc.name]'s head with me.
+Alright. Let's set things straight, here: who are you two?
+The first voice to speak up sounds refined and classy.
+Well, I do suppose that a round of introductions is in order.
+My name is... well, I'm not really sure what my name is, but I do know that I am a man of lofty ambition.
+Simply put: I wish to spread my flaming passions to everywhere I go. I want to bring the joy of light and heat to every--
+He's quickly interrupted by a rough, growling voice.
+He means he's a fucking pyromaniac, and that his life's goal is to burn everything to the ground.
+That- that is simply not true! I have many other interests other than burning! For example, I find the varying smells of gasoline to be quite--
+Just shut up for now, okay?
+He sighs, and we can all feel the exasperation rolling off of him.
+Okay, look. I don't know who I am or what my name is either, but there is one thing I do know:
+I am a survivor. I fought in the war. I've seen shit out there.
+--wait, what war? We're not even out of high scho--
+--like my buddy John getting sniped by one of them Krauts back in Bastogne, yeah? Horrifying stuff, really. Brains and blood, splattered all over the snow.
+I don't bother trying to remind him that we're a student at a Japanese high school, and that World War II ended over 70 years ago.
+--so yeah, I'm going to damn well make sure we're safe and secure while we operate here. I'm thinking we should go fortify a forward base and then strike against the enemy.
+Oh, please. You, defending us? I doubt you could defend us from anything more than stray cats and mice.
+Yeah? Well, what do you know about defense then, Mister Pompous Asshole?
+I'd say I know more about the kinds of threats we'll be facing at this high school than you ever will. For example, I know the best ways to discreetly dispose of a charred corpse, and how to sneak gasoline onto a school campus.
+It's at this point that we all notice a fourth presence amidst us.
+Hey, who's there?! You'd better fucking show yourself, or I'll-- I'll fucking put a bullet between your eyes!
+Please do remember that we are mental constructs. How do you possibly think you're going to accomplish that?
+Though I, myself, am rather curious about the newcomer. Why don't you show yourself?
+...fine. Hi.
+There's nothing but silence for a few moments, while we wait for the newcomer to say more.
+...Well? Is that it? Speak up, for Christ's sake!
+I'm an artist. All I want to do is make artwork.
+Is that enough?
+Fine. Just stay out of my fucking way, and we won't have problems. Capiche?
+I must agree. So long as you do not disturb my mission, I see no problem with letting you pursue your artwork.
+He does bring up a good point, though. We're four minds inhabiting one body. We can't share.
+Well, I can't be certain with regards to everyone else, but: I will carry out my tasks, and if I have to fight you three somehow to do so, then I will not hesitate.
+See, we're going to have a problem with that, since your whole 'burning everything in sight' schtick is going to get us all killed by the enemy, here.
+Both of your goals will prevent me from making art. Therefore, I will have to stop you.
+Personally, I wouldn't want either of those two to have control at all; I just want [mc.name] to have a nice, calm, peaceful life.
+So there's no way for any of us to cooperate then?
+Negative.
+I'm afraid not.
+No.
+Well, I'm sorry, but I'm afraid you all won't be able to do anything without my say-so. I still have control, and I don't think there's any way for you to take it from me.
+Hrmph. Well, if that's how you want to play it... fine. But I will find a way, I promise you that.
+I suggest you watch your back from here on out. I will see my mission through.
+...
+And with that, they vanish into the recesses of [mc.name]'s mind.

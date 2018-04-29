@@ -139,6 +139,43 @@ label calm_shopping_takeover:
 
     "It feels good to be back in control. Permanently.{p}Just like before."
 
+    jump calm_endgame
+
+label calm_endgame:
+    python:
+        complete_fadeout()
+        reset_to_default_spawns()
+        set_screen_center(control_panel_pos)
+        set_control('calm')
+
+    $ who_needed_stuff = '<somebody>'
+    if route_choice == 'hitomi':
+        $ who_needed_stuff = 'Hitomi and the Writing Club'
+    else:
+        $ who_needed_stuff = 'Nanami and the Drama Club'
+
+    "After dropping off everything [who_needed_stuff] needed yesterday, we immediately went home and collapsed onto our bed."
+
+    scene bedroom evening at scene_bg
+    show screen ctrl_game
+    with dissolve
+
+    "And, when we woke up, much {i}much{/i} later, it was already the evening of the school festival."
+
+    "After quickly freshening up and putting on a new uniform, we head back up to the school."
+
+    scene school evening at scene_bg
+    with dissolve
+
+    "Fortunately, we make it to the school not long after the festival's start--{w} but even from here we can tell that it's in full swing.{p}The school grounds are bustling with activity."
+
+    scene hallway evening at scene_bg
+    with dissolve
+
+    "We walk past dozens of booths and stalls on our way through the school grounds, and I make sure to take note of the ones we're most interested in."
+
+    "Of course, there's one particular thing at the festival that we need to go see above all else."
+
     if route_choice == 'hitomi':
         jump hitomi_calm_endgame
     else:

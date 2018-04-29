@@ -6,6 +6,7 @@ Backgrounds found at:
  * http://ayaemo.skr.jp/material_school.html
  * http://www.library-furniture.org
  * https://aminoapps.com/c/japan/page/blog/hanami/bLso_u8pV3WrpMXwYJ0lN7b7vjgJB5 (cherry blossoms BG)
+ * http://manoa.hawaii.edu/library/services/study-space/ (library BG)
 
 Credit to:
  * Erik Cleves Kristensen (Home backgrounds)

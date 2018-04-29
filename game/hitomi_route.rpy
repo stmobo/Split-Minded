@@ -184,25 +184,79 @@ label day2_hitomi:
 
 
 label hitomi_calm_endgame:
-    python:
-        complete_fadeout()
-        reset_to_default_spawns()
-        set_screen_center(control_panel_pos)
-        set_control('calm')
+    "So, we immediately make our way towards the library."
 
-    show screen ctrl_game
+    scene library festival at scene_bg
     with dissolve
+
+    "It's been massively rearranged.{p}All of the tables have been pushed around to create a little audience seating area, in front of a podium."
+
+    "All of the writing club members are here, of course.{p}Including, of course..."
+
+    show hitomi smiling alt_hair at center
+    with dissolve
+
+    hitomi "Ah, [mc.name]! You made it!"
+
+    mc "Of course. I wouldn't want to miss you reading your poem, right?{p}And nice hairdo, by the way."
+
+    hitomi "You like it? I wanted to try something different, for the festival."
+
+    "Before she can say anything else, one of the other Writing Club members comes up to her."
+
+    "Writing Club Member" "Hey, Hitomi, are you ready to go up and recite? I think you're up next."
+
+    "The girl seems to realize we're there, and shoots a few glances between us and Hitomi."
+
+    "Writing Club Member" "Oh, sorry! Was I, uh, {w=0.5}{i}interrupting{/i}{w=0.5} anything?"
+
+    show hitomi shy alt_hair at center
+    with dissolve
+
+    hitomi "N-no, you weren't interrupting anything! I was just talking to a-- a friend.{p}And yes, I think it is my turn to recite."
+
+    hide hitomi with dissolve
+
+    "She steps up to the podium, poem in hand."
+
+    "After taking a moment to steady herself and take a breath, she begins reading her poem to us..."
+
+    show hitomi reciting alt_hair at center
+    with dissolve
+
+    # "Every day, I imagine a future where I can be with you~"
+    # "In my hand, is a pen that will write a poem~ of me and you~"
+
+    pause .75
+
+    # I'll figure out a poem later
+
+    hide hitomi with dissolve
+
+    "Everyone begins clapping as Hitomi finishes reading her poem."
+
+    "After she steps out from behind the podium, however, she walks up to one of the Writing Club members and hands them something, before quickly stepping out of the library."
+
+    "[mc.name] briefly wonders whether we should follow her--{w} but we remain seated, for the sake of politeness to the other Writing Club members."
+
+    "It's not long before someone else comes up to the podium to recite their work."
 
     jump hitomi_confession
 
 
 label hitomi_confession:  # in which Kei is basically deaf
-    scene library at scene_bg
+    scene library festival at scene_bg
     with dissolve
+
+    "Eventually, however, the Writing Club member from before walks up to us, and hands us a folded piece of paper."
+
+    "Writing Club Member" "So, um, Hitomi wanted you to have this, but for some reason she wanted me to wait a while before I gave it to you. She said she needed 'time to prepare', whatever that means."
+
+    "Writing Club Member" "So... here, I guess?"
 
     "We carefully unfold the paper and read through it."
 
-    "There's Hitomi's poem, of course, but at the very bottom there's a note..."
+    "It seems to be the paper Hitomi wrote her poem on.{p}However, at the very bottom, she's written us a short note..."
 
     # maybe use a special screen for this?
     hitomi "{i}Please come to the cherry blossom trees behind the school.\n{p}There's something I have to tell you.{/i}"
@@ -212,7 +266,7 @@ label hitomi_confession:  # in which Kei is basically deaf
     scene hallway alt cloudy at scene_bg
     with dissolve
 
-    "The sky outside the windows is already dark and starry. Did the sun really set that quickly?"
+    "The sky outside the windows is already dark and starry.{p}Did the sun really set that quickly?"
 
     scene school back night light at scene_bg
     with dissolve
@@ -270,7 +324,7 @@ label hitomi_confession:  # in which Kei is basically deaf
     show hitomi shy angry alt_hair at center
     with dissolve
 
-    "Hitomi quickly recovers from that bit of denseness on [mc.name]'s part, however.{p}She's still seems to be at a loss for words, however."
+    "Hitomi quickly recovers from that bit of denseness on [mc.name]'s part.{p}She still seems to be at a loss for words, however."
 
     hitomi "You didn't-- {w}did you really not-- {w}I--"
 

@@ -93,6 +93,7 @@ image auditorium night light = "bg/auditorium/night_light.jpg"
 image auditorium backstage = "bg/auditorium/backstage.jpg"
 
 image library = "bg/library.jpg"
+image library festival = "bg/library_festival.jpg"
 
 image home = "bg/home/day.jpg"
 image home day = "bg/home/day.jpg"

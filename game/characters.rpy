@@ -15,6 +15,7 @@ image hitomi normal = "hitomi/upscaled/normal.png"
 image hitomi normal alt = "hitomi/upscaled/normal_2.png"
 
 image hitomi normal alt_hair = "hitomi/upscaled/alt_normal.png"
+image hitomi reciting alt_hair = "hitomi/upscaled/alt_reciting.png"
 image hitomi annoyed alt_hair = "hitomi/upscaled/alt_annoyed.png"
 image hitomi annoyed closeup alt_hair = "hitomi/upscaled/alt_annoyed_closeup.png"
 image hitomi shy eyes_closed closeup alt_hair = "hitomi/upscaled/alt_shy_eyesclosed_closeup.png"
