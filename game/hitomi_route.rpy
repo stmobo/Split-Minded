@@ -187,6 +187,7 @@ label hitomi_calm_endgame:
     "So, we immediately make our way towards the library."
 
     scene library festival at scene_bg
+    show crowd thin at scene_bg
     with dissolve
 
     "It's been massively rearranged.{p}All of the tables have been pushed around to create a little audience seating area, in front of a podium."
@@ -245,9 +246,6 @@ label hitomi_calm_endgame:
 
 
 label hitomi_confession:  # in which Kei is basically deaf
-    scene library festival at scene_bg
-    with dissolve
-
     "Eventually, however, the Writing Club member from before walks up to us, and hands us a folded piece of paper."
 
     "Writing Club Member" "So, um, Hitomi wanted you to have this, but for some reason she wanted me to wait a while before I gave it to you. She said she needed 'time to prepare', whatever that means."
@@ -264,6 +262,7 @@ label hitomi_confession:  # in which Kei is basically deaf
     "I look up. It looks like most of the Writing Club is done reciting their poems-- {w}they're busy dragging some poor freshman up to the podium--{w} so we quietly slip out of the library."
 
     scene hallway alt cloudy at scene_bg
+    show crowd sparse at scene_bg
     with dissolve
 
     "The sky outside the windows is already dark and starry.{p}Did the sun really set that quickly?"
@@ -357,16 +356,4 @@ label hitomi_confession:  # in which Kei is basically deaf
 
     pause 0.5
 
-    "And meanwhile, in the control room, there's a smile plastered across my face."
-
-    "Because, even if things were a bit... {w=0.5}{i}heated and uncertain{/i}, to say the least, over the past few days..."
-
-    "We still did a damn good job."
-
-    "And everything should be fine, from here on out."
-
-    $ complete_fadeout()
-
-    "\n{p}...right?"
-
-    # and that's all for now, folks
+    jump calm_closeout

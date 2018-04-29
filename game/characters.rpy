@@ -48,8 +48,22 @@ image nanami normal alt_hair alt_clothes = "nanami/upscaled/alt_normal.png"
 image nanami reciting alt_hair alt_clothes = "nanami/upscaled/alt_reciting.png"
 
 image nanami happy alt_clothes = "nanami/upscaled/alt_happy_hair.png"
+image nanami wide_smile alt_clothes = "nanami/upscaled/alt_wide_smile.png"
+image nanami annoyed alt_clothes = "nanami/upscaled/alt_annoyed.png"
+image nanami questioning alt_clothes = "nanami/upscaled/alt_questioning.png"
 image nanami normal alt_clothes = "nanami/upscaled/alt_normal_hair.png"
 image nanami reciting alt_clothes = "nanami/upscaled/alt_reciting_hair.png"
+
+image nanami shy smiling closeup alt_clothes = "nanami/upscaled/alt_shy_smiling_closeup.png"
+image nanami shy eyes_closed closeup alt_clothes = "nanami/upscaled/alt_shy_eyesclosed_closeup.png"
+
+image hiro = "hiro/upscaled/normal.png"
+image hiro normal = "hiro/upscaled/normal.png"
+image hiro smiling = "hiro/upscaled/smiling.png"
+
+image crowd = "crowd.png"
+image crowd thin = "thin_crowd.png"
+image crowd sparse = "sparse_crowd.png"
 
 ## Text character definitions
 define mc = Character("Kei", color="#0099cc")
@@ -60,6 +74,8 @@ define artist_mc = Character(mc.name, color="#6800b7")
 
 define hitomi = Character("Hitomi", color="#28a25b")
 define nanami = Character("Nanami", color="#ff6060")
+
+define hiro = Character("Hiro", color="#8282ca")
 
 define calm = Character("The Calm One", color="#ffffff")
 define pyro = Character("The Pyromaniac", color="#ffa126")

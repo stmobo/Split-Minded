@@ -77,6 +77,14 @@ image hallway evening = "bg/hallway/evening.jpg"
 image hallway night dark = "bg/hallway/night_dark.jpg"
 image hallway night light = "bg/hallway/night_light.jpg"
 
+image roof = "bg/roof/day.jpg"
+image roof day = "bg/roof/day.jpg"
+image roof day rain = "bg/roof/rain.jpg"
+image roof cloudy = "bg/roof/cloud.jpg"
+image roof evening = "bg/roof/evening.jpg"
+image roof night = "bg/roof/night.jpg"
+image roof night rain = "bg/roof/night_rain.jpg"
+
 image hallway alt = "bg/other_hallway/day.jpg"
 image hallway alt day = "bg/other_hallway/day.jpg"
 image hallway alt cloudy = "bg/other_hallway/cloud.jpg"
@@ -116,5 +124,6 @@ image sakura = "bg/sakura_big.jpg"
 
 
 image hitomi_kiss_cg = Placeholder("bg")
+image nanami_kiss_cg = Placeholder("bg")
 
 image black = Solid('#000')

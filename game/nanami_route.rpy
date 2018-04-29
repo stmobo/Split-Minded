@@ -175,12 +175,186 @@ label day2_nanami:
     jump day2_shopping_start
 
 label nanami_calm_endgame:
-    pause
+    "So, we immediately make our way towards the auditorium."
 
-    "FarawayVision" "..."
+    scene auditorium evening at scene_bg
+    show crowd at scene_bg
+    with dissolve
 
-    "FarawayVision" "Okay, I'm going to have to stop the game, here."
+    "Everything is set up for tonight's production.{p}There's already a ton of people here, waiting for the show to begin."
 
-    "FarawayVision" "I'm so sorry."
+    "We take a seat, and eventually, the performance starts."
 
-    "FarawayVision" "But I didn't actually have time to put anything here within the time limit."
+    "The play--or is it a musical?-- seems to be about airplanes."
+
+    show nanami reciting alt_clothes alt_hair at center
+    with dissolve
+
+    "Nanami, naturally, plays one of the lead roles, and seems all dressed up for the part--she's even sporting a new hairstyle."
+
+    "She plays her part like a pro, captivating the entire audience with the emotion and force behind her lines."
+
+    "The performance is over almost all too quickly."
+
+    hide nanami with dissolve
+
+    "[mc.name] seems to be stuck in a sort of daze as he gets up from his seat."
+
+    "As we're about to walk out of the auditorium, however, someone taps our shoulder from behind.{p}It's the Drama Club member we worked alongside on the sets, two days ago."
+
+    "Drama Club Member" "Hey, [mc.name]! I thought I'd find you here.{p}Listen, the Drama Club's having a small party on the rooftop to celebrate the performance. Care to join us?"
+
+    "Watching the controls, I notice a large spike in [mc.name]'s hesitation-- but I override it."
+
+    mc "Uhm... yeah, sure, I guess?"
+
+    "Drama Club Member" "Great! I've gotta go clean up some stuff backstage first-- but I'll see you there!"
+
+    jump nanami_confession
+
+label nanami_confession:  # in which Kei gets a "nervous love confession" scene of his very own.
+    scene roof night at scene_bg
+    show crowd thin at scene_bg
+    with dissolve
+
+    "We make our way to the rooftop."
+
+    "Pretty much the entire Drama Club is up here already, celebrating the success of the production."
+
+    "And, of course, [mc.name] has no idea who any of these people are."
+
+    "For his sake, however, I silence the second thoughts running through the back of his mind."
+
+    "It's all I can do, however, to make him awkwardly shuffle to the back edge of the rooftop, against the railing."
+
+    "After a few minutes of silently gazing down at the brightly lit school grounds, however, a familiar voice approaches us from behind."
+
+    show nanami happy alt_clothes at center
+    with dissolve
+
+    nanami "Hiya, [mc.name]! Great show tonight, huh?"
+
+    "I try to not make the anxiety and nerves in [mc.name] too obvious in his voice."
+
+    mc "Yeah, you really put on a nice performance..."
+
+    "Nanami, of course, seems to pick up on it instantly."
+
+    show nanami wide_smile alt_clothes at center
+    with dissolve
+
+    nanami "Ehe, thanks!\nBut you know, we really couldn't have done it without you.{p}You did as much for this performance as I did."
+
+    mc "Eh... I kind of have a hard time believing that."
+
+    show nanami normal alt_clothes at center
+    with dissolve
+
+    mc "Eh... I kind of have a hard time believing that.{fast}\nI mean, come on. I just kind of showed up two days before the performance and helped out a bit."
+
+    mc "And you're... you know, one of the leading roles."
+
+    nanami "Sure, you may have shown up towards the end.{p}{i}Buuut,{/i} when you did, it was at the exact right time, to fill in for a place that no one else could."
+
+    show nanami annoyed alt_clothes at center
+    with dissolve
+
+    nanami "Which is still much more than {i}some{/i} of our supposed 'members' did."
+
+    show nanami happy alt_clothes at center
+    with dissolve
+
+    nanami "So wipe that gloomy look off your face, [mc.name]!{p}You're one of us, now. You belong here."
+
+    "Before [mc.name] can stammer his way through another response, however, a voice calls out to us from a few feet away.{p}It's the guy from before."
+
+    "Drama Club Member" "[mc.name]! You actually did decide to show up! How are you--"
+
+    "It takes him a second to notice that we're not alone, here.{p}He looks back and forth between Nanami and [mc.name], before putting on a sheepish grin."
+
+    "Drama Club Member" "Hehe, shoot. Was I interrupting anything? I'll go ahead and leave you two alone, if you'd like."
+
+    show nanami questioning alt_clothes at center
+    with dissolve
+
+    "[mc.name]'s heart rate and nervousness surge in response to this, but Nanami just seems confused and unaware of the implications somehow."
+
+    nanami "...no, you weren't interrupting anything? I mean, I was trying to get this guy to be a bit less awkward, here, but it's nothing private."
+
+    "Drama Club Member" "Eh, seriously? [mc.name] hasn't--"
+
+    "Before I can react, [mc.name] decides to seize on the first course of action to come to mind, and gestures at the drama club member."
+
+    mc "{i}Aaaaaand,{/i} um, hey...{p}You know, I, uh, never got your name. What was it?"
+
+    "Drama Club Member" "...wait, seriously?"
+
+    show hiro normal at left
+    show nanami questioning alt_clothes at right
+    with dissolve
+
+    hiro "My name's Hiro. How did we not introduce ourselves to each other?"
+
+    "[mc.name] shrugs."
+
+    mc "Beats me."
+
+    show hiro smiling at left
+    with dissolve
+
+    hiro "Eh, whatever. We'll have time to chat later-- {w}but if I'm correct, [mc.name], {i}you{/i} have {i}something{/i} to say to Nanami, right?"
+
+    "[mc.name] picks up on the implication a split second after Hiro says that, bringing his nervousness back in full force."
+
+    mc "Ehhh... well, um. Maybe? That's, um, you see--"
+
+    hiro "--well, anyways. I'm going to get out of your hair now.\nLater, and good luck, [mc.name]!"
+
+    hide hiro
+    show nanami normal alt_clothes at center
+    with dissolve
+
+    nanami "...what was {i}that{/i} all about?{p}And, more importantly: what did you have to say to me, [mc.name]?"
+
+    "[mc.name]'s mind completely blanks out at this point, all of his thoughts replaced by thoughts of doom and curses on Hiro's name."
+
+    "So, I intervene.{p}I gather up whatever scraps of courage we've got left, and with a few keypresses, use them up."
+
+    mc "Well, um, you know two days ago, when I showed up and helped with the sets?{p}Well, you were rehearsing on stage, and I was kind of watching you while I worked..."
+
+    # man, I love using this "shrinking text" schtick
+    mc "And I {size=-3}kinda-{/size}{size=-5}sorta{/size}{size=-7}mighthave{/size}{size=-9}falleninlove{/size}{size=-11}withyou?{/size}"
+
+    "[mc.name]'s voice dies as he forces that sentence out, and his heart nearly follows suit."
+
+    "We sit there, for a second or two, in silence.{p}Then Nanami starts chucking softly."
+
+    show nanami happy alt_clothes at center
+    with dissolve
+
+    nanami "Oh, [mc.name]. I-- {w}I was not expecting that.{p}I'm not even sure how I didn't notice--"
+
+    nanami "--but now that I think back about it, it was really, {i}really{/i} obvious!{p}I'm not even sure what to say."
+
+    hide crowd
+    show nanami shy smiling closeup alt_clothes at center
+    with dissolve
+
+    "She takes a few steps closer to us, cupping our face in her hands.\nThe crowd around us seems to vanish as our focus converges on Nanami."
+
+    nanami "But, um, [mc.name]? I {i}do{/i} accept your confession."
+
+    show nanami shy eyes_closed closeup alt_clothes at center
+    with dissolve
+
+    "With that said, she closes her eyes..."
+
+    scene nanami_kiss_cg
+    hide screen ctrl_game
+    with dissolve
+
+    "...and kisses [mc.name]."
+
+    pause 0.5
+
+    jump calm_closeout

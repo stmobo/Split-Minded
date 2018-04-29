@@ -165,11 +165,13 @@ label calm_endgame:
     "After quickly freshening up and putting on a new uniform, we head back up to the school."
 
     scene school evening at scene_bg
+    show crowd at scene_bg
     with dissolve
 
     "Fortunately, we make it to the school not long after the festival's start--{w} but even from here we can tell that it's in full swing.{p}The school grounds are bustling with activity."
 
     scene hallway evening at scene_bg
+    show crowd thin at scene_bg
     with dissolve
 
     "We walk past dozens of booths and stalls on our way through the school grounds, and I make sure to take note of the ones we're most interested in."
@@ -180,3 +182,20 @@ label calm_endgame:
         jump hitomi_calm_endgame
     else:
         jump nanami_calm_endgame
+
+label calm_closeout: # The Calm One's last words to round out the story.
+    "And meanwhile, in the control room, there's a smile plastered across my face."
+
+    "Because, even if things were a bit... {w=0.5}{i}heated and uncertain{/i}, to say the least, over the past few days..."
+
+    "We still did a damn good job."
+
+    "And everything should be fine, from here on out."
+
+    $ complete_fadeout()
+
+    "\n{p}...right?"
+
+    "~ Fin ~"
+
+    # and that's all for now, folks
